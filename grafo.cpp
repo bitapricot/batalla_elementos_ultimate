@@ -9,7 +9,12 @@ Grafo::Grafo(string nombre_archivo) {
 }
 
 
-Grafo::cargar_tablero(string archivo_mapa) {
+void Grafo::buscar_vertices_adyacentes(Vertice* vertice) {
+	
+}
+
+
+void Grafo::cargar_tablero(string archivo_mapa) {
 	ifstream archivo_mapa;
 	archivo_mapa.open(nombre_archivo);
 	
@@ -32,6 +37,7 @@ Grafo::cargar_tablero(string archivo_mapa) {
 				getline(archivo, casillero, ",");
 				Casillero* nuevo_casillero = crear_casillero(casillero);
 				Vertice* nuevo_vertice = Vertice(nuevo, i, j);
+				vertices->alta(nuevo_vertice);
 			}
 		}
 	}
@@ -42,3 +48,23 @@ Grafo::cargar_tablero(string archivo_mapa) {
 	}	
 }
 
+
+void Grafo::conectar_vertices() {
+	while (vertices->hay_siguiente()) {
+		buscar_vertices_adyacentes(vertices->obtener_actual());
+		vertices->siguiente();
+	}
+}
+
+
+Casillero* Grafo::crear_casillero(string casillero) {
+	
+	if (casillero == CAMINO) nuevo_casillero = new Camino();
+	else if (casillero == LAGO) nuevo_casillero = new Lago();
+	else if (casillero == MONTANIA) nuevo_casillero = new Montania();
+	else if (casillero == PRECIPICIO) nuevo_casillero = new Precipicio();
+	else if (casillero == VACIO) nuevo_casillero = new Vacio();
+	else nuevo_casillero = new Volcan();
+	
+	return nuevo_casillero;
+}
