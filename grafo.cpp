@@ -32,6 +32,8 @@ void Grafo::cargar_tablero(string archivo_mapa) {
 		for (i; i < dim_fila; i++) {
 			getline(archivo, casillero);
 			crear_casillero(casillero);
+			Vertice* nuevo_vertice = Vertice(nuevo, i, j);
+
 			
 			for (j; j < dim_col-1; j++) {
 				getline(archivo, casillero, ",");
