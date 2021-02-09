@@ -10,6 +10,11 @@ int Volcan::calcular_costo(Personaje* nuevo) {
     return nuevo_costo;
 }
 
+
+int Volcan::costo_base() {
+    return COSTO_VOLCAN;
+}
+
 string Volcan::tipo_casillero() {
     return VOLCAN;
 }
