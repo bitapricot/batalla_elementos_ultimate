@@ -1,7 +1,7 @@
 #ifndef TP2_BATALLA_ELEMENTOS_ARBOL_H
 #define TP2_BATALLA_ELEMENTOS_ARBOL_H
 
-#include "Nodo.h"
+#include "nodo_diccionario.h"
 #include <string.h>
 
 const string ERROR_CLAVE_NO_ENCONTRADA = "La clave no se encuentra en el diccionario";
