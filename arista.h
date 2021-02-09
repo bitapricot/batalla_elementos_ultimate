@@ -1,3 +1,6 @@
+#ifndef ARISTA_H_INCLUDED
+#define ARISTA_H_INCLUDED
+
 #include "vertice.h"
 
 class Arista {
@@ -11,4 +14,5 @@ public:
     Vertice* obtener_origen();
     int obtener_costo();
     void insertar_costo(int costo);
-};
+    
+}; #endif // ARISTA_H_INCLUDED
