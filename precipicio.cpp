@@ -10,6 +10,11 @@ int Precipicio::calcular_costo(Personaje* nuevo) {
     return nuevo_costo;
 }
 
+
+int Precipicio::costo_base() {
+    return COSTO_PRECIPICIO;
+}
+
 string Precipicio::tipo_casillero() {
     return PRECIPICIO;
 }
