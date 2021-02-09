@@ -10,6 +10,11 @@ int Montania::calcular_costo(Personaje* nuevo) {
     return nuevo_costo;
 }
 
+
+int Montania::costo_base() {
+    return COSTO_MONTANIA;
+}
+
 string Montania::tipo_casillero() {
     return MONTANIA;
 }
