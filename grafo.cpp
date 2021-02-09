@@ -10,7 +10,22 @@ Grafo::Grafo(string nombre_archivo) {
 
 
 void Grafo::buscar_vertices_adyacentes(Vertice* vertice) {
-	
+    if(obtener_vertice_arriba(vertice)) {
+        Vertice* destino = obtener_vertice_arriba(vertice);
+        crear_y_agregar_arista(vertice, destino);
+    }
+    if(obtener_vertice_abajo(vertice)) {
+        Vertice* destino = obtener_vertice_abajo(vertice);
+        crear_y_agregar_arista(vertice, destino);
+    }
+    if(obtener_vertice_izq(vertice)) {
+        Vertice* destino = obtener_vertice_izq(vertice);
+        crear_y_agregar_arista(vertice, destino);
+    }
+    if(obtener_vertice_der(vertice)) {
+        Vertice* destino = obtener_vertice_der(vertice);
+        crear_y_agregar_arista(vertice, destino);
+    }
 }
 
 
@@ -51,6 +66,7 @@ void Grafo::cargar_tablero(string archivo_mapa) {
 }
 
 
+
 void Grafo::conectar_vertices() {
 	while (vertices->hay_siguiente()) {
 		buscar_vertices_adyacentes(vertices->obtener_actual());
@@ -70,3 +86,9 @@ Casillero* Grafo::crear_casillero(string casillero) {
 	
 	return nuevo_casillero;
 }
+
+void Grafo::crear_y_agregar_arista(Vertice origen, Vertice destino) {
+    Arista* nueva = new Arista(origen, destino);
+    origen->agregar_arista(nueva);
+}
+
