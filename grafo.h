@@ -20,6 +20,7 @@ class Grafo {
 		void destruir_matriz(); // para el destructor
 		// tambien hay que destruir el grafo: aristas, lista de aristas, vertices, lista de vertices
 		// falta pensar un metodo para eso
+		Vertice obtener_vertice_ady(Vertice vertice, Coordenada direccion); // ALERTA ALERTA ALERTA VER .CPP
 		~Grafo();
 
 
