@@ -16,6 +16,7 @@ class Grafo {
 		void buscar_vertices_adyacentes(Vertice* nuevo);
 		void cargar_tablero(string archivo_mapa);
 		Casillero* crear_casillero(string casillero);
+		void crear_y_agregar_arista(Vertice origen, Vertice destino);
 		void destruir_matriz(); // para el destructor
 		// tambien hay que destruir el grafo: aristas, lista de aristas, vertices, lista de vertices
 		// falta pensar un metodo para eso
