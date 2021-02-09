@@ -92,3 +92,27 @@ void Grafo::crear_y_agregar_arista(Vertice origen, Vertice destino) {
     origen->agregar_arista(nueva);
 }
 
+
+/*
+ * La idea aca entonces es implementar un operator+ y un operator=. Las constantes
+ * de direccion van a guardar datos de tipo Coordenada, por ej, ARRIBA va a guardar
+ * la coordenada (1,0). Y con el operator+ vamos a sumar eso a la posicion del 
+ * vertice en cuestion. Falta agregar las constantes estas.
+ * No se si lo escribi muy entendible pero bueno me quiero ri a dormir slausos
+ */
+Vertice* Grafo::obtener_vertice_ady(Vertice* vertice, Coordenada direccion) {
+    int i = vertice->obtener_coordenadas()->obtener_primera();
+    int j = vertice->obtener_coordenadas()->obtener_segunda();
+
+    Coordenada coord_ady;
+    Vertice* vertice_ady = 0;
+
+    if (direccion == ARRIBA) Coordenada coord_ady = Coordenada(i-1,j);
+    else if (direccion == ABAJO) Coordenada coord_ady = Coordenada(i+1,j);
+    else if (direccion == DERECHA) Coordenada coord_ady = Coordenada(i,j+1);
+    else Coordenada coord_ady = Coordenada(i,j-1); // direccion == IZQUIERDA
+  
+    if(vertices->consulta(coord_ady)) vertice_ady = vertices->consulta(coord_ady);
+    return vertice_ady;       
+}
+
