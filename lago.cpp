@@ -10,6 +10,11 @@ int Lago::calcular_costo(Personaje* nuevo) {
     return nuevo_costo;
 }
 
+
+int Lago::costo_base() {
+    return COSTO_LAGO;
+}
+
 string Lago::tipo_casillero() {
     return LAGO;
 }
