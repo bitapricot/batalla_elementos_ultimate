@@ -1,5 +1,5 @@
 
-#include "Nodo.h"
+#include "nodo_diccionario.h"
 #include <string>
 
 Nodo::Nodo(Clave clave, Valor valor, Nodo* padre) {
