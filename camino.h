@@ -6,8 +6,8 @@ class Camino: public Casillero
 {
 public:
     Camino();
-    int costo_base();
     int calcular_costo(Personaje* nuevo);
+    int costo_base();
     string tipo_casillero();
 };
 
