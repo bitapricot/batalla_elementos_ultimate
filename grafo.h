@@ -1,5 +1,7 @@
-#include "vertice.h"
+#ifndef GRAFO_H_INCLUDED
+#define GRAFO_H_INCLUDED
 
+#include "vertice.h"
 
 class Grafo {
 	private:
@@ -21,3 +23,4 @@ class Grafo {
 
 
 };
+#endif // GRAFO_H_INCLUDED
