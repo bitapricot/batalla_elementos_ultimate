@@ -8,7 +8,7 @@ int Camino::calcular_costo(Personaje* nuevo) {
 }
 
 int Camino::costo_base() {
-    return COSTO_BASE_CAMINO;
+    return COSTO_CAMINO;
 }
 
 string Camino::tipo_casillero() {
