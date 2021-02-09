@@ -1,5 +1,5 @@
-#ifndef NODO_H_INCLUDED
-#define NODO_H_INCLUDED
+#ifndef NODO_DICCIONARIO_H_INCLUDED
+#define NODO_DICCIONARIO_H_INCLUDED
 
 #include <string>
 #include "personaje.h"
@@ -35,4 +35,4 @@ public:
 };
 
 
-#endif // NODO_H_INCLUDED
+#endif // NODO_DICCIONARIO_H_INCLUDED
