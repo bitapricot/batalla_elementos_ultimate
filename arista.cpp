@@ -6,6 +6,12 @@ Arista::Arista(Vertice* origen, Vertice* destino, int costo) {
     this->costo = costo;
 }
 
+Arista::Arista(Vertice* origen, Vertice* destino) {
+    this->origen = origen;
+    this->destino = destino;
+    this->costo = destino->obtener_casillero()->obtener_costo_base(); // esta wea del costo base hay que implementarlo en casillero cumpa
+}
+
 void Arista::insertar_costo(int costo) {
     this->costo = costo;
 }
