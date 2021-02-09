@@ -179,3 +179,26 @@ bool Lista::esta_en_la_lista(string nombre) {
     }
     return encontrado;
 }
+
+
+Dato Lista::consulta(Coordenada coord) {
+    Dato vertice = nullptr;
+    if(esta_en_la_lista(coord)) {
+        vertice = obtener_actual();
+        return vertice;
+    }
+    return vertice;
+}
+
+
+bool Lista::esta_en_la_lista(Coordenada coord) {
+    bool encontrado = false;
+    reiniciar();
+    while(hay_siguiente() && !encontrado) {
+        if(obtener_actual()->obtener_coordenadas() == coord) encontrado = true;
+        else {
+            siguiente();
+        }
+    }
+    return encontrado;
+}
