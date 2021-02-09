@@ -7,9 +7,9 @@ class Lago: public Casillero
 {
 public:
     Lago();
-    string tipo_casillero();
     int calcular_costo(Personaje* nuevo);
+    int costo_base();
+    string tipo_casillero();
 };
-
 
 #endif // LAGO_H_INCLUDED
