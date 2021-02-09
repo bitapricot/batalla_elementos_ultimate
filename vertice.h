@@ -1,6 +1,7 @@
+#include "arista.h"
 #include "casillero.h"
 #include "coordenada.h"
-#include "arista.h"
+
 
 class Vertice {
     private:
