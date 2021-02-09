@@ -7,8 +7,9 @@ class Montania: public Casillero
 {
 public:
     Montania();
-    string tipo_casillero();
     int calcular_costo(Personaje* nuevo);
+    int costo_base();
+    string tipo_casillero();
 };
 
 #endif // MONTANIA_H_INCLUDED
