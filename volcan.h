@@ -7,8 +7,10 @@ class Volcan: public Casillero
 {
 public:
     Volcan();
-    string tipo_casillero();
     int calcular_costo(Personaje* nuevo);
+    int costo_base();
+    string tipo_casillero();
+
 };
 
 
