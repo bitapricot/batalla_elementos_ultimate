@@ -54,7 +54,12 @@ public:
     Caso contrario devuelve nullptr
     */
     Dato baja_y_devuelve(string nombre);
-
+    /*
+     PRE: -
+     POS: Devuelve el elemento que tiene coordeanda coord
+     */
+    Dato consulta(Coordenada coord);
+    
     /*
     PRE: 0 < pos <= cantidad
     POS: Devuelve el elemento que esta en pos
@@ -66,6 +71,12 @@ public:
     Si este no esta en la lista, devuelve nullptr
     */
     Dato consulta(string nombre);
+    
+    /*
+     PRE: -
+     POS: Devuelve true si encuentra la coordenada coord en la lista, false de lo contrario
+     */
+    bool esta_en_la_lista(Coordenada coord);
 
     /*
     Devuelve true si la lista esta vacia, false en caso contrario
