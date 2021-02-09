@@ -1,7 +1,9 @@
 #ifndef LISTA_H_INCLUDED
 #define LISTA_H_INCLUDED
 
+#include "coordenada.h"
 #include "nodo.h"
+#include "vertice.h"
 
 class Lista {
 private:
