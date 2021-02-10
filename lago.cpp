@@ -11,7 +11,7 @@ int Lago::calcular_costo(Personaje* nuevo) {
 }
 
 
-int Lago::costo_base() {
+int Lago::obtener_costo_base() {
     return COSTO_LAGO;
 }
 

@@ -11,7 +11,7 @@ int Precipicio::calcular_costo(Personaje* nuevo) {
 }
 
 
-int Precipicio::costo_base() {
+int Precipicio::obtener_costo_base() {
     return COSTO_PRECIPICIO;
 }
 

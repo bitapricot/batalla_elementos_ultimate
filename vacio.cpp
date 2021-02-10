@@ -7,7 +7,7 @@ int Vacio::calcular_costo(Personaje* nuevo) {
     return COSTO_VACIO;
 }
 
-int Vacio::costo_base() {
+int Vacio::obtener_costo_base() {
     return COSTO_VACIO;
 }
 

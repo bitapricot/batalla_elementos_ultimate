@@ -1,4 +1,4 @@
-#include "Diccionario.h"
+#include "diccionario.h"
 #include <string>
 
 using namespace std;

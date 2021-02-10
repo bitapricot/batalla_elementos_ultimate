@@ -7,7 +7,7 @@ int Camino::calcular_costo(Personaje* nuevo) {
     return COSTO_CAMINO;
 }
 
-int Camino::costo_base() {
+int Camino::obtener_costo_base() {
     return COSTO_CAMINO;
 }
 

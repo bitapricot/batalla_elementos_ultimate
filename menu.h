@@ -7,7 +7,7 @@
 #include "personaje_de_fuego.h"
 #include "personaje_de_tierra.h"
 #include <fstream>
-#include "Diccionario.h"
+#include "diccionario.h"
 
 const string ERROR_APERTURA = "No se pudo abrir el archivo de personajes";
 const string ERROR_DICCIONARIO_VACIO = "No hay personajes en el diccionario";

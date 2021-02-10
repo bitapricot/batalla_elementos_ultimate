@@ -8,7 +8,7 @@ class Precipicio: public Casillero
 public:
     Precipicio();
     int calcular_costo(Personaje* nuevo);
-    int costo_base();
+    int obtener_costo_base();
     string tipo_casillero();
 
 };

@@ -1,9 +1,9 @@
 #ifndef NODO_H_INCLUDED
 #define NODO_H_INCLUDED
 
-#include "personaje.h"
+#include "vertice.h"
 
-typedef Personaje* Dato;
+typedef Vertice* Dato;
 
 class Nodo {
 private:

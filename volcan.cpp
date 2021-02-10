@@ -11,7 +11,7 @@ int Volcan::calcular_costo(Personaje* nuevo) {
 }
 
 
-int Volcan::costo_base() {
+int Volcan::obtener_costo_base() {
     return COSTO_VOLCAN;
 }
 

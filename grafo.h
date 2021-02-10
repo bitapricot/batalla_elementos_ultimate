@@ -1,7 +1,9 @@
 #ifndef GRAFO_H_INCLUDED
 #define GRAFO_H_INCLUDED
 
+#include "lista.h"
 #include "vertice.h"
+
 
 class Grafo {
 	private:
@@ -14,7 +16,7 @@ class Grafo {
 		
 	private:
 		void buscar_vertices_adyacentes(Vertice* nuevo);
-		void cargar_tablero(string archivo_mapa);
+		void cargar_tablero(string archivo);
 		Casillero* crear_casillero(string casillero);
 		void crear_y_agregar_arista(Vertice origen, Vertice destino);
 		void destruir_matriz(); // para el destructor

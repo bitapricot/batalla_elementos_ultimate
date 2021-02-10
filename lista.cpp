@@ -73,16 +73,6 @@ Dato Lista::consulta(int pos) {
     return aux->obtener_dato();
 }
 
-Dato Lista::consulta(string nombre) {
-    Dato personaje;
-    if(esta_en_la_lista(nombre)) {
-        personaje = obtener_actual();
-        return personaje;
-    }
-    personaje = nullptr;
-    return personaje;
-}
-
 Dato Lista::baja_y_devuelve(int pos) {
     Nodo* borrar;
     Dato d;
@@ -123,7 +113,7 @@ Dato Lista::baja_y_devuelve() {
     return d;
 }
 
-Dato Lista::baja_y_devuelve(string nombre) {
+/*Dato Lista::baja_y_devuelve(string nombre) {
     Dato eliminado;
     if (esta_en_la_lista(nombre)) {
         eliminado = baja_y_devuelve();
@@ -131,7 +121,7 @@ Dato Lista::baja_y_devuelve(string nombre) {
         eliminado = nullptr;
     }
     return eliminado;
-}
+}*/
 
 void Lista::baja(int pos) {
     Nodo* borrar;
@@ -168,30 +158,18 @@ bool Lista::esta_en_la_lista(Dato d) {
     return encontrado;
 }
 
-bool Lista::esta_en_la_lista(string nombre) {
-    bool encontrado = false;
-    reiniciar();
-    while(hay_siguiente() && !encontrado) {
-        if(obtener_actual()->nombre_personaje() == nombre) encontrado = true;
-        else {
-            siguiente();
-        }
-    }
-    return encontrado;
-}
 
-
-Dato Lista::consulta(Coordenada coord) {
+/*Dato Lista::consulta(Coordenada coord) {
     Dato vertice = nullptr;
     if(esta_en_la_lista(coord)) {
         vertice = obtener_actual();
         return vertice;
     }
     return vertice;
-}
+}*/
 
 
-bool Lista::esta_en_la_lista(Coordenada coord) {
+/*bool Lista::esta_en_la_lista(Coordenada coord) {
     bool encontrado = false;
     reiniciar();
     while(hay_siguiente() && !encontrado) {
@@ -201,4 +179,4 @@ bool Lista::esta_en_la_lista(Coordenada coord) {
         }
     }
     return encontrado;
-}
+}*/

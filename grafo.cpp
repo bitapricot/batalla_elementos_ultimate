@@ -1,15 +1,21 @@
 #include <fstream>
 #include <iostream>
 #include "grafo.h"
+#include "camino.h"
+#include "lago.h"
+#include "montania.h"
+#include "precipicio.h"
+#include "vacio.h"
+#include "volcan.h"
 using namespace std;
 
 Grafo::Grafo(string nombre_archivo) {
-	cargar_tablero(string nombre_archivo);
-	conectar_vertices();
+	//cargar_tablero(nombre_archivo);
+	//conectar_vertices();
 }
 
 
-void Grafo::buscar_vertices_adyacentes(Vertice* vertice) {
+/*void Grafo::buscar_vertices_adyacentes(Vertice* vertice) {
     if(obtener_vertice_arriba(vertice)) {
         Vertice* destino = obtener_vertice_arriba(vertice);
         crear_y_agregar_arista(vertice, destino);
@@ -26,15 +32,16 @@ void Grafo::buscar_vertices_adyacentes(Vertice* vertice) {
         Vertice* destino = obtener_vertice_der(vertice);
         crear_y_agregar_arista(vertice, destino);
     }
-}
+}*/
 
 
-void Grafo::cargar_tablero(string archivo_mapa) {
+/*void Grafo::cargar_tablero(string archivo) {
 	ifstream archivo_mapa;
-	archivo_mapa.open(nombre_archivo);
+	archivo_mapa.open(archivo);
 	
 	if (archivo_mapa) {
-		
+
+	    Casillero* nuevo;
 		int dim_fila, dim_col;
 		int i = 0, j = 0;
 		string casillero, dim;
@@ -63,20 +70,22 @@ void Grafo::cargar_tablero(string archivo_mapa) {
 		cout << "nonopepe" << endl;
 		tablero = 0;
 	}	
-}
+}*/
 
 
 
 void Grafo::conectar_vertices() {
 	while (vertices->hay_siguiente()) {
-		buscar_vertices_adyacentes(vertices->obtener_actual());
+		//buscar_vertices_adyacentes(vertices->obtener_actual());
 		vertices->siguiente();
 	}
 }
 
 
 Casillero* Grafo::crear_casillero(string casillero) {
-	
+
+    Casillero* nuevo_casillero;
+
 	if (casillero == CAMINO) nuevo_casillero = new Camino();
 	else if (casillero == LAGO) nuevo_casillero = new Lago();
 	else if (casillero == MONTANIA) nuevo_casillero = new Montania();
@@ -87,10 +96,10 @@ Casillero* Grafo::crear_casillero(string casillero) {
 	return nuevo_casillero;
 }
 
-void Grafo::crear_y_agregar_arista(Vertice origen, Vertice destino) {
+/*void Grafo::crear_y_agregar_arista(Vertice origen, Vertice destino) {
     Arista* nueva = new Arista(origen, destino);
     origen->agregar_arista(nueva);
-}
+}*/
 
 
 /*
@@ -100,7 +109,7 @@ void Grafo::crear_y_agregar_arista(Vertice origen, Vertice destino) {
  * vertice en cuestion. Falta agregar las constantes estas.
  * No se si lo escribi muy entendible pero bueno me quiero ri a dormir slausos
  */
-Vertice* Grafo::obtener_vertice_ady(Vertice* vertice, Coordenada direccion) {
+/*Vertice* Grafo::obtener_vertice_ady(Vertice* vertice, Coordenada direccion) {
     int i = vertice->obtener_coordenadas()->obtener_primera();
     int j = vertice->obtener_coordenadas()->obtener_segunda();
 
@@ -114,5 +123,5 @@ Vertice* Grafo::obtener_vertice_ady(Vertice* vertice, Coordenada direccion) {
   
     if(vertices->consulta(coord_ady)) vertice_ady = vertices->consulta(coord_ady);
     return vertice_ady;       
-}
+}*/
 

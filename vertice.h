@@ -4,16 +4,18 @@
 #include "casillero.h"
 #include "coordenada.h"
 
+class Arista;
 
 class Vertice {
     private:
-    Coordenada coordenadas; // el ID
-    Arista* lista_adyacencia; // la lista de adyacencia, que por lo pronto va a ser un array
+    //Coordenada coordenadas; // el ID
+    //Arista* lista_adyacencia; // la lista de adyacencia, que por lo pronto va a ser un array
     Casillero* casillero; // el datazo
 
     public:
     Vertice(Casillero* casillero, int primera, int segunda);
-    Coordenada obtener_coordenadas();
+    //Coordenada obtener_coordenadas();
     Casillero* obtener_casillero();
+    //Arista* obtener_lista();
 };
 #endif // VERTICE_H_INCLUDED

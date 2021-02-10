@@ -11,7 +11,7 @@ int Montania::calcular_costo(Personaje* nuevo) {
 }
 
 
-int Montania::costo_base() {
+int Montania::obtener_costo_base() {
     return COSTO_MONTANIA;
 }
 
