@@ -3,10 +3,24 @@
 
 class Coordenada {
 private:
-    int primera;
-    int segunda;
+    int primera, segunda;
 public:
-    Coordenada(int primera, int segunda);
+    /*
+    Constructor base
+    */
+    Coordenada(): primera(0), segunda(0) {}
+
+    Coordenada(const int primera, const int segunda);
+
+    /*
+    Constructor de copia
+    */
+    Coordenada(const Coordenada&);
+
+    Coordenada& operator+(const Coordenada &c);
+
+    Coordenada& operator=(const Coordenada &c);
+
     int obtener_primera();
     int obtener_segunda();
     void cambiar_primera(int nueva);
