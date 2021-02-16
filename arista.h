@@ -16,5 +16,6 @@ public:
     Vertice* obtener_origen();
     int obtener_costo();
     void insertar_costo(int costo);
+    ~Arista();
 };
 #endif // ARISTA_H_INCLUDED

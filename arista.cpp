@@ -27,3 +27,6 @@ Vertice* Arista::obtener_destino() {
 Vertice* Arista::obtener_origen() {
     return origen;
 }
+
+Arista::~Arista() {}
+

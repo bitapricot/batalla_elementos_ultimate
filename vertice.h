@@ -3,19 +3,24 @@
 #include "arista.h"
 #include "casillero.h"
 #include "coordenada.h"
+#include "vector.h"
 
 class Arista;
+class Vector;
 
 class Vertice {
     private:
-    //Coordenada coordenadas; // el ID
-    //Arista* lista_adyacencia; // la lista de adyacencia, que por lo pronto va a ser un array
+    Vector* aristas; // la lista de adyacencia, que por lo pronto va a ser un array
+    int cant_aristas;
     Casillero* casillero; // el datazo
+    Coordenada coordenadas; // el ID
 
     public:
     Vertice(Casillero* casillero, int primera, int segunda);
-    //Coordenada obtener_coordenadas();
+    void agregar_arista(Arista* nueva);
+    Coordenada obtener_coordenadas();
     Casillero* obtener_casillero();
-    //Arista* obtener_lista();
+    Vector* obtener_lista();
+    ~Vertice();
 };
 #endif // VERTICE_H_INCLUDED

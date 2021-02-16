@@ -1,19 +1,39 @@
 #include "vertice.h"
 
 Vertice::Vertice(Casillero* casillero, int primera, int segunda) {
-    //this->coordenadas = Coordenada(primera, segunda);
-    //this->lista_adyacencia = 0;
+    aristas = new Vector(MIN_CANT_ARISTAS);
+    cant_aristas = 0;
     this->casillero = casillero;
+    this->coordenadas = Coordenada(primera, segunda);
 }
 
-/*Coordenada Vertice::obtener_coordenadas() {
-    return coordenadas;
-}*/
+void Vertice::agregar_arista(Arista* nueva) {
+    if(cant_aristas == aristas->obtener_longitud()) {
+        cant_aristas++;
+        aristas->redimensionar(cant_aristas);
+        aristas->asignar(nueva, cant_aristas);
+    }
+    else {
+        aristas->asignar(nueva, cant_aristas);
+        cant_aristas++;
+    }
+}
 
-/*Arista* Vertice::obtener_lista() {
-    return lista;
-}*/
+Coordenada Vertice::obtener_coordenadas() {
+    return coordenadas;
+}
+
+Vector* Vertice::obtener_lista() {
+    return aristas;
+}
 
 Casillero* Vertice::obtener_casillero() {
     return casillero;
+}
+
+Vertice::~Vertice() {
+    delete casillero;
+    while(aristas->obtener_longitud() > 0) {
+
+    }
 }
