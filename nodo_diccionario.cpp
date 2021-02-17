@@ -1,73 +1,86 @@
-
 #include "nodo_diccionario.h"
-#include <string>
 
-Nodo::Nodo(Clave clave, Valor valor, Nodo* padre) {
-    izq = nullptr;
-    der = nullptr;
-    this->padre = padre;
+/*Nodo_diccionario::Nodo_diccionario(Clave clave, Valor valor, Nodo_diccionario* padre) {
     this->clave = clave;
     this->valor = valor;
+    this->izq = NULL;
+    this->der = NULL;
+    this->padre = padre;
+}*/
+
+Nodo_diccionario::Nodo_diccionario(Clave clave, Valor valor) {
+    this->clave = clave;
+    this->valor = valor;
+    this->izq = NULL;
+    this->der = NULL;
+    //this->padre = NULL;
 }
 
-Clave Nodo::obtener_clave() {
+Clave Nodo_diccionario::obtener_clave() {
     return this->clave;
 }
 
-void Nodo::asignar_clave(Clave clave) {
-    this->clave = clave;
+Valor Nodo_diccionario::obtener_valor() {
+    return this->valor;
 }
 
 
-void Nodo::insertar_padre(Nodo* padre) {
+/*void Nodo_diccionario::asignar_der(Nodo_diccionario* der, Nodo_diccionario* padre) {
+    this->der = der;
     this->padre = padre;
-}
+}*/
 
-//void Nodo::cambiar_dato(Value valor) {
-//    this->valor = valor;
-//}
-
-
-void Nodo::insertar_izq(Nodo* izq) {
-    this->izq = izq;
-}
-
-Nodo* Nodo::obtener_der() {
-    return this->der;
-}
-
-void Nodo::insertar_der(Nodo* der) {
+void Nodo_diccionario::asignar_der(Nodo_diccionario* der) {
     this->der = der;
 }
 
-Nodo* Nodo::obtener_izq() {
+/*void Nodo_diccionario::asignar_izq(Nodo_diccionario* izq, Nodo_diccionario* padre) {
+    this->izq = izq;
+    this->padre = padre;
+}*/
+
+/*void Nodo_diccionario::asignar_padre(Nodo_diccionario *padre) {
+    this->padre = padre;
+}*/
+
+void Nodo_diccionario::asignar_clave(Clave nueva) {
+    this->clave = nueva;
+}
+
+void Nodo_diccionario::asignar_valor(Valor nuevo) {
+    this->valor = nuevo;
+}
+
+
+void Nodo_diccionario::asignar_izq(Nodo_diccionario* izq) {
+    this->izq = izq;
+}
+
+Nodo_diccionario* Nodo_diccionario::obtener_der() {
+    return this->der;
+}
+
+Nodo_diccionario* Nodo_diccionario::obtener_izq() {
     return this->izq;
 }
 
-Nodo* Nodo::obtener_padre() {
+/*Nodo_diccionario* Nodo_diccionario::obtener_padre() {
     return this->padre;
-}
+}*/
 
-bool Nodo::es_hoja() {
+bool Nodo_diccionario::es_hoja() {
     return (!this->obtener_izq() && !this->obtener_der());
 }
 
-bool Nodo::solo_hijo_der() {
+bool Nodo_diccionario::solo_hijo_der() {
     return (!this->obtener_izq() && this->obtener_der());
 }
 
-bool Nodo::solo_hijo_izq() {
+bool Nodo_diccionario::solo_hijo_izq() {
     return (this->obtener_izq() && !this->obtener_der());
 }
 
-Valor Nodo::obtener_valor() {
-    return valor;
-}
 
-void Nodo::copiar_nodo(Nodo* n) {
-    this->izq = n->obtener_izq();
-    this->der = n->obtener_izq();
-    this->padre = n->obtener_padre();
-    this->clave = n->obtener_clave();
-    this->valor = n->obtener_valor();
-}
+/*Nodo_diccionario::~Nodo_diccionario() {
+    if(valor) delete valor;
+}*/

@@ -1,72 +1,73 @@
-#ifndef TP2_BATALLA_ELEMENTOS_ARBOL_H
-#define TP2_BATALLA_ELEMENTOS_ARBOL_H
-
 #include "nodo_diccionario.h"
-#include <string.h>
+#include<iostream>
 
-const string ERROR_CLAVE_NO_ENCONTRADA = "La clave no se encuentra en el diccionario";
+#ifndef DICCIONARIO_H
+#define DICCIONARIO_H
 
-class Diccionario {
+class Diccionario
+{
 private:
-    Nodo* raiz;
-    Nodo* actual;
+    // attributes
+    Nodo_diccionario* raiz;
+    Nodo_diccionario* actual;
+
+    // methods
+    Nodo_diccionario* insertar(Nodo_diccionario* nodo, Clave clave, Valor valor);
+    void imprimir_inorden(Nodo_diccionario * nodo);
+    Nodo_diccionario* buscar(Nodo_diccionario* nodo, Clave clave);
+    Clave buscar_min(Nodo_diccionario* nodo);
+    //Clave sucesor(Nodo_diccionario* nodo);
+    //Nodo_diccionario* eliminar(Nodo_diccionario* nodo, Clave clave);
+    void eliminar_todos(Nodo_diccionario* nodo);
+    void reiniciar();
+
+    Nodo_diccionario* _eliminar(Nodo_diccionario* r, Clave v);
+
 
 public:
-    // Constructor.
+    //methods
+
+    // Creates an vacio tree
     Diccionario();
 
-    // Agrega un par clave:valor al diccionario. Incrementa cantidad_nodos en uno.
-    void alta(Clave clave, Valor valor);
+    // Adds a new nodo to the actual Diccionario. If its the tree is vacio
+    // the nodo insertared will be the raiz
+    void insertar(Clave clave, Valor valor);
 
-    // Elimina del diccionario el nodo que contiene la clave pasada por parametro. Decrementa cantidad_nodos en uno.
-    void baja(Clave clave);
+    // Prints all the data stored in the Diccionario, sorted from the
+    // smallest value to the greatest value.
+    void imprimir_inorden();
 
-    // Encuentra el minimo valor en el diccionario.
-    Nodo* buscar_min(Nodo* raiz);
+    // Finds a given value in the Diccionario. If the key exists it returns
+    // TRUE, otherwise it returns FALSE.
+    bool buscar(Clave clave);
 
-    // Se le pasa una clave, y devuelve un puntero a Personaje si lo encuentra con la clave proporcionada.
-    Valor consulta(Clave clave);
+    // Finds the minimum value that exist in the Diccionario.
+    //Clave buscar_min();
 
-    // Devuelve true si el nodo es raiz, false de lo contrario.
-    bool es_raiz();
+    // Finds the sucesor of a given data value.
+    //Clave sucesor(Clave clave);
 
-    // Recorre el diccionario en busca de la clave, devuelve true si la encuentra, sino devuelve false.
-    bool esta_clave(Clave clave);
+    // eliminars a given data from the Diccionario
+    //void eliminar(Clave clave);
 
-    // Imprime las claves del diccionario, siguiendo recorrido inorden
-    void imprimir_inorden(Nodo* aux);
+    Nodo_diccionario* obtener_raiz();
 
-    // Se inserta una entrada en el diccionario. La entrada esta compuesta por un par clave: string y valor: puntero a Personaje.
-    void insertar_dato(Clave clave, Valor valor);
-
-    Nodo* obtener_raiz();
-
-    // Encuentra el sucesor del nodo que contiene la clave pasada por parametro
-    void sucesor(Nodo* raiz, Nodo*& suc, Clave clave);
-
-    // Devuelve true si el diccionario esta vacio, false de lo contrario.
     bool vacio();
 
-    // Destructor
-    virtual ~Diccionario();
+    // Deletes all the nodos in the Diccionario
+    void eliminar_todos();
 
-    Clave obtener_clave_raiz();
+    Valor consulta(Clave clave);
 
-    Nodo* crear_nodo(Clave clave, Valor valor);
+    void claves_inorden(Nodo_diccionario* aux, string &claves);
 
+    void eliminar(Clave borrar);
 
-    void _alta(Clave clave, Valor valor, Nodo* nodo, Nodo* padre);
+    Nodo_diccionario* minimo(Nodo_diccionario* nodo);
 
-    void reemplazar_nodo(Nodo* antiguo, Nodo* nuevo);
+    Nodo_diccionario* buscar_sucesor(Nodo_diccionario* nodo);
 
-    void eliminar_nodo(Nodo* eliminar);
-
-private:
-    void _baja(Nodo* n, Clave clave);
-    //Valor baja_nodo(Nodo* padre, Nodo* nodo_borrar, bool izq);
-    //Valor baja_raiz();
-    void eliminar_subarbol(Nodo* borrar);
-    bool _esta_clave(Nodo* n, Clave clave);
+    ~Diccionario();
 };
-
-#endif //TP2_BATALLA_ELEMENTOS_ARBOL_H
+#endif //ABB_Diccionario_H

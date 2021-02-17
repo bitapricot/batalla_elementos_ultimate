@@ -1,0 +1,4 @@
+agua,juan,2,18
+tierra,pedro,1,15
+aire,pepe,0,20
+fuego,ricardo,2,15

@@ -64,9 +64,9 @@ public:
     string nombre_personaje();
 
     /*
-    Imprime por pantalla los detalles del personaje (nombre, elemento, escudo, vidas y energia)
+    Devuelve los detalles del personaje (nombre, elemento, escudo, vidas y energia)
     */
-    void mostrar_detalles();
+    string mostrar_detalles();
 
     /*
     Alimenta al personaje, incrementando la energia segun el elemento del cual sea el personaje

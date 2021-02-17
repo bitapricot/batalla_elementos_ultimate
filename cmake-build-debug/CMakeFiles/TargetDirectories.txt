@@ -1,0 +1,3 @@
+/home/santiago/clion/tp3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/santiago/clion/tp3/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/santiago/clion/tp3/cmake-build-debug/CMakeFiles/MenuSFML.dir
