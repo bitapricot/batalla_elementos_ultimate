@@ -74,7 +74,7 @@ public:
     */
     virtual void alimentar() = 0;
 
-    bool esta_vivo();
+    bool esta_muerto();
 
     void restar_energia(int costo_energia);
 
