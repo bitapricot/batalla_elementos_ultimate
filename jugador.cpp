@@ -1,7 +1,11 @@
 #include "jugador.h"
 
 Jugador::Jugador() {
-    personajes_elegidos = new Personaje[MAX_PERSONAJES];
+    cantidad_personajes = 0;
+}
+
+Jugador::Jugador(int id) {
+	this->id = id;
     cantidad_personajes = 0;
 }
 
@@ -15,6 +19,10 @@ bool Jugador::eligio_max_personajes() {
 }
 
 bool Jugador::jugador_perdio() {
-    for(int i = 0; i < cantidad_personajes; i++) if(!personajes_elegidos[i]->esta_muerto()) return false;
+    for(int i = 0; i < cantidad_personajes; i++) if(!personajes_elegidos[i]->esta_vivo()) return false;
     return true;
+}
+
+int Jugador::obtener_id() {
+	return id;
 }
