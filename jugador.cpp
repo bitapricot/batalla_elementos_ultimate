@@ -1,9 +1,8 @@
 #include "jugador.h"
 
-Jugador::Jugador(bool tiene_primer_turno) {
+Jugador::Jugador() {
     personajes_elegidos = new Personaje[MAX_PERSONAJES];
     cantidad_personajes = 0;
-    this->tiene_primer_turno = tiene_primer_turno;
 }
 
 void Jugador::agregar_personaje(Personaje* nuevo) {
