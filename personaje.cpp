@@ -31,8 +31,8 @@ void Personaje::mostrar_detalles() {
     cout << "Energia: " << energia << endl;
 }
 
-bool Personaje::esta_vivo() {
-    return vidas > 0;
+bool Personaje::esta_muerto() {
+    return vidas == 0;
 }
 
 void Personaje::restar_energia(int costo_energia) {
