@@ -13,7 +13,7 @@ private:
     int cantidad_personajes;
     bool tiene_primer_turno;
 public:
-    Jugador();
+    Jugador(bool tiene_primer_turno);
     ~Jugador();
     void agregar_personaje(Personaje* nuevo);
     bool eligio_max_personajes();
