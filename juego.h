@@ -12,6 +12,7 @@ private:
     Grafo* tablero;
     Jugador jugador_1;
     Jugador jugador_2;
+    int pos_personaje;
     int primer_turno;
 public:
     Juego();
