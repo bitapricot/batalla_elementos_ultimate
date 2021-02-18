@@ -11,9 +11,9 @@ private:
     // Patributos
     Personaje* personajes_elegidos[MAX_PERSONAJES];
     int cantidad_personajes;
-    bool tiene_primer_turno;
+   
 public:
-    Jugador(bool tiene_primer_turno);
+    Jugador();
     ~Jugador();
     void agregar_personaje(Personaje* nuevo);
     bool eligio_max_personajes();
