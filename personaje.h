@@ -104,6 +104,8 @@ public:
     
     bool se_defiende(); // chequear si se puede llamar igual que el atributo
     
+    int aplicar_escudo(int ataque_recibido);
+    
 
 
 };
