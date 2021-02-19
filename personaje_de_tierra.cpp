@@ -29,6 +29,7 @@ void Personaje_de_tierra::incrementar_escudo(bool incrementar) {
 
 void Personaje_de_tierra::defender() {
     if (energia >= MIN_ENERGIA_DEFENSA) {
+        energia -= 5;
         incrementar_escudo(true);
         se_defiende = true;        
     } else {
