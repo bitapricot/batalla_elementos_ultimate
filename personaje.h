@@ -42,6 +42,7 @@ protected:
     int energia;
     Coordenada coord_personaje;
     int id_jugador;
+    bool se_defiende;
 
     // Constructores
     /*
@@ -100,6 +101,10 @@ public:
     virtual string de_que_elemento_soy() = 0;
 
     void elegir(int id_jugador);
+    
+    bool se_defiende(); // chequear si se puede llamar igual que el atributo
+    
+
 
 };
 
