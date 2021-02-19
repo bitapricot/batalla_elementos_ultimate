@@ -109,7 +109,7 @@ public:
     
     virtual bool defender() = 0;
     
-    virtual void recibe_ataque() = 0;
+    virtual void recibe_ataque(string elemento_enemigo) = 0;
  
     
 
