@@ -61,3 +61,10 @@ bool Personaje::esta_vivo() {
 void Personaje::restar_energia(int costo_energia) {
     energia -= costo_energia;
 }
+    
+int aplicar_escudo(int danio_recibido) {
+    if (VALOR_MIN_ESCUDO < escudo < VALOR_MAX_ESCUDO) danio_recibido -= danio_recibido*0.1;
+    else if (escudo == VALOR_MAX_ESCUDO) danio_recibido -= danio_recibido*0.2;
+    else if (escudo > VALOR_MAX_ESCUDO) danio_recibido -= danio_recibido*0.8;
+    return danio_recibido;
+}
