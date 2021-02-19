@@ -9,7 +9,7 @@ Personaje_de_agua::Personaje_de_agua(string nombre): Personaje(nombre) {
 }
 
 
-Personaje_de_agua::Personaje_de_agua(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador): Personaje(nombre, escudo, vidas, energia, fila, columna, id_jugador) {
+Personaje_de_agua::Personaje_de_agua(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende): Personaje(nombre, escudo, vidas, energia, fila, columna, id_jugador, se_defiende) {
     veces_alimentado = 0;
 }
 
