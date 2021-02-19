@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <ctime>
 #include <string>
+#include "coordenada.h"
 
 using namespace std;
 
@@ -30,6 +31,8 @@ const int VIDA_RECUPERADA_P_FUEGO = 15;
 
 const int MAX_VECES_ALIMENTADO_P_AGUA = 3;
 
+const int NO_ELEGIDO = -1;
+
 class Personaje {
 protected:
     // Atributos
@@ -37,6 +40,8 @@ protected:
     int escudo;
     int vidas;
     int energia;
+    Coordenada coord_personaje;
+    int id_jugador;
 
     // Constructores
     /*
@@ -51,12 +56,23 @@ protected:
     */
     Personaje(string nombre);
 
+    /*
+    PRE: - 
+    POS: crea un personaje con los valores ingresados. Vamos a utilizar este método al cargar la partida.
+    */
+    Personaje(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
+
 public:
 
     /*
     Destructor
     */
     virtual ~Personaje();
+
+    /*
+    Crea una nueva coordenada para el personaje con los valores de fila y columna recibidos por parametro
+    */
+    void asignar_coordenadas_pj(int fila, int columna);
 
     /*
     Devuelve el nombre del personaje
@@ -74,7 +90,7 @@ public:
     */
     virtual void alimentar() = 0;
 
-    bool esta_muerto();
+    bool esta_vivo();
 
     void restar_energia(int costo_energia);
 
@@ -82,6 +98,8 @@ public:
     Devuelve el elemento del personaje
     */
     virtual string de_que_elemento_soy() = 0;
+
+    void elegir(int id_jugador);
 
 };
 
