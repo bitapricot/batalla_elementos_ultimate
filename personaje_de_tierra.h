@@ -3,6 +3,8 @@
 
 #include "personaje.h"
 
+const int PUNTOS_EXTRA_ESCUDO = 2;
+
 class Personaje_de_tierra: public Personaje
 {
 private:
@@ -33,6 +35,10 @@ public:
     Incrementa la energia segun la energia recuperada determinada en personaje.h
     */
     void alimentar();
+    
+    bool defender();
+    
+    void incrementar_escudo(bool incrementar);
 
 };
 
