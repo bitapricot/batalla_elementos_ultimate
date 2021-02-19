@@ -43,6 +43,7 @@ void Personaje_de_tierra::recibe_ataque(string elemento_enemigo, int danio_recib
     else if (elemento_enemigo == AGUA) danio_recibido = ATAQUE_DEBIL;
     else danio_recibido = ATAQUE_BASE_FUEGO;
     
+    aplicar_escudo(danio_recibido);
     vida -= danio_recibido;
 }
 
