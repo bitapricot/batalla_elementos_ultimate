@@ -18,13 +18,14 @@ Personaje::Personaje(string nombre) {
     this->id_jugador = NO_ELEGIDO;
 }
 
-Personaje::Personaje(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador) {
+Personaje::Personaje(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende) {
     this->nombre = nombre;
     this->escudo = escudo;
     this->vidas = vidas;
     this->energia = energia;
     this->coord_personaje = Coordenada(fila, columna);
     this->id_jugador = id_jugador;
+    this->se_defiende = se_defiende;
 }
 
 Personaje::~Personaje() {
