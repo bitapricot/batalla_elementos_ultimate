@@ -34,3 +34,20 @@ bool Personaje_de_agua::alcanzo_max_alimento() {
 string Personaje_de_agua::de_que_elemento_soy() {
     return ELEMENTO_AGUA;
 }
+
+void Personaje_de_agua::defender() {
+    if (energia >= 12) {
+        energia -= 12;
+        vida += 50;
+        se_defiende = true;
+    } else {
+        cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
+        se_defiende = false;
+    }
+}
+
+void Personaje_de_agua::recibe_ataque(string elemento_enemigo, int danio_recibido) {
+    if (elemento_enemigo == TIERRA) danio_recibido += 20;
+    else if (elemento_enemigo == FUEGO) danio_recibido = 10;
+}
+
