@@ -24,6 +24,7 @@ string Personaje_de_fuego::de_que_elemento_soy() {
 
 void Personaje_de_fuego::defender() {
     if (energia >= MIN_ENERGIA_DEFENSA_FUEGO) {
+        energia -= 10;
         vida += 10;
         se_defiende = true;
     } else {
