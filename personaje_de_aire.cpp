@@ -17,3 +17,22 @@ void Personaje_de_aire::alimentar() {
 string Personaje_de_aire::de_que_elemento_soy() {
     return ELEMENTO_AIRE;
 }
+
+void Personaje_de_aire::defender() {
+    if (energia >= 15) {
+        energia -= 15;
+        se_defiende = true;
+    } else {
+        cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
+        se_defiende = false;
+    }
+}
+
+void Personaje_de_aire::recibe_ataque(string elemento_enemigo, int danio_recibido) {
+    if (elemento_enemigo == TIERRA) danio_recibido = 10;
+    else if (elemento_enemigo == FUEGO) danio_recibido = 30;
+    else danio_recibido = 20; // agua
+    
+    aplicar_escudo(danio_recibido);
+    vida -= danio_recibido;
+}
