@@ -3,9 +3,6 @@
 
 #include "personaje.h"
 
-const int ATAQUE_BASE_DEBIL = 10;
-const int ATAQUE_BASE_MEDIO = 20;
-const int ATAQUE_BASE_FUERTE = 30;
 const int MIN_ENERGIA_DEFENSA = 5;
 const int PUNTOS_EXTRA_ESCUDO = 2;
 
