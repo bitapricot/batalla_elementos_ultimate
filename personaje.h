@@ -106,6 +106,8 @@ public:
     
     int aplicar_escudo(int danio_recibido);
     
+    virtual bool defender() = 0;
+    
 
 
 };
