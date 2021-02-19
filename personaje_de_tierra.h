@@ -41,7 +41,7 @@ public:
     
     void incrementar_escudo(bool incrementar);
     
-    void recibe_ataque(string elemento_enemigo);
+    void recibe_ataque(string elemento_enemigo, int danio_recibido);
 
 };
 
