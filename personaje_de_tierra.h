@@ -42,6 +42,8 @@ public:
     void incrementar_escudo(bool incrementar);
     
     void recibe_ataque(string elemento_enemigo, int danio_recibido);
+    
+    int calcular_danio_segun_distancia(int distancia);
 
 };
 
