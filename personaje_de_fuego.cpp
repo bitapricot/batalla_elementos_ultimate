@@ -21,3 +21,20 @@ void Personaje_de_fuego::alimentar() {
 string Personaje_de_fuego::de_que_elemento_soy() {
     return ELEMENTO_FUEGO;
 }
+
+void Personaje_de_fuego::defender() {
+    if (energia >= MIN_ENERGIA_DEFENSA_FUEGO) {
+        vida += 10;
+        se_defiende = true;
+    } else {
+        cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
+        se_defiende = false;
+    }
+}
+
+
+void Personaje_de_fuego::recibe_ataque(string elemento_enemigo, int danio_recibido) {
+    if (elemento_enemigo == AIRE) danio_recibido = ATAQUE_DEBIL_AIRE;
+    else if (elemento_enemigo == AGUA) danio_recibido = ATAQUE_FUERTE_AGUA;
+    vida -= danio_recibido;        
+}
