@@ -25,6 +25,9 @@ public:
     POS: crea un personaje de fuego con nombre = nombre, y sus valores de escudo, vida y energia aleatorios entre las cotas definidas en personaje.h
     */
     Personaje_de_fuego(string nombre);
+    
+    
+    Personaje_de_fuego(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
 
     /*
     Incrementa la vida segun la vida recuperada determinada en personaje.h
