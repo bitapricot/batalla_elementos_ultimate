@@ -30,6 +30,10 @@ public:
     Incrementa la energia segun la energia recuperada determinada en personaje.h (mientras el personaje no haya superado el maximo de veces que puede ser alimentado)
     */
     void alimentar();
+    
+    void defender();
+    
+    void recibe_ataque(string elemento_enemigo, int danio_recibido);
 
 private:
     /*
