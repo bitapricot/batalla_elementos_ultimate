@@ -44,3 +44,12 @@ void Personaje_de_tierra::recibe_ataque(string elemento_enemigo, int danio_recib
     
     vida -= danio_recibido;
 }
+
+int Personaje_de_tierra::calcular_danio_segun_distancia(int distancia) {
+    int danio;
+    if (0 < distancia <= 2) danio = 30;
+    else if (2 < distancia <= 4) danio = 20;
+    else danio = 10;
+    
+    return danio;
+}
