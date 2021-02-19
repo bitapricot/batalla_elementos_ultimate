@@ -23,6 +23,8 @@ public:
     POS: crea un personaje de agua con nombre = nombre, y sus valores de escudo, vida y energia aleatorios entre las cotas definidas en personaje.h
     */
     Personaje_de_agua(string nombre);
+    
+    Personaje_de_agua(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
 
     /*
     Incrementa la energia segun la energia recuperada determinada en personaje.h (mientras el personaje no haya superado el maximo de veces que puede ser alimentado)
