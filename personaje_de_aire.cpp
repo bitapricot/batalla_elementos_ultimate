@@ -6,6 +6,10 @@ Personaje_de_aire::Personaje_de_aire(string nombre, int escudo, int vidas): Pers
 Personaje_de_aire::Personaje_de_aire(string nombre): Personaje(nombre) {
 }
 
+
+Personaje_de_aire::Personaje_de_aire(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador): Personaje(nombre, escudo, vidas, energia, fila, columna, id_jugador) {
+}
+
 void Personaje_de_aire::alimentar() {
     cout << ALIMENTO_P_AIRE << endl;
 }
