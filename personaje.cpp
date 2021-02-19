@@ -42,6 +42,9 @@ string Personaje::nombre_personaje() {
     return nombre;
 }
 
+bool Personaje::se_defiende() { // chequear si esto funca
+    return se_defiende;
+
 void Personaje::mostrar_detalles() {
     cout << "Nombre: " << nombre << endl;
     cout << "Elemento: " << de_que_elemento_soy() << endl;
