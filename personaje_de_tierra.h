@@ -37,9 +37,11 @@ public:
     */
     void alimentar();
     
-    bool defender();
+    void defender();
     
     void incrementar_escudo(bool incrementar);
+    
+    void recibe_ataque(string elemento_enemigo);
 
 };
 
