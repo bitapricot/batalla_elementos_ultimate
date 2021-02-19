@@ -100,6 +100,7 @@ public:
     */
     virtual string de_que_elemento_soy() = 0;
 
+    
     void elegir(int id_jugador);
     
     bool se_defiende(); // chequear si se puede llamar igual que el atributo
@@ -107,6 +108,9 @@ public:
     int aplicar_escudo(int danio_recibido);
     
     virtual bool defender() = 0;
+    
+    virtual void recibe_ataque() = 0;
+ 
     
 
 
