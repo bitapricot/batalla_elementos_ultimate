@@ -18,7 +18,7 @@ public:
     void atacar();
     void cargar_partida();
     bool comenzo();
-    void defender();
+    void defenderse();
     void determinar_primer_turno();
     void guardar_partida();
     void imprimir_tablero();
