@@ -33,6 +33,10 @@ public:
     Incrementa la vida segun la vida recuperada determinada en personaje.h
     */
     void alimentar();
+    
+    void defender();
+    
+    void recibe_ataque(string elemento_enemigo, int danio_recibido);
 
 };
 
