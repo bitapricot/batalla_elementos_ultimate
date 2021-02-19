@@ -25,6 +25,9 @@ public:
     POS: crea un personaje de tierra con nombre = nombre, escudo con valores aleatorios entre 0 y 2, vida con valores aleatorios entre 10 y 100 y energia entre 0 y 20
     */
     Personaje_de_tierra(string nombre);
+    
+    
+    Personaje_de_tierra(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
 
     /*
     Incrementa la energia segun la energia recuperada determinada en personaje.h
