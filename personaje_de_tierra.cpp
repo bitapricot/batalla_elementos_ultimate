@@ -31,8 +31,7 @@ void Personaje_de_tierra::defender() {
     if (energia >= MIN_ENERGIA_DEFENSA) {
         incrementar_escudo(true);
         se_defiende = true;        
-    }
-    else {
+    } else {
         cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
         se_defiende = false;
     }
