@@ -27,7 +27,7 @@ void Personaje_de_tierra::incrementar_escudo(bool incrementar) {
 }
 
 
-void defender() {
+void Personaje_de_tierra::defender() {
     if (energia >= MIN_ENERGIA_DEFENSA) {
         incrementar_escudo(true);
         se_defiende = true;        
@@ -37,3 +37,18 @@ void defender() {
         se_defiende = false;
     }
 }
+
+void Personaje_de_tierra::recibe_ataque(string elemento_enemigo) {
+    int danio_recibido;
+    if (elemento_enemigo == AIRE) danio_recibido = ATAQUE_FUERTE;
+    else if (elemento_enemigo == AGUA) danio_recibido = ATAQUE_DEBIL;
+    else danio_recibido = ATAQUE_BASE_FUEGO;
+    
+    vida -= danio_recibido;
+}
+    
+
+
+    
+    
+    
