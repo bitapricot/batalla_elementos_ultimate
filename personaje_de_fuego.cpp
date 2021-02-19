@@ -37,5 +37,6 @@ void Personaje_de_fuego::defender() {
 void Personaje_de_fuego::recibe_ataque(string elemento_enemigo, int danio_recibido) {
     if (elemento_enemigo == AIRE) danio_recibido = ATAQUE_DEBIL_AIRE;
     else if (elemento_enemigo == AGUA) danio_recibido = ATAQUE_FUERTE_AGUA;
+    aplicar_escudo(danio_recibido);
     vida -= danio_recibido;        
 }
