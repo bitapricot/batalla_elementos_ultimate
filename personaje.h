@@ -18,6 +18,12 @@ const string ALIMENTO_P_TIERRA = "hierbas";
 const string ALIMENTO_P_FUEGO = "madera";
 const string ALIMENTO_P_AIRE = "Este personaje no necesita alimentarse ";
 
+const int ATAQUE_BASE_AGUA = 20;
+const int ATAQUE_BASE_AIRE = 15;
+const int ATAQUE_BASE_FUEGO = 20;
+const int ATAQUE_BASE_TIERRA_DEBIL = 10;
+const int ATAQUE_BASE_TIERRA_MEDIO = 20;
+const int ATAQUE_BASE_TIERRA_FUERTE = 30;
 const int ATAQUE_DEBIL = 10;
 const int ATAQUE_FUERTE = 20;
 
