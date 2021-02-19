@@ -32,6 +32,10 @@ public:
     Como este personaje no necesita alimentarse, este metodo se encarga de recordarselo al usuario
     */
     void alimentar();
+    
+    void defender();
+    
+    void recibe_ataque(string elemento_enemigo, int danio_recibido);
 
 };
 
