@@ -20,3 +20,20 @@ void Personaje_de_tierra::alimentar() {
 string Personaje_de_tierra::de_que_elemento_soy(){
     return ELEMENTO_TIERRA;
 }
+
+void Personaje_de_tierra::incrementar_escudo(bool incrementar) {
+    if (incrementar) this->escudo += PUNTOS_EXTRA_ESCUDO;
+    else this->escudo -= PUNTOS_EXTRA_ESCUDO;
+}
+
+
+void defender() {
+    if (energia >= MIN_ENERGIA_DEFENSA) {
+        incrementar_escudo(true);
+        se_defiende = true;        
+    }
+    else {
+        cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
+        se_defiende = false;
+    }
+}
