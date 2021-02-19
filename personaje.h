@@ -116,7 +116,7 @@ public:
     
     int aplicar_escudo(int danio_recibido);
     
-    virtual bool defender() = 0;
+    virtual void defender() = 0;
     
     virtual void recibe_ataque(string elemento_enemigo) = 0;
  
