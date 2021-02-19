@@ -18,6 +18,8 @@ const string ALIMENTO_P_TIERRA = "hierbas";
 const string ALIMENTO_P_FUEGO = "madera";
 const string ALIMENTO_P_AIRE = "Este personaje no necesita alimentarse ";
 
+const int ATAQUE_DEBIL = 10;
+
 const int VALOR_MIN_VIDA = 10;
 const int VALOR_MAX_VIDA = 100;
 const int VALOR_MIN_ESCUDO = 0;
