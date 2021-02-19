@@ -24,7 +24,7 @@ public:
     */
     Personaje_de_agua(string nombre);
     
-    Personaje_de_agua(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
+    Personaje_de_agua(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende);
 
     /*
     Incrementa la energia segun la energia recuperada determinada en personaje.h (mientras el personaje no haya superado el maximo de veces que puede ser alimentado)
