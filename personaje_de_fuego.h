@@ -11,7 +11,7 @@ private:
     */
     string de_que_elemento_soy();
     
-    void restar_energia();
+    void restar_vida();
 
 public:
     /*
