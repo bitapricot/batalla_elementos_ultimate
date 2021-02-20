@@ -36,6 +36,8 @@ public:
     void defender();
     
     void recibe_ataque(string elemento_enemigo, int danio_recibido);
+    
+    void cambiar_turno();
 
 };
 
