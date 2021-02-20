@@ -10,6 +10,8 @@ private:
     Devuelve el elemento del personaje
     */
     string de_que_elemento_soy();
+    
+    void restar_energia();
 
 public:
     /*
