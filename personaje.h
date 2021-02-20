@@ -129,7 +129,7 @@ public:
     
     virtual void recibe_ataque(string elemento_enemigo) = 0;
  
-    
+    void mover(int fila, int columna, int energia_minima);
 
 
 };
