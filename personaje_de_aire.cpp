@@ -36,3 +36,7 @@ void Personaje_de_aire::recibe_ataque(string elemento_enemigo, int danio_recibid
     aplicar_escudo(danio_recibido);
     vida -= danio_recibido;
 }
+
+void Personaje_de_aire::cambiar_turno() {
+    energia += 5;
+}
