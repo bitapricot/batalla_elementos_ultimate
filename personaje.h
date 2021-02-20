@@ -47,6 +47,8 @@ const int VIDA_RECUPERADA_P_FUEGO = 15;
 
 const int MAX_VECES_ALIMENTADO_P_AGUA = 3;
 
+const string ENERGIA_INSUFICIENTE = "Energia insuficiente.";
+
 const int NO_ELEGIDO = -1;
 
 class Personaje {
