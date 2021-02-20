@@ -47,7 +47,8 @@ void Personaje_de_agua::defender() {
 }
 
 void Personaje_de_agua::recibe_ataque(string elemento_enemigo, int danio_recibido) {
-    if (elemento_enemigo == TIERRA) danio_recibido += 20;
-    else if (elemento_enemigo == FUEGO) danio_recibido = 10;
+    if (elemento_enemigo == TIERRA) danio_recibido += ATAQUE_FUERTE_TIERRA;
+    else if (elemento_enemigo == FUEGO) danio_recibido = ATAQUE_DEBIL_FUEGO;
+    else danio_recibido = ATAQUE_BASE_AIRE;
 }
 
