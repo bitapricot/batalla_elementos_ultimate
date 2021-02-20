@@ -24,8 +24,15 @@ const int ATAQUE_BASE_FUEGO = 20;
 const int ATAQUE_BASE_TIERRA_DEBIL = 10;
 const int ATAQUE_BASE_TIERRA_MEDIO = 20;
 const int ATAQUE_BASE_TIERRA_FUERTE = 30;
-const int ATAQUE_DEBIL = 10;
-const int ATAQUE_FUERTE = 20;
+
+const int ATAQUE_FUERTE_AGUA = 30;
+const int ATAQUE_DEBIL_AGUA = 10;
+const int ATAQUE_FUERTE_AIRE = 20;
+const int ATAQUE_DEBIL_AIRE = 10;
+const int ATAQUE_FUERTE_FUEGO = 30;
+const int ATAQUE_DEBIL_FUEGO = 10;
+const int ATAQUE_FUERTE_TIERRA = 20; // +20
+const int ATAQUE_DEBIL_TIERRA = 10;
 
 const int VALOR_MIN_VIDA = 10;
 const int VALOR_MAX_VIDA = 100;
