@@ -68,3 +68,11 @@ int aplicar_escudo(int danio_recibido) {
     else if (escudo > VALOR_MAX_ESCUDO) danio_recibido -= danio_recibido*0.8;
     return danio_recibido;
 }
+
+void Personaje::mover(int fila, int columna, int energia_minima) {
+    if(energia >= energia_min) {
+        coord_personaje->cambiar_primera(fila);
+        coord_personaje->cambiar_segunda(columna);
+        energia -= energia_min;
+    } else cout << ENERGIA_INSUFICIENTE << endl;
+}
