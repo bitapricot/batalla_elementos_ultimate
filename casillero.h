@@ -30,6 +30,7 @@ public:
     //virtual ~Casillero() {}; // ???
     void posicionar_personaje(Personaje* nuevo);
     Personaje* obtener_personaje();
+    virtual int calcular_costo(Personaje* nuevo);
     virtual int obtener_costo_base() = 0;
     virtual string tipo_casillero() = 0;
     virtual ~Casillero();
