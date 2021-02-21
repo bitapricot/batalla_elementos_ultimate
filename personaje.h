@@ -121,7 +121,7 @@ public:
     
     void elegir(int id_jugador);
     
-    bool se_defiende(); // chequear si se puede llamar igual que el atributo
+    bool obtener_se_defiende(); 
     
     int aplicar_escudo(int danio_recibido);
     

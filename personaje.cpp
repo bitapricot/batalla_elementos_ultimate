@@ -43,7 +43,7 @@ string Personaje::nombre_personaje() {
     return nombre;
 }
 
-bool Personaje::se_defiende() { // chequear si esto funca
+bool Personaje::obtener_se_defiende() {
     return se_defiende;
 
 void Personaje::mostrar_detalles() {
