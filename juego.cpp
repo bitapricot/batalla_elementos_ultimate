@@ -38,3 +38,7 @@ Jugador* Juego::obtener_jugador(int jugador) {
     Jugador* jugador_act = jugadores[turno_act];
     if(pos_personaje >= jugador_act->cantidad_personajes()) pos_personaje = 0;
 }*/
+
+Juego::~Juego() {
+    if (tablero) delete tablero;
+}
