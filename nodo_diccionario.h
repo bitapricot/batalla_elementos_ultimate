@@ -9,30 +9,34 @@ using namespace std;
 typedef string Clave;
 typedef Personaje* Valor;
 
-class Nodo {
+class Nodo_diccionario
+{
 private:
-    Valor valor;
-    Nodo* der;
-    Nodo* izq;
-    Nodo* padre;
     Clave clave;
+    Valor valor;
+    Nodo_diccionario* izq;
+    Nodo_diccionario* der;
+    //Nodo_diccionario* padre;
+
 public:
-    Nodo(Clave clave, Valor valor, Nodo* padre);
-    void copiar_nodo(Nodo* n);
-    bool es_hoja();
-    void insertar_der(Nodo* der);
-    void insertar_izq(Nodo* izq);
-    void insertar_padre(Nodo* padre);
+    //Nodo_diccionario(Clave clave, Valor valor, Nodo_diccionario* padre);
+    Nodo_diccionario(Clave clave, Valor valor);
     Clave obtener_clave();
-    Nodo* obtener_der();
-    Nodo* obtener_izq();
-    Nodo* obtener_padre();
     Valor obtener_valor();
+    void asignar_clave(Clave nueva);
+    void asignar_valor(Valor nuevo);
+    void asignar_der(Nodo_diccionario* der, Nodo_diccionario* padre);
+    void asignar_izq(Nodo_diccionario* izq, Nodo_diccionario* padre);
+    void asignar_izq(Nodo_diccionario* izq);
+    void asignar_der(Nodo_diccionario* der);
+    void asignar_padre(Nodo_diccionario* padre);
+    Nodo_diccionario* obtener_der();
+    Nodo_diccionario* obtener_izq();
+    Nodo_diccionario* obtener_padre();
+    bool es_hoja();
     bool solo_hijo_der();
     bool solo_hijo_izq();
-    void asignar_clave(Clave clave);
 
+    //~Nodo_diccionario();
 };
-
-
-#endif // NODO_DICCIONARIO_H_INCLUDED
+#endif //Nodo_diccionario_H
