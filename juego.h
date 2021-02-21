@@ -20,7 +20,7 @@ public:
     void cargar_partida();
     bool comenzo();
     void defender();
-    void determinar_turno();
+    void determinar_primer_turno();
     void guardar_partida();
     void imprimir_tablero();
     void moverse();
