@@ -28,3 +28,4 @@ public:
     int turnar();
 };
 #endif // JUEGO_H_INCLUDED
+
