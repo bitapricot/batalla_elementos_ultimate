@@ -19,8 +19,8 @@ string Personaje_de_aire::de_que_elemento_soy() {
 }
 
 void Personaje_de_aire::defender() {
-    if (energia >= 15) {
-        energia -= 15;
+    if (energia >= MIN_ENERGIA_DEFENSA_AIRE) {
+        energia -= MIN_ENERGIA_DEFENSA_AIRE;
         se_defiende = true;
     } else {
         cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
