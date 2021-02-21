@@ -76,3 +76,15 @@ void Personaje::mover(int fila, int columna, int energia_minima) {
         energia -= energia_min;
     } else cout << ENERGIA_INSUFICIENTE << endl;
 }
+
+int Personaje::obtener_energia(){
+    return energia;
+}
+
+int Personaje::obtener_vida(){
+    return vidas;
+}
+
+int Personaje::obtener_escudo(){
+    return escudo;
+}
