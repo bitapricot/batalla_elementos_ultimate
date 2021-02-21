@@ -23,14 +23,6 @@ int Juego::turnar() {
     return JUGADOR_2;
 }
 
-int Juego::obtener_cantidad_personajes() {
-    int personajes_vivos = 0;
-    for (int i = 0; i < cantidad_personajes; i++) {
-        if (personajes_elegidos[i]->esta_vivo()) personajes_vivos++;
-        
-    return personajes_vivos;
-}
-
 /*void Juego::atacar(int pos_personaje) {
     chequear_subturno();
     int turno_act = turnar();
