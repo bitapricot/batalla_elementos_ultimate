@@ -25,6 +25,6 @@ public:
     void imprimir_tablero();
     void moverse();
     Jugador* obtener_jugador(int jugador);
-    void turnar();
+    int turnar();
 };
 #endif // JUEGO_H_INCLUDED
