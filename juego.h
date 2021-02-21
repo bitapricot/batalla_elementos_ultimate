@@ -18,6 +18,7 @@ public:
     ~Juego();
     void atacar();
     void cargar_partida();
+    void chequear_subturno();
     bool comenzo();
     void defender();
     void determinar_primer_turno();
