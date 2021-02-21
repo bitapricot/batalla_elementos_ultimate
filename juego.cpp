@@ -14,12 +14,12 @@ Jugador* Juego::obtener_jugador(int jugador) {
     return 0;
 }
 
-void Juego::determinar_turno() {
+void Juego::determinar_primer_turno() {
     turno = rand() % 2;
 }
 
 int Juego::turnar() {
-    if (turno == 0) return JUGADOR_1;
+    if (turno % 2 == 0) return JUGADOR_1;
     return JUGADOR_2;
 }
 
