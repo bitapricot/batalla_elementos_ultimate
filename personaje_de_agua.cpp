@@ -36,9 +36,9 @@ string Personaje_de_agua::de_que_elemento_soy() {
 }
 
 void Personaje_de_agua::defender() {
-    if (energia >= 12) {
-        energia -= 12;
-        vida += 50;
+    if (energia >= MIN_ENERGIA_DEFENSA_AGUA) {
+        energia -= MIN_ENERGIA_DEFENSA_AGUA;
+        vida += CURACION_PERSONAJE_AGUA;
         se_defiende = true;
     } else {
         cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
