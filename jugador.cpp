@@ -26,3 +26,6 @@ bool Jugador::jugador_perdio() {
 int Jugador::obtener_id() {
 	return id;
 }
+
+Jugador::~Jugador() {
+}
