@@ -8,7 +8,7 @@ const int MAX_PERSONAJES = 3;
 
 class Jugador {
 private:
-    // Patributos
+    // Atributos
     Personaje* personajes_elegidos[MAX_PERSONAJES];
     int id;
     int cantidad_personajes;
