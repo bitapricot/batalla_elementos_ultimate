@@ -131,6 +131,12 @@ public:
  
     void mover(int fila, int columna, int energia_minima);
 
+    int obtener_vida();
+
+    int obtener_energia();
+
+    int obtener_escudo();
+
 
 };
 
