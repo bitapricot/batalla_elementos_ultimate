@@ -19,7 +19,6 @@ private:
     //Nodo_diccionario* padre;
 
 public:
-    //Nodo_diccionario(Clave clave, Valor valor, Nodo_diccionario* padre);
     Nodo_diccionario(Clave clave, Valor valor);
     Clave obtener_clave();
     Valor obtener_valor();
@@ -37,6 +36,6 @@ public:
     bool solo_hijo_der();
     bool solo_hijo_izq();
 
-    //~Nodo_diccionario();
+    ~Nodo_diccionario();
 };
 #endif //Nodo_diccionario_H
