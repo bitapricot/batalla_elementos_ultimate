@@ -3,7 +3,7 @@
 
 #include "personaje.h"
 
-const int MIN_ENERGIA_DEFENSA = 5;
+const int MIN_ENERGIA_DEFENSA_TIERRA = 5;
 const int PUNTOS_EXTRA_ESCUDO = 2;
 
 class Personaje_de_tierra: public Personaje
