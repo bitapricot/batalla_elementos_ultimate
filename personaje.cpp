@@ -44,6 +44,7 @@ string Personaje::nombre_personaje() {
 
 bool Personaje::obtener_se_defiende() {
     return se_defiende;
+}
 
 void Personaje::mostrar_detalles() {
     cout << "Nombre: " << nombre << endl;
@@ -61,7 +62,7 @@ void Personaje::restar_energia(int costo_energia) {
     energia -= costo_energia;
 }
     
-int aplicar_escudo(int danio_recibido) {
+int Personaje::aplicar_escudo(int danio_recibido) {
     if (VALOR_MIN_ESCUDO < escudo < VALOR_MAX_ESCUDO) danio_recibido -= danio_recibido*0.1;
     else if (escudo == VALOR_MAX_ESCUDO) danio_recibido -= danio_recibido*0.2;
     else if (escudo > VALOR_MAX_ESCUDO) danio_recibido -= danio_recibido*0.8;
@@ -69,10 +70,10 @@ int aplicar_escudo(int danio_recibido) {
 }
 
 void Personaje::mover(int fila, int columna, int energia_minima) {
-    if(energia >= energia_min) {
-        coord_personaje->cambiar_primera(fila);
-        coord_personaje->cambiar_segunda(columna);
-        energia -= energia_min;
+    if(energia >= energia_minima) {
+        coord_personaje.cambiar_primera(fila);
+        coord_personaje.cambiar_segunda(columna);
+        energia -= energia_minima;
     } else cout << ENERGIA_INSUFICIENTE << endl;
 }
     

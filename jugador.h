@@ -6,10 +6,12 @@
 
 const int MAX_PERSONAJES = 3;
 
+class Personaje;
+
 class Jugador {
 private:
     // Atributos
-    Personaje* personajes_elegidos[MAX_PERSONAJES];
+    Personaje * personajes_elegidos[MAX_PERSONAJES];
     int id;
     int cantidad_personajes;
 public:
@@ -21,6 +23,7 @@ public:
     bool jugador_perdio();
     int obtener_cantidad_personajes();
     int obtener_id();
+    Personaje * obtener_personaje(int pos);
 };
 
 

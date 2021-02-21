@@ -18,8 +18,6 @@ const string TIPO_AIRE = "aire";
 const string TIPO_FUEGO = "fuego";
 const string TIPO_TIERRA = "tierra";
 
-using namespace std;
-
 void guardar_juego(int jugador_que_guardo, Grafo * grafo){
     ofstream juego_guardado;
     juego_guardado.open("juego_guardado.csv");
