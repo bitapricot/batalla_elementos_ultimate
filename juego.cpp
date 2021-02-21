@@ -2,7 +2,7 @@
 
 Juego::Juego(string archivo_mapa, Jugador* j1, Jugador* j2) {
     tablero = new Grafo(archivo_mapa);
-    //determinar_primer_turno();
+    determinar_primer_turno();
     jugadores[JUGADOR_1] = j1;
     jugadores[JUGADOR_2] = j2; // a chequear jaja malisimo bro que hacia
     pos_personaje = 0;
