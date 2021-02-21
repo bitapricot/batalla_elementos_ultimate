@@ -19,7 +19,7 @@ void Juego::determinar_turno() {
 }
 
 int Juego::turnar() {
-    if (rand() % 2 == 0) return JUGADOR_1;
+    if (turno == 0) return JUGADOR_1;
     return JUGADOR_2;
 
 /*void Juego::atacar(int pos_personaje) {
