@@ -11,6 +11,7 @@ class Juego {
 private:
     Grafo* tablero;
     Jugador* jugadores[MAX_CANT_JUGADORES];
+    int turno;
     int pos_personaje;
 public:
     Juego(string archivo_mapa, Jugador* j1, Jugador* j2);
