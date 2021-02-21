@@ -22,8 +22,8 @@ string Personaje_de_tierra::de_que_elemento_soy(){
 }
 
 void Personaje_de_tierra::incrementar_escudo(bool incrementar) {
-    if (incrementar) this->escudo += PUNTOS_EXTRA_ESCUDO;
-    else this->escudo -= PUNTOS_EXTRA_ESCUDO;
+    if (incrementar) this->escudo += PUNTOS_EXTRA_ESCUDO_TIERRA;
+    else this->escudo -= PUNTOS_EXTRA_ESCUDO_TIERRA;
 }
 
 
