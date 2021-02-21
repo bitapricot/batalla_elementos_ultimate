@@ -75,6 +75,10 @@ void Personaje::mover(int fila, int columna, int energia_minima) {
         energia -= energia_min;
     } else cout << ENERGIA_INSUFICIENTE << endl;
 }
+    
+int Personaje::obtener_id_jugador() {
+    return id_jugador;
+}
 
 int Personaje::obtener_energia(){
     return energia;
