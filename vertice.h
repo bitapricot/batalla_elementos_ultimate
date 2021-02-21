@@ -29,6 +29,7 @@ class Vertice {
     Vertice();
     void agregar_arista(Arista nueva, bool contando_diagonales);
     Coordenada obtener_coordenadas();
+    int obtener_cantidad_aristas();
     Casillero* obtener_casillero();
     Arista* obtener_lista(bool contando_diagonales);
     ~Vertice();
