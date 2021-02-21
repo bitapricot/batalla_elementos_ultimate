@@ -23,8 +23,20 @@ bool Jugador::jugador_perdio() {
     return true;
 }
 
+int Jugador::obtener_cantidad_personajes() {
+    int personajes_vivos = 0;
+    for (int i = 0; i < cantidad_personajes; i++) {
+        if (personajes_elegidos[i]->esta_vivo()) personajes_vivos++;
+        
+    return personajes_vivos;
+}
+	
 int Jugador::obtener_id() {
 	return id;
+}
+	
+Personaje* Jugador::obtener_personaje(int pos) {
+	return personajes_elegidos[pos];
 }
 
 Jugador::~Jugador() {
