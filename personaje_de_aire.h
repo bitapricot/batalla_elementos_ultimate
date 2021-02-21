@@ -28,6 +28,8 @@ public:
     
     Personaje_de_aire(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende);
 
+    Personaje_de_aire(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
+
     /*
     Como este personaje no necesita alimentarse, este metodo se encarga de recordarselo al usuario
     */

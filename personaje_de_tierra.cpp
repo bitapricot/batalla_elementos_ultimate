@@ -10,6 +10,9 @@ Personaje_de_tierra::Personaje_de_tierra(string nombre): Personaje(nombre) {
 Personaje_de_tierra::Personaje_de_tierra(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende): Personaje(nombre, escudo, vidas, energia, fila, columna, id_jugador, se_defiende) {
 }
 
+Personaje_de_tierra::Personaje_de_tierra(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador): Personaje(nombre, escudo, vidas, energia, fila, columna, id_jugador) {
+}
+
 void Personaje_de_tierra::alimentar() {
     int energia_anterior = energia;
     if(energia >= VALOR_MIN_ENERGIA && energia <= VALOR_MAX_ENERGIA) energia += ENERGIA_RECUPERADA_P_TIERRA;

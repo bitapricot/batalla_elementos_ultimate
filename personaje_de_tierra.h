@@ -29,6 +29,7 @@ public:
     
     Personaje_de_tierra(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende);
 
+    Personaje_de_tierra(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
     /*
     Incrementa la energia segun la energia recuperada determinada en personaje.h
     */

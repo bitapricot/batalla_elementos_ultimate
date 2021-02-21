@@ -10,6 +10,8 @@ Personaje_de_fuego::Personaje_de_fuego(string nombre): Personaje(nombre) {
 Personaje_de_fuego::Personaje_de_fuego(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende): Personaje(nombre, escudo, vidas, energia, fila, columna, id_jugador, se_defiende) {
 }
 
+Personaje_de_fuego::Personaje_de_fuego(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador): Personaje(nombre, escudo, vidas, energia, fila, columna, id_jugador) {
+}
 
 void Personaje_de_fuego::alimentar() {
     int vida_anterior = vidas;

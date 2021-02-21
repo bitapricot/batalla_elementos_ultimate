@@ -31,6 +31,8 @@ public:
     
     Personaje_de_fuego(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende);
 
+    Personaje_de_fuego(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
+
     /*
     Incrementa la vida segun la vida recuperada determinada en personaje.h
     */
