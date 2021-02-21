@@ -14,6 +14,12 @@ Jugador* Juego::obtener_jugador(int jugador) {
     return 0;
 }
 
+void Juego::determinar_primer_turno() {
+    int turno_random = rand() % 2;
+    if (turno_random == JUGADOR_1) turno = JUGADOR_1;
+    else turno = JUGADOR_2;
+}
+
 /*void Juego::atacar(int pos_personaje) {
     chequear_subturno();
     int turno_act = turnar();
