@@ -25,6 +25,7 @@ public:
     void guardar_partida();
     void imprimir_tablero();
     void moverse();
+    int obtener_cantidad_personajes();
     Jugador* obtener_jugador(int jugador);
     int turnar();
 };
