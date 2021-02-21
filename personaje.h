@@ -90,6 +90,8 @@ protected:
     */
     Personaje(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
 
+    Personaje(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende);
+
 public:
 
     /*
@@ -136,7 +138,7 @@ public:
     
     virtual void defender() = 0;
     
-    virtual void recibe_ataque(string elemento_enemigo) = 0;
+    virtual void recibe_ataque(string elemento_enemigo, int danio_recibido) = 0;
  
     void mover(int fila, int columna, int energia_minima);
     

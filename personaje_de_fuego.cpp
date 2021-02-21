@@ -24,8 +24,8 @@ string Personaje_de_fuego::de_que_elemento_soy() {
 
 void Personaje_de_fuego::defender() {
     if (energia >= MIN_ENERGIA_DEFENSA_FUEGO) {
-        energia -= MIN_ENERGIA_DEFEENSA_FUEGO;
-        vida += CURACION_PERSONAJE_FUEGO;
+        energia -= MIN_ENERGIA_DEFENSA_FUEGO;
+        vidas += CURACION_PERSONAJE_FUEGO;
         se_defiende = true;
     } else {
         cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
@@ -34,12 +34,12 @@ void Personaje_de_fuego::defender() {
 }
 
 void Personaje_de_fuego::recibe_ataque(string elemento_enemigo, int danio_recibido) {
-    if (elemento_enemigo == AIRE) danio_recibido = ATAQUE_DEBIL_AIRE;
-    else if (elemento_enemigo == AGUA) danio_recibido = ATAQUE_FUERTE_AGUA;
+    if (elemento_enemigo == ELEMENTO_AIRE) danio_recibido = ATAQUE_DEBIL_AIRE;
+    else if (elemento_enemigo == ELEMENTO_AGUA) danio_recibido = ATAQUE_FUERTE_AGUA;
     
     aplicar_escudo(danio_recibido);
-    vida -= danio_recibido;        
+    vidas -= danio_recibido;        
 }
 
 void Personaje_de_fuego::restar_vida() {
-    if (energia == 0) vida -= 5;
+    if (energia == 0) vidas -= 5;

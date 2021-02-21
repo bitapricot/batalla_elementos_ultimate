@@ -39,12 +39,12 @@ void Personaje_de_tierra::defender() {
 }
 
 void Personaje_de_tierra::recibe_ataque(string elemento_enemigo, int danio_recibido) {
-    if (elemento_enemigo == AIRE) danio_recibido = ATAQUE_FUERTE_AIRE;
-    else if (elemento_enemigo == AGUA) danio_recibido = ATAQUE_DEBIL_AGUA;
+    if (elemento_enemigo == ELEMENTO_AIRE) danio_recibido = ATAQUE_FUERTE_AIRE;
+    else if (elemento_enemigo == ELEMENTO_AGUA) danio_recibido = ATAQUE_DEBIL_AGUA;
     else danio_recibido = ATAQUE_BASE_FUEGO;
     
     aplicar_escudo(danio_recibido);
-    vida -= danio_recibido;
+    vidas -= danio_recibido;
 }
 
 int Personaje_de_tierra::calcular_danio_segun_distancia(int distancia) {

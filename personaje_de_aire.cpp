@@ -29,12 +29,12 @@ void Personaje_de_aire::defender() {
 }
 
 void Personaje_de_aire::recibe_ataque(string elemento_enemigo, int danio_recibido) {
-    if (elemento_enemigo == TIERRA) danio_recibido = ATAQUE_DEBIL_TIERRA;
-    else if (elemento_enemigo == FUEGO) danio_recibido = ATAQUE_FUERTE_FUEGO;
+    if (elemento_enemigo == ELEMENTO_TIERRA) danio_recibido = ATAQUE_DEBIL_TIERRA;
+    else if (elemento_enemigo == ELEMENTO_FUEGO) danio_recibido = ATAQUE_FUERTE_FUEGO;
     else danio_recibido = ATAQUE_BASE_AGUA;
     
     aplicar_escudo(danio_recibido);
-    vida -= danio_recibido;
+    vidas -= danio_recibido;
 }
 
 void Personaje_de_aire::cambiar_turno() {

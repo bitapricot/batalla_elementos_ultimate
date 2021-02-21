@@ -38,7 +38,7 @@ string Personaje_de_agua::de_que_elemento_soy() {
 void Personaje_de_agua::defender() {
     if (energia >= MIN_ENERGIA_DEFENSA_AGUA) {
         energia -= MIN_ENERGIA_DEFENSA_AGUA;
-        vida += CURACION_PERSONAJE_AGUA;
+        vidas += CURACION_PERSONAJE_AGUA;
         se_defiende = true;
     } else {
         cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
@@ -47,11 +47,11 @@ void Personaje_de_agua::defender() {
 }
 
 void Personaje_de_agua::recibe_ataque(string elemento_enemigo, int danio_recibido) {
-    if (elemento_enemigo == TIERRA) danio_recibido += ATAQUE_FUERTE_TIERRA;
-    else if (elemento_enemigo == FUEGO) danio_recibido = ATAQUE_DEBIL_FUEGO;
+    if (elemento_enemigo == ELEMENTO_TIERRA) danio_recibido += ATAQUE_FUERTE_TIERRA;
+    else if (elemento_enemigo == ELEMENTO_FUEGO) danio_recibido = ATAQUE_DEBIL_FUEGO;
     else danio_recibido = ATAQUE_BASE_AIRE;
     
     aplicar_escudo(danio_recibido);
-    vida -= danio_recibido;
+    vidas -= danio_recibido;
 }
 
