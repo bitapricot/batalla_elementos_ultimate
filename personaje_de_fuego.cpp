@@ -24,8 +24,8 @@ string Personaje_de_fuego::de_que_elemento_soy() {
 
 void Personaje_de_fuego::defender() {
     if (energia >= MIN_ENERGIA_DEFENSA_FUEGO) {
-        energia -= 10;
-        vida += 10;
+        energia -= MIN_ENERGIA_DEFEENSA_FUEGO;
+        vida += CURACION_PERSONAJE_FUEGO;
         se_defiende = true;
     } else {
         cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
