@@ -19,6 +19,7 @@ public:
     void agregar_personaje(Personaje* nuevo);
     bool eligio_max_personajes();
     bool jugador_perdio();
+    int obtener_cantidad_personajes();
     int obtener_id();
 };
 
