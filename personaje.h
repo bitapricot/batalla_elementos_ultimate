@@ -5,7 +5,7 @@
 #include <ctime>
 #include <string>
 #include "coordenada.h"
-
+#include "jugador.h"
 using namespace std;
 
 const string ELEMENTO_AIRE = "aire";
@@ -130,6 +130,8 @@ public:
     virtual void recibe_ataque(string elemento_enemigo) = 0;
  
     void mover(int fila, int columna, int energia_minima);
+    
+    int obtener_id_jugador();
 
     int obtener_vida();
 
