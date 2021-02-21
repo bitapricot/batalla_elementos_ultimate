@@ -59,7 +59,7 @@ public:
      POS: Devuelve el elemento que tiene coordeanda coord
      */
     Dato consulta(Coordenada coord);
-    
+
     /*
     PRE: 0 < pos <= cantidad
     POS: Devuelve el elemento que esta en pos
@@ -71,7 +71,7 @@ public:
     Si este no esta en la lista, devuelve nullptr
     */
     Dato consulta(string nombre);
-    
+
     /*
      PRE: -
      POS: Devuelve true si encuentra la coordenada coord en la lista, false de lo contrario

@@ -14,16 +14,16 @@ public:
 
     /*
     Constructor de copia
-    */
-    Coordenada(const Coordenada&);
+    Coordenada(const Coordenada& c);*/
 
-    Coordenada& operator+(const Coordenada &c);
+    Coordenada operator+(Coordenada c);
 
-    Coordenada& operator=(const Coordenada &c);
+    Coordenada operator=(Coordenada c);
 
     int obtener_primera();
     int obtener_segunda();
     void cambiar_primera(int nueva);
     void cambiar_segunda(int nueva);
+    bool operator==(Coordenada c);
 };
 #endif // COORDENADA_H_INCLUDED

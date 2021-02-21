@@ -1,10 +1,9 @@
-//
-// Created by camila on 28/10/20.
-//
-
 #ifndef VECTOR_VECTOR_H
 #define VECTOR_VECTOR_H
-typedef int Dato; // tipo generico, si quiero char lo cambio aca y listo
+#include "arista.h"
+
+class Arista;
+typedef Arista* Dato_vec; // tipo generico, si quiero char lo cambio aca y listo
 const int NULO = 0; // depende del tipo de datos que guarde, xej, si guardo char
                     // podria ser el NULO = "" o NULO = "-" etc
 class Vector{
@@ -12,7 +11,7 @@ class Vector{
 private:
     // atributos
     int largo = 0; // longitud del vector
-    Dato* datos = 0; // vector
+    Dato_vec* datos = 0; // vector
 
 public:
     /* constructor con parametro de longitud
@@ -41,13 +40,15 @@ public:
      * PRE: 0 <= pos < 1
      * POS: coloca a d en el vector en la posicion pos. La primera pos es la 0
      */
-    void asignar(Dato d, int pos);
+    void asignar(Dato_vec d, int pos);
+
+    Dato_vec baja(int pos);
 
     /*
     * PRE: 0 <= pos < 1
     * POS: devuelve el dato
     */
-    Dato obtener(int pos);
+    Dato_vec obtener(int pos);
 
     /*
     * PRE: -
@@ -72,7 +73,7 @@ private:
      * PRE: 0 <= desde <= hasta < largo
      * POS: copia los datos de vec en datos desde d hasta h
      */
-    void copiar(Dato * vec, int d, int h);
+    void copiar(Dato_vec* vec, int d, int h);
 
 
 };

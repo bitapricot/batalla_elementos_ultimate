@@ -4,12 +4,12 @@ Lista::Lista() {
     primero = 0;
     actual = primero;
     cantidad = 0;
-    indice_actual = 1;
+    indice_actual = 0;
 }
 
 void Lista::reiniciar() {
     actual = primero;
-    indice_actual = 1;
+    indice_actual = 0;
 }
 
 bool Lista::hay_siguiente() {
@@ -17,8 +17,10 @@ bool Lista::hay_siguiente() {
 }
 
 void Lista::siguiente() {
-    actual = actual->obtener_siguiente();
-    indice_actual++;
+    if(hay_siguiente()) {
+        actual = actual->obtener_siguiente();
+        indice_actual++;
+    }
 }
 
 Dato Lista::obtener_actual() {
@@ -47,7 +49,7 @@ void Lista::alta(Dato d) {
 
 void Lista::alta(Dato d, int pos) {
     Nodo* nuevo = new Nodo(d);
-    if (pos == 1) {
+    if (pos == 0) {
         nuevo->cambiar_siguiente(primero);
         primero = nuevo;
         reiniciar();
@@ -63,7 +65,7 @@ void Lista::alta(Dato d, int pos) {
 
 Nodo* Lista::obtener_nodo(int pos) {
     Nodo* aux = primero;
-    for(int i = 1; i < pos; i++)
+    for(int i = 0; i < pos; i++)
         aux = aux->obtener_siguiente();
     return aux;
 }
@@ -76,7 +78,7 @@ Dato Lista::consulta(int pos) {
 Dato Lista::baja_y_devuelve(int pos) {
     Nodo* borrar;
     Dato d;
-    if (pos == 1) {
+    if (pos == 0) {
         borrar = primero;
         d = borrar->obtener_dato();
         primero = borrar->obtener_siguiente();
@@ -96,7 +98,7 @@ Dato Lista::baja_y_devuelve(int pos) {
 Dato Lista::baja_y_devuelve() {
     Nodo* borrar = actual;
     Dato d;
-    if (indice_actual == 1) {
+    if (indice_actual == 0) {
         d = borrar->obtener_dato();
         primero = borrar->obtener_siguiente();
         reiniciar();
@@ -125,7 +127,7 @@ Dato Lista::baja_y_devuelve() {
 
 void Lista::baja(int pos) {
     Nodo* borrar;
-    if (pos == 1) {
+    if (pos == 0) {
         borrar = primero;
         primero = borrar->obtener_siguiente();
     }else{
@@ -141,7 +143,7 @@ void Lista::baja(int pos) {
 
 Lista::~Lista()  {
     while (! vacia())
-        baja(1);
+        baja(0);
 }
 
 int Lista::obtener_cantidad()  {
@@ -159,17 +161,16 @@ bool Lista::esta_en_la_lista(Dato d) {
 }
 
 
-/*Dato Lista::consulta(Coordenada coord) {
+Dato Lista::consulta(Coordenada coord) {
     Dato vertice = nullptr;
     if(esta_en_la_lista(coord)) {
         vertice = obtener_actual();
-        return vertice;
     }
     return vertice;
-}*/
+}
 
 
-/*bool Lista::esta_en_la_lista(Coordenada coord) {
+bool Lista::esta_en_la_lista(Coordenada coord) {
     bool encontrado = false;
     reiniciar();
     while(hay_siguiente() && !encontrado) {
@@ -179,4 +180,4 @@ bool Lista::esta_en_la_lista(Dato d) {
         }
     }
     return encontrado;
-}*/
+}

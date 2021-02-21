@@ -10,6 +10,7 @@ private:
     Vertice* destino;
     int costo;
 public:
+    Arista();
     Arista(Vertice* origen, Vertice* destino, int costo);
     Arista(Vertice* origen, Vertice* destino);
     Vertice* obtener_destino();

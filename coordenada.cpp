@@ -5,22 +5,26 @@ Coordenada::Coordenada(int primera, int segunda) {
     this->segunda = segunda;
 }
 
-Coordenada::Coordenada(const Coordenada &c) {
+/*Coordenada::Coordenada(const Coordenada& c) {
     *this = c;
-}
+}*/
 
-Coordenada& Coordenada::operator+(const Coordenada &c) {
+Coordenada Coordenada::operator+(Coordenada c) {
     this->primera += c.primera;
     this->segunda += c.segunda;
     return *this;
 }
 
-Coordenada& Coordenada::operator=(const Coordenada &c) {
+Coordenada Coordenada::operator=(Coordenada c) {
     if(this != &c) {
         if(c.primera != 0) this->primera = c.primera;
         if(c.segunda != 0) this->segunda = c.segunda;
     }
     return *this;
+}
+
+bool Coordenada::operator==(Coordenada c) {
+    return this->primera == c.primera && this->segunda == c.segunda;
 }
 
 int Coordenada::obtener_primera() {

@@ -28,11 +28,11 @@ protected:
     Casillero();
 public:
     //virtual ~Casillero() {}; // ???
-    bool hay_personaje();
     void posicionar_personaje(Personaje* nuevo);
+    Personaje* obtener_personaje();
     virtual int obtener_costo_base() = 0;
     virtual string tipo_casillero() = 0;
-    ~Casillero();
+    virtual ~Casillero();
 };
 
 

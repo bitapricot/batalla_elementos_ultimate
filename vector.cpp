@@ -2,17 +2,24 @@
 
 Vector::Vector(int l){
     largo = l;
-    datos = new Dato[l]; // pido memoria para el vector, de longitud l
+    datos = new Dato_vec[l]; // pido memoria para el vector, de longitud l
     // puntero, esta fuera del objeto. El objeto de tipo vector me va a
     // ocupar 4+8 = 12, y donde esten los datos me ocupara l*sizeof(Dato)
     anular(0,l-1);
 }
 
-void Vector::asignar(Dato d, int pos){
+void Vector::asignar(Dato_vec d, int pos){
     datos[pos] = d;
 }
 
-Dato Vector::obtener(int pos){
+Dato_vec Vector::baja(int pos) {
+    Dato_vec eliminar = obtener(pos);
+    anular(pos,pos);
+    redimensionar(largo-1);
+    return eliminar;
+}
+
+Dato_vec Vector::obtener(int pos){
     return datos[pos];
 }
 
@@ -21,14 +28,16 @@ int Vector::obtener_longitud(){
 }
 
 Vector::~Vector(){
-    if (largo > 0){
-        delete [] datos; // si pedi memoria, liberala
+    while(largo > 0) {
+        Dato_vec borrar = baja(obtener_longitud());
+        delete borrar;
     }
+    delete [] datos;
 }
 
 void Vector::anular(int desde, int hasta){
     for (int i = desde; i <= hasta; i++){
-        datos[i] = NULO;
+        datos[i] = NULL;
     }
 }
 
@@ -40,8 +49,8 @@ int menor(int a, int b){
 }
 void Vector::redimensionar(int nl){
     int minimo = menor(largo,nl);
-    Dato * viejo = datos;
-    datos = new Dato[nl];
+    Dato_vec* viejo = datos;
+    datos = new Dato_vec[nl];
     copiar(viejo,0,minimo - 1);
     if (nl > largo){
         anular(minimo,nl-1);
@@ -52,7 +61,7 @@ void Vector::redimensionar(int nl){
     largo = nl;
 }
 
-void Vector::copiar(Dato *vec, int d, int h){
+void Vector::copiar(Dato_vec* vec, int d, int h){
     for (int i = d; i <= h; i++){
         datos[i] = vec[i];
     }
@@ -61,7 +70,7 @@ void Vector::copiar(Dato *vec, int d, int h){
 Vector::Vector(const Vector &v) {
     largo = v.largo;
     if (largo > 0){
-        datos = new Dato[largo];
+        datos = new Dato_vec[largo];
         copiar(v.datos,0,largo-1);
     } else{
         datos = 0;

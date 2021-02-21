@@ -1,5 +1,11 @@
 #include "arista.h"
 
+Arista::Arista() {
+    this->origen = 0;
+    this->destino = 0;
+    this->costo = 0;
+}
+
 Arista::Arista(Vertice* origen, Vertice* destino, int costo) {
     this->origen = origen;
     this->destino = destino;
@@ -28,5 +34,7 @@ Vertice* Arista::obtener_origen() {
     return origen;
 }
 
-Arista::~Arista() {}
+Arista::~Arista() {
+
+}
 
