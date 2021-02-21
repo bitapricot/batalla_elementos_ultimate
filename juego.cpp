@@ -2,7 +2,7 @@
 
 Juego::Juego(string archivo_mapa, Jugador* j1, Jugador* j2) {
     tablero = new Grafo(archivo_mapa);
-    determinar_primer_turno();
+    determinar_turno();
     jugadores[JUGADOR_1] = j1;
     jugadores[JUGADOR_2] = j2; // a chequear jaja malisimo bro que hacia
     pos_personaje = 0;
@@ -14,9 +14,13 @@ Jugador* Juego::obtener_jugador(int jugador) {
     return 0;
 }
 
-void Juego::determinar_primer_turno() {
+void Juego::determinar_turno() {
     turno = rand() % 2;
 }
+
+int Juego::turnar() {
+    if (determinar_turno() == 0) return JUGADOR_1;
+    return JUGADOR_2;
 
 /*void Juego::atacar(int pos_personaje) {
     chequear_subturno();
