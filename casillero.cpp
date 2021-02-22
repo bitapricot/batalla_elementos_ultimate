@@ -1,5 +1,7 @@
 #include "casillero.h"
 
+class Casillero;
+
 Casillero::Casillero() {
     personaje = 0;
 }
@@ -13,6 +15,6 @@ void Casillero::posicionar_personaje(Personaje* nuevo) {
 }
 
 Casillero::~Casillero() {
-    
+
 }
 

@@ -21,6 +21,7 @@ const int COSTO_PRECIPICIO = 1;
 const int COSTO_VACIO = 15;
 const int COSTO_VOLCAN = 1;
 
+class Casillero;
 
 class Casillero {
 protected:
