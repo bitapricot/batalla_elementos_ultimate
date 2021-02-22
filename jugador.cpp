@@ -5,7 +5,7 @@ Jugador::Jugador() {
 }
 
 Jugador::Jugador(int id) {
-	this->id = id;
+    this->id = id;
     cantidad_personajes = 0;
 }
 
