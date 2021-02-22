@@ -1,4 +1,6 @@
 #include "menu.h"
+#include <string>
+#include <iostream>
 
 Menu::Menu() {
     personajes = 0;
@@ -58,6 +60,8 @@ void Menu::cargar_personaje_segun_elemento(string elemento, string nombre) {
 void Menu::agregar_nuevo_personaje() {
     string elemento = pedir_elemento_personaje();
     string nombre = pedir_nombre_personaje();
+    // Se rompe al pedir el nombre...
+    cout << "Si llega aca se rompe abajo, de lo contrario arriba";
     cargar_personaje_segun_elemento(elemento, nombre);
 }
 
@@ -230,7 +234,7 @@ string Menu::pedir_elemento_personaje() {
 
 string Menu::pedir_nombre_personaje() {
     string nombre;
-    cout << "Ingrese el nombre del personaje: ";
+    cout << "Ingrese el nombre del personaje SEGFAULT!!!!!: ";
     cin >> nombre;
     return nombre;
 }
