@@ -45,3 +45,4 @@ void Personaje_de_fuego::recibe_ataque(string elemento_enemigo, int danio_recibi
 
 void Personaje_de_fuego::restar_vida() {
     if (energia == 0) vidas -= 5;
+}

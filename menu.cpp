@@ -43,7 +43,7 @@ void Menu::cargar_personaje_segun_elemento(string elemento, string nombre, int e
     else if(elemento == ELEMENTO_AIRE) nuevo = new Personaje_de_aire(nombre, escudo, vida);
     else if(elemento == ELEMENTO_FUEGO) nuevo = new Personaje_de_fuego(nombre, escudo, vida);
     else if(elemento == ELEMENTO_TIERRA) nuevo = new Personaje_de_tierra(nombre, escudo, vida);
-    personajes->alta(nombre, nuevo);
+    personajes->insertar(nombre, nuevo);
 }
 
 void Menu::cargar_personaje_segun_elemento(string elemento, string nombre) {
@@ -52,7 +52,7 @@ void Menu::cargar_personaje_segun_elemento(string elemento, string nombre) {
     else if(elemento == ELEMENTO_AIRE) nuevo = new Personaje_de_aire(nombre);
     else if(elemento == ELEMENTO_FUEGO) nuevo = new Personaje_de_fuego(nombre);
     else if(elemento == ELEMENTO_TIERRA) nuevo = new Personaje_de_tierra(nombre);
-    personajes->alta(nombre, nuevo);
+    personajes->insertar(nombre, nuevo);
 }
 
 void Menu::agregar_nuevo_personaje() {
@@ -76,7 +76,7 @@ void Menu::agregar_nuevo_personaje() {
 
 void Menu::mostrar_nombres_personajes() {
     if(!personajes->vacio())
-        personajes->imprimir_inorden(personajes->obtener_raiz());
+        personajes->imprimir_inorden();
     else cout << ERROR_DICCIONARIO_VACIO << endl;
 }
 

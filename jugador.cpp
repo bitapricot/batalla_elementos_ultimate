@@ -27,9 +27,9 @@ int Jugador::obtener_cantidad_personajes() {
     int personajes_vivos = 0;
     for (int i = 0; i < cantidad_personajes; i++) {
         if (personajes_elegidos[i]->esta_vivo()) personajes_vivos++;
-        
-    return personajes_vivos;
+    
     }
+    return personajes_vivos;
 }
 	
 int Jugador::obtener_id() {

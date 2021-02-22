@@ -43,8 +43,6 @@ public:
     
     int calcular_danio_segun_distancia(int distancia);
 
-    void recibe_ataque(string elemento_enemigo, int danio_recibido);
-
 };
 
 #endif // PERSONAJE_DE_TIERRA_H_INCLUDED

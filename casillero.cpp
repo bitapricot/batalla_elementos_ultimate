@@ -4,8 +4,6 @@ Casillero::Casillero() {
     personaje = 0;
 }
 
-Casillero::~Casillero() {
-}
 
 Personaje* Casillero::obtener_personaje() {
     return personaje;

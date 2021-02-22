@@ -64,7 +64,7 @@ Personaje * cargar_personaje_desde_archivo(string elemento, string nombre, int e
     else if (elemento == TIPO_AIRE){
         personaje = new Personaje_de_aire(nombre, escudo, vida, energia, fila, columna, jugador);
     }
-    return personaje
+    return personaje;
 }
 
 int cargar_juego(Grafo * grafo, ifstream  juego_guardado){
