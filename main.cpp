@@ -1,19 +1,46 @@
 #include <iostream>
-#include "juego.h"
-#include "jugador.h"
+#include "casillero.h"
+#include "camino.h"
+#include "lago.h"
+#include "montania.h"
+#include "precipicio.h"
+#include "vacio.h"
+#include "volcan.h"
 
-using namespace std;
+#include "personaje.h"
+#include "personaje_de_fuego.h"
 
 int main() {
 
-    string archivo_mapa = "../mapa.csv";
-    Jugador* jugador_one = new Jugador(0);
-    Jugador* jugador_two = new Jugador(1);
+    Casillero* ccamino = new Camino();
+    Casillero* clago = new Lago();
+    Casillero* cmontania = new Montania();
+    Casillero* cprecipicio = new Precipicio();
+    Casillero* cvacio = new Vacio();
+    Casillero* cvolcan = new Volcan();
 
-    Juego* test = new Juego(archivo_mapa, jugador_one, jugador_two);
+    Personaje* pfuego = new Personaje_de_fuego("RAUL");
 
-    cout << "jugador 1: " << test->obtener_jugador(0)->obtener_id() << endl;
-    cout << "jugador 2: " << test->obtener_jugador(1)->obtener_id() << endl;
+    cout << "COSTO BASE CAMINO: " << ccamino->obtener_costo_base() << endl;
+    cout << "COSTO BASE LAGO: " << clago->obtener_costo_base() << endl;
+    cout << "COSTO BASE MONTANIA: " << cmontania->obtener_costo_base() << endl;
+    cout << "COSTO BASE PRECIPICIO: " << cprecipicio->obtener_costo_base() << endl;
+    cout << "COSTO BASE VACIO: " << cvacio->obtener_costo_base() << endl;
+    cout << "COSTO BASE VOLCAN: " << cvolcan->obtener_costo_base() << endl;
+
+    clago->posicionar_personaje(pfuego);
+    Personaje* personaje_actual = clago->obtener_personaje();
+    cout << "PERSONAJE POSICIONADO EN CASILLERO LAGO: " << personaje_actual->nombre_personaje() <<
+    " COSTO: " << clago->calcular_costo(pfuego) << endl;
+
+    delete ccamino;
+    delete clago;
+    delete cmontania;
+    delete cprecipicio;
+    delete cvacio;
+    delete cvolcan;
+    delete pfuego;
+
 
     return 0;
 }
