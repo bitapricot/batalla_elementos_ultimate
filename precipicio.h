@@ -10,8 +10,6 @@ public:
     int calcular_costo(Personaje* nuevo);
     int obtener_costo_base();
     string tipo_casillero();
-    virtual ~Precipicio(){};
-
 };
 
 #endif // PRECIPICIO_H_INCLUDED

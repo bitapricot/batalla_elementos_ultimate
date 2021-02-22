@@ -10,7 +10,6 @@ public:
     int calcular_costo(Personaje* nuevo);
     int obtener_costo_base();
     string tipo_casillero();
-    virtual ~Lago(){};
 };
 
 #endif // LAGO_H_INCLUDED
