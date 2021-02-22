@@ -1,7 +1,5 @@
 #include "casillero.h"
 
-class Casillero;
-
 Casillero::Casillero() {
     personaje = 0;
 }
