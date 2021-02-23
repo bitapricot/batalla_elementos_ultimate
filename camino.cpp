@@ -3,7 +3,7 @@
 Camino::Camino(): Casillero() {
 }
 
-int Camino::calcular_costo(Personaje* nuevo) {
+int Camino::calcular_costo(string elemento_pj) {
     return COSTO_CAMINO;
 }
 
