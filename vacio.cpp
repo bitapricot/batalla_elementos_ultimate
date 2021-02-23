@@ -3,7 +3,7 @@
 Vacio::Vacio(): Casillero() {
 }
 
-int Vacio::calcular_costo(Personaje* nuevo) {
+int Vacio::calcular_costo(string elemento_pj) {
     return COSTO_VACIO;
 }
 
