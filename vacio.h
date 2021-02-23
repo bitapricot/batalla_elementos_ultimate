@@ -7,7 +7,7 @@ class Vacio: public Casillero
 {
 public:
     Vacio();
-    int calcular_costo(Personaje* nuevo);
+    int calcular_costo(string elemento_pj);
     int obtener_costo_base();
     string tipo_casillero();
 };
