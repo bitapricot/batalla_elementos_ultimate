@@ -3,10 +3,10 @@
 Montania::Montania(): Casillero() {
 }
 
-int Montania::calcular_costo(Personaje* nuevo) {
+int Montania::calcular_costo(string elemento_pj) {
     int nuevo_costo = 0;
-    if(nuevo->de_que_elemento_soy() == ELEMENTO_AIRE) nuevo_costo = COSTO_MONTANIA*2;
-    else if(nuevo->de_que_elemento_soy() == ELEMENTO_FUEGO || nuevo->de_que_elemento_soy() == ELEMENTO_AGUA) nuevo_costo = COSTO_MONTANIA;
+    if(elemento_pj == ELEMENTO_AIRE) nuevo_costo = COSTO_MONTANIA*2;
+    else if(elemento_pj == ELEMENTO_FUEGO || elemento_pj == ELEMENTO_AGUA) nuevo_costo = COSTO_MONTANIA;
     return nuevo_costo;
 }
 
