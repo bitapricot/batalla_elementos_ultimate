@@ -28,7 +28,7 @@ protected:
 public:
     void posicionar_personaje(Personaje* nuevo);
     Personaje* obtener_personaje();
-    virtual int calcular_costo(Personaje* nuevo) = 0;
+    virtual int calcular_costo(string elemento_pj) = 0;
     virtual int obtener_costo_base() = 0;
     virtual string tipo_casillero() = 0;
     virtual ~Casillero();
