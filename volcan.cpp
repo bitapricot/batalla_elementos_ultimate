@@ -3,10 +3,10 @@
 Volcan::Volcan(): Casillero() {
 }
 
-int Volcan::calcular_costo(Personaje* nuevo) {
+int Volcan::calcular_costo(string elemento_pj) {
     int nuevo_costo = 0;
-    if(nuevo->de_que_elemento_soy() == ELEMENTO_AGUA) nuevo_costo = COSTO_VOLCAN*2;
-    else if(nuevo->de_que_elemento_soy() == ELEMENTO_TIERRA || nuevo->de_que_elemento_soy() == ELEMENTO_AIRE) nuevo_costo = COSTO_VOLCAN;
+    if(elemento_pj == ELEMENTO_AGUA) nuevo_costo = COSTO_VOLCAN*2;
+    else if(elemento_pj == ELEMENTO_TIERRA || elemento_pj == ELEMENTO_AIRE) nuevo_costo = COSTO_VOLCAN;
     return nuevo_costo;
 }
 
