@@ -3,10 +3,10 @@
 Precipicio::Precipicio(): Casillero() {
 }
 
-int Precipicio::calcular_costo(Personaje* nuevo) {
+int Precipicio::calcular_costo(string elemento_pj) {
     int nuevo_costo = 0;
-    if(nuevo->de_que_elemento_soy() == ELEMENTO_TIERRA) nuevo_costo = COSTO_PRECIPICIO*2;
-    else if(nuevo->de_que_elemento_soy() == ELEMENTO_FUEGO || nuevo->de_que_elemento_soy() == ELEMENTO_AGUA) nuevo_costo = COSTO_PRECIPICIO;
+    if(elemento_pj == ELEMENTO_TIERRA) nuevo_costo = COSTO_PRECIPICIO*2;
+    else if(elemento_pj == ELEMENTO_FUEGO || elemento_pj == ELEMENTO_AGUA) nuevo_costo = COSTO_PRECIPICIO;
     return nuevo_costo;
 }
 
