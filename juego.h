@@ -29,6 +29,7 @@ public:
     int turnar();
     Coordenada pedir_coord();
     int validar_ingreso(int valor);
+    int energia_minima(string elemento, bool accion);
 };
 #endif // JUEGO_H_INCLUDED
 
