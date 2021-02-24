@@ -34,8 +34,14 @@ Arista* Vertice::obtener_lista(bool contando_diagonales) {
     return *vertices_ady_y_diagonales;
 }
 
-int Vertice::obtener_cantidad_aristas() {
+int Vertice::obtener_cantidad_aristas(bool contando_diagonales) {
+    if(contando_diagonales) return cant_aristas_contando_diagonales;
     return cant_aristas;
+}
+
+Arista Vertice::obtener_arista(int pos, bool contando_diagonales) {
+    if(contando_diagonales) return vertices_ady_y_diagonales[pos];
+    return vertices_ady[pos];
 }
 
 Casillero* Vertice::obtener_casillero() {
