@@ -82,115 +82,6 @@ Valor Diccionario::consulta(Clave clave) {
     return 0;
 }
 
-/*Clave Diccionario::buscar_min(Nodo_diccionario* nodo)
-{
-    if(nodo == NULL) return "";
-    else if(nodo->obtener_izq() == NULL) return nodo->obtener_clave();
-    return buscar_min(nodo->obtener_izq());
-}
-
-
-Clave Diccionario::buscar_min()
-{
-    return buscar_min(this->raiz);
-}
-
-Clave Diccionario::sucesor(Nodo_diccionario* nodo)
-{
-    if (nodo->obtener_der() != NULL)
-    {
-        return buscar_min(nodo->obtener_der());
-    }
-    Nodo_diccionario* sucesor = NULL;
-    Nodo_diccionario* ancestro = this->raiz;
-    while(ancestro != nodo) {
-        if(nodo->obtener_clave() < ancestro->obtener_clave()) {
-            sucesor = ancestro;
-            ancestro = ancestro->obtener_izq();
-        }
-        else
-            ancestro = ancestro->obtener_der();
-    }
-    return sucesor->obtener_clave();
-}
-
-
-Clave Diccionario::sucesor(Clave clave)
-{
-    Nodo_diccionario* buscado = this->buscar(this->raiz, clave);
-    // Return the key. If the key is not found or sucesor is not found, return -1
-    if(!buscado) return "";
-    else return sucesor(buscado);
-}
-
-Nodo_diccionario* Diccionario::eliminar(Nodo_diccionario* nodo, Clave clave)
-{
-    // The given nodo is not found in Diccionario
-    if (nodo == NULL)
-        return NULL;
-
-    if (nodo->obtener_clave() == clave)
-    {
-        if (nodo->es_hoja()) {
-            Valor borrar = nodo->obtener_valor();
-            delete borrar;
-            delete nodo;
-        }
-        else if (nodo->solo_hijo_der())
-        {
-            // The only child will be connected to the parent's of nodo directly
-            nodo->obtener_der()->asignar_padre(nodo->obtener_padre());
-            // Bypass nodo
-            Nodo_diccionario* aux = nodo;
-            nodo = nodo->obtener_der();
-            Valor borrar = aux->obtener_valor();
-            delete borrar;
-            delete aux;
-        }
-        else if (nodo->solo_hijo_izq())
-        {
-            // The only child will be connected to the parent's of nodo directly
-            nodo->obtener_izq()->asignar_padre(nodo->obtener_padre());
-            // Bypass nodo
-            Nodo_diccionario* aux = nodo;
-            nodo = nodo->obtener_izq();
-            Valor borrar = aux->obtener_valor();
-            delete borrar;
-            delete aux;
-        }
-
-            // The nodo has two children (left and right)
-        else
-        {
-            // Find sucesor or predecesor to avoid quarrel
-            Clave clave_sucesor = this->sucesor(clave);
-            Valor valor_sucesor = consulta(clave_sucesor);
-            if(clave_sucesor == "") return nullptr;
-            // Replace nodo's key with sucesor's key
-            nodo->asignar_clave(clave_sucesor);
-            nodo->asignar_valor(valor_sucesor);
-
-            // Delete the old sucesor's key
-            nodo->asignar_der(eliminar(nodo->obtener_der(), clave));
-        }
-    }
-
-    else if (nodo->obtener_clave() < clave)
-        nodo->asignar_der(eliminar(nodo->obtener_der(), clave));
-
-    else
-        nodo->asignar_izq(eliminar(nodo->obtener_izq(), clave));
-
-    return nodo;
-}
-
-
-void Diccionario::eliminar(Clave clave)
-{
-    this->raiz = eliminar(this->raiz, clave);
-}*/
-
-
 Nodo_diccionario* Diccionario::obtener_raiz(){
     return this->raiz;
 }
@@ -200,7 +91,6 @@ bool Diccionario::vacio()
 {
     return this->raiz == NULL;
 }
-
 
 
 void Diccionario::eliminar_todos(Nodo_diccionario* nodo)
