@@ -5,6 +5,7 @@
 const int JUGADOR_1 = 0;
 const int JUGADOR_2 = 1;
 const int MAX_CANT_JUGADORES = 2;
+const int DIM_FILA = 8;
 
 
 class Juego {
@@ -16,7 +17,7 @@ private:
 public:
     Juego(string archivo_mapa, Jugador* j1, Jugador* j2);
     ~Juego();
-    void atacar();
+    void atacar(int pos_personaje);
     void cargar_partida();
     void chequear_subturno();
     bool comenzo();
@@ -28,7 +29,7 @@ public:
     Jugador* obtener_jugador(int jugador);
     int turnar();
     Coordenada pedir_coord();
-    int validar_ingreso(int valor);
+    bool validar_ingreso(int valor);
     int energia_minima(string elemento, bool accion);
 };
 #endif // JUEGO_H_INCLUDED

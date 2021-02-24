@@ -32,7 +32,7 @@ bool Juego::validar_ingreso(int valor) {
 }
 
 Coordenada Juego::pedir_coord() {
-    bool col_valida, fila_valida
+    bool col_valida, fila_valida;
     int col_pedida, fila_pedida;
     
     do {
@@ -74,20 +74,20 @@ void Juego::atacar(int pos_personaje) {
     Personaje* personaje_act = jugador_act[pos_personaje];
     Coordenada coord_act = personaje_act->obtener_coordenadas();
     
-    if(personaje_act->de_que_elemento_soy() == AGUA) {
-        if(personaje_act->obtener_energia() >= MIN_ENERGIA_PJ_AGUA) {
+    if(personaje_act->de_que_elemento_soy() == ELEMENTO_AGUA) {
+        if(personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_AGUA) {
             Coordenada nueva = pedir_coord();
             ataque_p_agua(nueva);
-        } else cout << ERROR_ENERGIA_INSUFICIENTE << endl;
-    } else if(personaje_act->de_que_elemento_soy() == TIERRA) {
-        if(personaje_act->obtener_energia() >= MIN_ENERGIA_PJ_TIERRA) {
+        } else cout << ENERGIA_INSUFICIENTE << endl;
+    } else if(personaje_act->de_que_elemento_soy() == ELEMENTO_TIERRA) {
+        if(personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_TIERRA) {
             Coordenada nueva = pedir_coord();
             ataque_p_tierra(coord_act, nueva);
-        } else cout << ERROR_ENERGIA_INSUFICIENTE << endl;
-    } else if(personaje_act->de_que_elemento_soy() == FUEGO) {
-        if(personaje_act->obtener_energia() >= MIN_ENERGIA_PJ_FUEGO) {
+        } else cout << ENERGIA_INSUFICIENTE << endl;
+    } else if(personaje_act->de_que_elemento_soy() == ELEMENTO_FUEGO) {
+        if(personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_FUEGO) {
             ataque_p_fuego(personaje_act);
-        } else cout << ERROR_ENERGIA_INSUFICIENTE << endl;
+        } else cout << ENERGIA_INSUFICIENTE << endl;
     } else {
 
     }
@@ -121,6 +121,7 @@ void Juego::ataque_p_fuego(Coordenada coord_act) {
                 enemigo->recibe_ataque(FUEGO, ATAQUE_BASE_FUEGO);
             }
         }
+    }
 }
 
 void Juego::ataque_p_agua(Coordenada enemigo) {

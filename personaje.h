@@ -62,6 +62,7 @@ const int MAX_VECES_ALIMENTADO_P_AGUA = 3;
 const int PUNTOS_EXTRA_ESCUDO_TIERRA = 2;
 
 const string ENERGIA_INSUFICIENTE = "Energia insuficiente.";
+const string ERROR_NO_HAY_PERSONAJE = "No hay personaje para el ataque";
 
 const int NO_ELEGIDO = -1;
 
@@ -155,6 +156,7 @@ public:
 
     int obtener_escudo();
 
+    Coordenada obtener_coordenadas();
 
 };
 
