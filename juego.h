@@ -28,6 +28,7 @@ public:
     Jugador* obtener_jugador(int jugador);
     int turnar();
     Coordenada pedir_coord();
+    int validar_ingreso(int valor);
 };
 #endif // JUEGO_H_INCLUDED
 
