@@ -23,7 +23,7 @@ int Juego::turnar() {
     return JUGADOR_2;
 }
 
-bool validar_ingreso(int valor) {
+bool Juego::validar_ingreso(int valor) {
 	if (!(valor >= 0 && valor < DIM_FILA)){
 		cout << "Valor fuera de rango, reintentar." << endl;
 		return false;
@@ -31,7 +31,7 @@ bool validar_ingreso(int valor) {
 	return true;
 }
 
-Coordenada pedir_coord() {
+Coordenada Juego::pedir_coord() {
     bool col_valida, fila_valida
     int col_pedida, fila_pedida;
     
@@ -51,6 +51,22 @@ Coordenada pedir_coord() {
     
     return nueva;    
 }
+
+int Juego::energia_minima(string elemento, bool accion) {
+    if (accion) { // atacar
+	if (elemento == ELEMENTO_AGUA) return MIN_ENERGIA_ATAQUE_AGUA;
+	else if (elemento == ELEMENTO_AIRE) return MIN_ENERGIA_ATAQUE_AIRE;
+	else if (elemento == ELEMENTO_FUEGO) return MIN_ENERGIA_ATAQUE_FUEGO;
+	else return MIN_ENERGIA_ATAQUE_TIERRA
+		
+    } else { // defender
+	if (elemento == ELEMENTO_AGUA) return MIN_ENERGIA_DEFENSA_AGUA;
+	else if (elemento == ELEMENTO_AIRE) return MIN_ENERGIA_DEFENSA_AIRE;
+	else if (elemento == ELEMENTO_FUEGO) return MIN_ENERGIA_DEFENSA_FUEGO;
+	else return MIN_ENERGIA_DEFENSA_TIERRA
+    }
+}
+	
 
 
 /*void Juego::atacar(int pos_personaje) {
