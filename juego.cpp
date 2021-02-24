@@ -32,8 +32,7 @@ bool validar_ingreso(int valor) {
 }
 
 Coordenada pedir_coord() {
-    bool col_valida;
-    bool fila_valida;
+    bool col_valida, fila_valida
     int col_pedida, fila_pedida;
     
     do {
