@@ -1,0 +1,37 @@
+#include "casillero.h"
+
+Casillero::Casillero() {
+    personaje = 0;
+}
+
+Casillero::~Casillero() {
+}
+
+bool Casillero::hay_personaje() {
+    return personaje != 0;
+}
+
+Personaje* Casillero::obtener_personaje() {
+    return personaje;
+}
+
+void Casillero::posicionar_personaje(Personaje* nuevo, Coordenada coordenada) {
+    nuevo->asignar_coordenadas_pj(coordenada.obtener_primera(), coordenada.obtener_segunda());
+    personaje = nuevo;
+}
+
+Sprite Casillero::obtener_sprite() {
+    return spr_casillero;
+}
+
+void Casillero::asignar_posicion(int x, int y) {
+    spr_casillero.setOrigin(spr_casillero.getGlobalBounds().width / 2, spr_casillero.getGlobalBounds().height / 2);
+    spr_casillero.setPosition((float)x, (float)y);
+}
+
+void Casillero::cargar_graficos() {
+    string ruta = "../" + tipo_casillero() + ".png";
+
+    txt_casillero.loadFromFile(ruta);
+    spr_casillero.setTexture(txt_casillero);
+}

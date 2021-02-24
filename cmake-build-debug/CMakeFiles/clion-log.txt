@@ -1,0 +1,33 @@
+/snap/clion/139/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/santiago/Github/tp3
+CMake Warning at CMakeLists.txt:13 (find_package):
+  By not providing "FindSFML.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "SFML", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "SFML" (requested
+  version 2.5.1) with any of the following names:
+
+    SFMLConfig.cmake
+    sfml-config.cmake
+
+  Add the installation prefix of "SFML" to CMAKE_PREFIX_PATH or set
+  "SFML_DIR" to a directory containing one of the above files.  If "SFML"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+
+
+-- Configuring done
+CMake Error at CMakeLists.txt:21 (add_executable):
+  Cannot find source file:
+
+    Menu.h
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at CMakeLists.txt:21 (add_executable):
+  No SOURCES given to target: tp3
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
