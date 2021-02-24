@@ -39,6 +39,15 @@ void Menu::cargar_personajes(string archivo) {
     }
 }
 
+void Menu::cargar_personaje_segun_elemento(string elemento, string nombre, int escudo, int vida, int energia, int fila, int columna, int id_jugador) {
+    Personaje* nuevo;
+    if(elemento == ELEMENTO_AGUA) nuevo = new Personaje_de_agua(nombre, escudo, vida, energia, fila, columna, id_jugador);
+    else if(elemento == ELEMENTO_AIRE) nuevo = new Personaje_de_aire(nombre, escudo, vida, energia, fila, columna, id_jugador);
+    else if(elemento == ELEMENTO_FUEGO) nuevo = new Personaje_de_fuego(nombre, escudo, vida, energia, fila, columna, id_jugador);
+    else if(elemento == ELEMENTO_TIERRA) nuevo = new Personaje_de_tierra(nombre, escudo, vida, energia, fila, columna, id_jugador);
+    personajes->insertar(nombre, nuevo);
+}
+
 void Menu::cargar_personaje_segun_elemento(string elemento, string nombre, int escudo, int vida) {
     Personaje* nuevo;
     if(elemento == ELEMENTO_AGUA) nuevo = new Personaje_de_agua(nombre, escudo, vida);
