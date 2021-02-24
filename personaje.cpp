@@ -102,3 +102,7 @@ int Personaje::obtener_vida(){
 int Personaje::obtener_escudo(){
     return escudo;
 }
+
+Coordenada Personaje::obtener_coordenadas(){
+    return coord_personaje;
+}
