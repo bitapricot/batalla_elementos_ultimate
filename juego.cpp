@@ -23,6 +23,37 @@ int Juego::turnar() {
     return JUGADOR_2;
 }
 
+bool validar_ingreso(int valor) {
+	if (!(valor >= 0 && valor < DIM_FILA)){
+		cout << "Valor fuera de rango, reintentar." << endl;
+		return false;
+	} 
+	return true;
+}
+
+Coordenada pedir_coord() {
+    bool col_valida;
+    bool fila_valida;
+    int col_pedida, fila_pedida;
+    
+    do {
+        cout << "Ingresa numero de fila: " << endl;
+        cin >> fila_pedida;
+        fila_valida = validar_ingreso(fila_pedida);
+    } while (!fila_valida);
+    
+    do {
+        cout << "Ingresa numero de columna: " << endl;
+        cin >> col_pedida;
+        col_valida = validar_ingreso(col_pedida);
+    } while (!col_valida);
+    
+    Coordenada nueva = Coordenada(fila_pedida, col_pedida);
+    
+    return nueva;    
+}
+
+
 /*void Juego::atacar(int pos_personaje) {
     chequear_subturno();
     int turno_act = turnar();
