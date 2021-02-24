@@ -27,6 +27,7 @@ public:
     void moverse();
     Jugador* obtener_jugador(int jugador);
     int turnar();
+    Coordenada pedir_coord();
 };
 #endif // JUEGO_H_INCLUDED
 
