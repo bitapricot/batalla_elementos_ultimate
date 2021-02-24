@@ -25,6 +25,19 @@ void Vertice::agregar_arista(Arista nueva, bool contando_diagonales) {
     }
 }
 
+bool Vertice::hay_arista(Vertice* destino, bool contando_diagonales) {
+    if(contando_diagonales) {
+        for(int i = 0; i < cant_aristas_contando_diagonales; i++) {
+            if(vertices_ady_y_diagonales[i]->obtener_destino == destino) return true;
+        }
+        return false;
+    }
+    for(int i = 0; i < cant_aristas; i++) {
+        if(vertices_ady[i]->obtener_destino == destino) return true;
+    }
+    return false;
+}
+
 Coordenada Vertice::obtener_coordenadas() {
     return coordenadas;
 }
