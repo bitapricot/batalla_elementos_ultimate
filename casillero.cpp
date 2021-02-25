@@ -8,8 +8,9 @@ Personaje* Casillero::obtener_personaje() {
     return personaje;
 }
 
-void Casillero::posicionar_personaje(Personaje* nuevo) {
+void Casillero::posicionar_personaje(Personaje* nuevo, Coordenada coordenada_actual) {
     personaje = nuevo;
+    nuevo->asignar_coordenadas(coordenada_actual);
 }
 
 Casillero::~Casillero() {
