@@ -27,6 +27,7 @@ protected:
     Casillero();
 public:
     void posicionar_personaje(Personaje* nuevo);
+    void posicionar_personaje(Personaje* nuevo, Coordenada c);
     bool hay_personaje();
     Personaje* obtener_personaje();
     virtual int calcular_costo(string elemento_pj) = 0;
