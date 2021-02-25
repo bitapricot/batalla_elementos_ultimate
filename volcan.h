@@ -10,7 +10,7 @@ public:
      PRE: -
      POS: crea un casillero de tipo volcan.
     */
-    Volcan(); // casillero
+    Volcan(); // constructor
     
     /*
      PRE: elemento_pj es un string valido - agua, aire, fuego, tierra.
