@@ -17,8 +17,6 @@ Personaje_de_agua::Personaje_de_agua(string nombre, int escudo, int vidas, int e
     veces_alimentado = 0;
 }
 
-
-
 void Personaje_de_agua::alimentar() {
     if(alcanzo_max_alimento()) {
         cout << "Ya alimentaste " << MAX_VECES_ALIMENTADO_P_AGUA << " veces a " << nombre << ". ¡El " << ALIMENTO_P_AGUA << " no cae del cielo!" << endl;

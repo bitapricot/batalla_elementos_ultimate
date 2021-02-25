@@ -76,13 +76,13 @@ int Juego::energia_minima(string elemento, bool accion) {
     if (elemento == ELEMENTO_AGUA) return MIN_ENERGIA_ATAQUE_AGUA;
     else if (elemento == ELEMENTO_AIRE) return MIN_ENERGIA_ATAQUE_AIRE;
     else if (elemento == ELEMENTO_FUEGO) return MIN_ENERGIA_ATAQUE_FUEGO;
-    else return MIN_ENERGIA_ATAQUE_TIERRA
+    else return MIN_ENERGIA_ATAQUE_TIERRA;
         
     } else { // defender
     if (elemento == ELEMENTO_AGUA) return MIN_ENERGIA_DEFENSA_AGUA;
     else if (elemento == ELEMENTO_AIRE) return MIN_ENERGIA_DEFENSA_AIRE;
     else if (elemento == ELEMENTO_FUEGO) return MIN_ENERGIA_DEFENSA_FUEGO;
-    else return MIN_ENERGIA_DEFENSA_TIERRA
+    else return MIN_ENERGIA_DEFENSA_TIERRA;
     }
 }
 
@@ -105,22 +105,24 @@ void Juego::atacar(int pos_personaje) {
         } else cout << ENERGIA_INSUFICIENTE << endl;
     } else if(personaje_act->de_que_elemento_soy() == ELEMENTO_FUEGO) {
         if(personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_FUEGO) {
-            ataque_p_fuego(personaje_act);
+            ataque_p_fuego(coord_act);
         } else cout << ENERGIA_INSUFICIENTE << endl;
     } else {
-
+        if(personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_AIRE) {
+            ataque_p_aire();
+        } else cout << ENERGIA_INSUFICIENTE << endl;
     }
 }
 
 void Juego::ataque_p_tierra(Coordenada coord_act, Coordenada enemigo) {
     int distancia;
     int danio;
-    if(tablero->acceder_tablero(enemigo.obtener_primera(), enemigo.obtener_segunda())->obtener_casillero()->hay_personaje()) {
+    if(tablero->acceder_tablero(enemigo)->obtener_casillero()->hay_personaje()) {
         distancia = costo_camino_minimo(coord_act, enemigo);
         if(distancia <= 2) danio = 30;  // aca deberiamos poner las constantes!!!
         else if(2 < distancia <= 4) danio = 20;
         else danio = 10;
-        tablero->acceder_tablero(enemigo.obtener_primera(), enemigo.obtener_segunda())->obtener_casillero()->obtener_personaje()->recibe_ataque(ELEMENTO_TIERRA, danio);
+        tablero->acceder_tablero(enemigo)->obtener_casillero()->obtener_personaje()->recibe_ataque(ELEMENTO_TIERRA, danio);
     } else cout << "no hay personaje en esa posicion" << endl;
 }
 
@@ -129,13 +131,12 @@ void Juego::ataque_p_fuego(Coordenada coord_act) {
         for(int i = 0; i < jugadores[JUGADOR_2]->obtener_cantidad_personajes(); i++) {
             Personaje* enemigo = jugadores[JUGADOR_2]->obtener_personaje(i);
             if(coord_act.obtener_primera() == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() + 1 == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() - 1 == enemigo->obtener_coordenadas().obtener_primera()) {
-                enemigo->obtener_coordenadas()->recibe_ataque(ELEMENTO_FUEGO, ATAQUE_BASE_FUEGO);
+                enemigo->recibe_ataque(ELEMENTO_FUEGO, ATAQUE_BASE_FUEGO);
             }
         }
     } else {
         for(int i = 0; i < jugadores[JUGADOR_1]->obtener_cantidad_personajes(); i++) {
             Personaje* enemigo = jugadores[JUGADOR_1]->obtener_personaje(i);
-            Personaje* enemigo->obtener_coordenadas() = jugadores[JUGADOR_1]->obtener_personaje(i);
             if(coord_act.obtener_primera() == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() + 1 == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() - 1 == enemigo->obtener_coordenadas().obtener_primera()) {
                 enemigo->recibe_ataque(ELEMENTO_FUEGO, ATAQUE_BASE_FUEGO);
             }
@@ -144,18 +145,18 @@ void Juego::ataque_p_fuego(Coordenada coord_act) {
 }
 
 void Juego::ataque_p_agua(Coordenada enemigo) {
-    if(tablero->acceder_tablero(enemigo.obtener_primera(), enemigo.obtener_segunda())->obtener_casillero()->obtener_personaje()) { 
-        tablero->acceder_tablero(enemigo.obtener_primera(), enemigo.obtener_segunda())->obtener_casillero()->obtener_personaje()->recibe_ataque(ELEMENTO_AGUA, ATAQUE_BASE_AGUA);
+    if(tablero->acceder_tablero(enemigo)->obtener_casillero()->obtener_personaje()) { 
+        tablero->acceder_tablero(enemigo)->obtener_casillero()->obtener_personaje()->recibe_ataque(ELEMENTO_AGUA, ATAQUE_BASE_AGUA);
     } else cout << ERROR_NO_HAY_PERSONAJE << endl;
 }
 
 void Juego::ataque_p_aire() {
     if(turnar() == JUGADOR_1) {
-        for(int i = 0; i < jugadores[JUGADOR_2]->obtener_cantidad_personajes(), i++) {
+        for(int i = 0; i < jugadores[JUGADOR_2]->obtener_cantidad_personajes(); i++) {
             jugadores[JUGADOR_2]->obtener_personaje(i)->recibe_ataque(ELEMENTO_AIRE, ATAQUE_BASE_AIRE);
         }
     } else {
-        for(int i = 0; i < jugadores[JUGADOR_1]->obtener_cantidad_personajes(), i++) {
+        for(int i = 0; i < jugadores[JUGADOR_1]->obtener_cantidad_personajes(); i++) {
             jugadores[JUGADOR_1]->obtener_personaje(i)->recibe_ataque(ELEMENTO_AIRE, ATAQUE_BASE_AIRE);
         }
     }
@@ -170,7 +171,7 @@ void Juego::defenderse() {
     if(personaje_act->de_que_elemento_soy() == ELEMENTO_AGUA) defensa_p_agua(personaje_act);
     else if(personaje_act->de_que_elemento_soy() == ELEMENTO_AIRE) defensa_p_aire(personaje_act);
     else if(personaje_act->de_que_elemento_soy() == ELEMENTO_FUEGO) personaje_act->defender();
-    else defensa_p_tierra();
+    else defensa_p_tierra(personaje_act);
 
 }
 
@@ -178,25 +179,27 @@ void Juego::defensa_p_agua(Personaje* pj) {
     pj->defender();
     int id_jugador = pj->obtener_id_jugador();
     Jugador* jugador_act = jugadores[id_jugador];
-    for(int i = 0; i < jugador_act; i++) {
-        if(jugador_act->obtener_personaje(i) != pj) jugador_act->obtener_personaje(i)->curar(10); // cambiar por una cte
+    int n_personajes = jugador_act->obtener_cantidad_personajes();
+    for(int i = 0; i < n_personajes; i++) {
+        Personaje * personaje_a_curar = jugador_act->obtener_personaje(i);
+        if (personaje_a_curar->esta_vivo() && personaje_a_curar != pj) personaje_a_curar->curar(10);
     }
 }
 
 void Juego::defensa_p_aire(Personaje* pj) {
     pj->defender();
     Coordenada nueva = pedir_coord();
-    if(!tablero->acceder_tablero(nueva) {
-        tablero->acceder_tablero(pj->obtener_coordenadas())->posicionar_personaje(0); 
+    if(!tablero->acceder_tablero(nueva)) {
+        tablero->acceder_tablero(pj->obtener_coordenadas())->obtener_casillero()->posicionar_personaje(nullptr); 
         pj->asignar_coordenadas_pj(nueva);
-        tablero->acceder_tablero(nueva)->obtener_casillero->posicionar_personaje(pj);
+        tablero->acceder_tablero(nueva)->obtener_casillero()->posicionar_personaje(pj);
     }
     else cout << "ya hay un personaje en ese casillero" << endl;
 }
 
 void Juego::defensa_p_tierra(Personaje* pj) {
     pj->defender();
-    pj->incrementar_escudo(true);
+    //pj->incrementar_escudo(true); defender de personaje de tierra ya incrementa escudo!!!!!
 }
 
 void Juego::moverse() {
@@ -205,7 +208,7 @@ void Juego::moverse() {
     Jugador* jugador_act = jugadores[turno_act];
     Personaje* personaje_act = jugador_act->obtener_personaje(pos_personaje);
     Coordenada coord_act = personaje_act->obtener_coordenadas();
-    Vertice* vertice_actual = tablero->acceder_tablero(coord_act.obtener_primera(), coord_act.obtener_segunda());
+    Vertice* vertice_actual = tablero->acceder_tablero(coord_act);
 
     Coordenada nueva = pedir_coord();
 
@@ -217,7 +220,7 @@ void Juego::moverse() {
             while(camino[i]) {
                 vertice_actual->obtener_casillero()->posicionar_personaje(0);
                 camino[i]->obtener_casillero()->posicionar_personaje(personaje_act);
-                personaje_act->asignar_coordenadas_personaje(camino[i]->obtener_coordenadas());
+                personaje_act->asignar_coordenadas_pj(camino[i]->obtener_coordenadas());
                 i++;
             }
         } else cout << "ya hay un personaje en ese casillero " << endl;
@@ -233,21 +236,3 @@ void Juego::chequear_subturno() {
 Juego::~Juego() {
     if (tablero) delete tablero;
 }
-
-Personaje * cargar_personaje_desde_archivo(string elemento, string nombre, int escudo, int vida, int energia, int fila, int columna, int jugador){
-    Personaje * personaje;
-    if (elemento == TIPO_AGUA){
-        personaje = new Personaje_de_agua(nombre, escudo, vida, energia, fila, columna, jugador);
-    }
-    else if (elemento == TIPO_FUEGO){
-        personaje = new Personaje_de_fuego(nombre, escudo, vida, energia, fila, columna, jugador);
-    }
-    else if (elemento == TIPO_TIERRA){
-        personaje = new Personaje_de_tierra(nombre, escudo, vida, energia, fila, columna, jugador);
-    }
-    else if (elemento == TIPO_AIRE){
-        personaje = new Personaje_de_aire(nombre, escudo, vida, energia, fila, columna, jugador);
-    }
-    return personaje;
-}
-

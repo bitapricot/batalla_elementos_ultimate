@@ -50,6 +50,23 @@ void guardar_juego(int jugador_que_guardo, Grafo * grafo){
     juego_guardado.close();
 }
 
+Personaje * cargar_personaje_desde_archivo(string elemento, string nombre, int escudo, int vida, int energia, int fila, int columna, int jugador){
+    Personaje * personaje;
+    if (elemento == TIPO_AGUA){
+        personaje = new Personaje_de_agua(nombre, escudo, vida, energia, fila, columna, jugador);
+    }
+    else if (elemento == TIPO_FUEGO){
+        personaje = new Personaje_de_fuego(nombre, escudo, vida, energia, fila, columna, jugador);
+    }
+    else if (elemento == TIPO_TIERRA){
+        personaje = new Personaje_de_tierra(nombre, escudo, vida, energia, fila, columna, jugador);
+    }
+    else if (elemento == TIPO_AIRE){
+        personaje = new Personaje_de_aire(nombre, escudo, vida, energia, fila, columna, jugador);
+    }
+    return personaje;
+}
+
 int Juego::cargar_juego(Grafo * grafo){
     ifstream juego_guardado;
     juego_guardado.open("juego_guardado.csv");

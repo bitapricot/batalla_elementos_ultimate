@@ -108,7 +108,7 @@ public:
     /*
     Crea una nueva coordenada para el personaje con los valores de fila y columna recibidos por parametro
     */
-    void asignar_coordenadas_pj(int fila, int columna);
+    void asignar_coordenadas_pj(Coordenada coordenada);
 
     /*
     Devuelve el nombre del personaje
@@ -157,6 +157,8 @@ public:
     int obtener_escudo();
 
     Coordenada obtener_coordenadas();
+
+    void curar(int vida);
 
 };
 

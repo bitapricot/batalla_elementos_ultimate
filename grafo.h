@@ -28,7 +28,7 @@ class Grafo {
 		void conectar_vertice(Vertice* vertice, Coordenada direccion, bool es_diagonal);
 		void conectar_vertices();
 		Lista* obtener_vertices();
-		Vertice* acceder_tablero(int f, int c);
+		Vertice* acceder_tablero(Coordenada coordenada);
         ~Grafo();
 	private:
 		void buscar_vertices_adyacentes(Vertice* nuevo);

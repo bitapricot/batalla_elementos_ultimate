@@ -161,7 +161,9 @@ void Grafo::cargar_tablero() {
     }
 }
 
-Vertice* Grafo::acceder_tablero(int f, int c) {
+Vertice* Grafo::acceder_tablero(Coordenada coordenada) {
+    int f = coordenada.obtener_primera();
+    int c = coordenada.obtener_segunda();
     return tablero[f][c];
 }
 

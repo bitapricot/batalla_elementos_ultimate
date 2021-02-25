@@ -40,8 +40,8 @@ Personaje::Personaje(string nombre, int escudo, int vidas, int energia, int fila
 Personaje::~Personaje() {
 }
 
-void Personaje::asignar_coordenadas_pj(int fila, int columna) {
-    coord_personaje = Coordenada(fila,columna);
+void Personaje::asignar_coordenadas_pj(Coordenada coordenada) {
+    coord_personaje = coordenada;
 }
 
 void Personaje::elegir(int id_jugador) {
@@ -105,4 +105,8 @@ int Personaje::obtener_escudo(){
 
 Coordenada Personaje::obtener_coordenadas(){
     return coord_personaje;
+}
+
+void Personaje::curar(int curar){
+    this->vidas = this->vidas + curar;
 }
