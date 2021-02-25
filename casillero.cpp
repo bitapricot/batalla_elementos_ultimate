@@ -13,6 +13,10 @@ void Casillero::posicionar_personaje(Personaje* nuevo, Coordenada coordenada_act
     nuevo->asignar_coordenadas(coordenada_actual);
 }
 
+void Casillero::posicionar_personaje(Personaje* nuevo) {
+    personaje = nuevo;
+}
+
 Casillero::~Casillero() {
 
 }
