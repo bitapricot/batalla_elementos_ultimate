@@ -86,7 +86,7 @@ int Juego::energia_minima(string elemento, bool accion) {
     }
 }
 
-void Juego::atacar(int pos_personaje) {
+void Juego::atacar() {
     chequear_subturno();
     int turno_act = turnar();
     Jugador* jugador_act = jugadores[turno_act];
