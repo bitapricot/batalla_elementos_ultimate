@@ -107,8 +107,7 @@ void Grafo::conectar_vertices() {
 	}
 } // Guia para arturo
 
-
-/*Casillero* Grafo::crear_casillero(string casillero) {
+Casillero* Grafo::crear_casillero(string casillero) {
 
     Casillero* nuevo_casillero;
 
@@ -120,7 +119,7 @@ void Grafo::conectar_vertices() {
 	else nuevo_casillero = new Volcan();
 
 	return nuevo_casillero;
-}*/ // lo comento por las dudas porque no es necesario
+} // este metodo es innecesario, despues lo sacamos
 
 void Grafo::crear_y_agregar_arista(Vertice* origen, Vertice* destino, bool es_diagonal) {
     Arista nueva;
