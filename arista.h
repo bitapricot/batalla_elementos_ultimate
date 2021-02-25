@@ -25,7 +25,7 @@ public:
     
     /*
      * PRE: -
-     * POS: crea una arista con origen y destin pasados por parametro y costo = 0.
+     * POS: crea una arista con origen y destino pasados por parametro y costo = 0.
      */
     Arista(Vertice* origen, Vertice* destino); // constructor
     
