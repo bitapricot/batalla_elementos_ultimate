@@ -90,8 +90,6 @@ void Juego::atacar(int pos_personaje) {
     chequear_subturno();
     int turno_act = turnar();
     Jugador* jugador_act = jugadores[turno_act];
-    //Personaje* personaje_act = jugador_act[pos_personaje]; 
-    // ME DA ERROR EL VSCODE LA LINEA ANTERIOR, LINEA SIGUIENTE ES LO CORRECTO? SANTIAGO
     Personaje * personaje_act = jugador_act->obtener_personaje(pos_personaje);
     Coordenada coord_act = personaje_act->obtener_coordenadas();
     
