@@ -7,7 +7,6 @@ const int JUGADOR_2 = 1;
 const int MAX_CANT_JUGADORES = 2;
 const int DIM_FILA = 8;
 
-
 class Juego {
 private:
     Grafo* tablero;
@@ -31,6 +30,7 @@ public:
     Coordenada pedir_coord();
     bool validar_ingreso(int valor);
     int energia_minima(string elemento, bool accion);
+    int cargar_juego(Grafo * grafo);
 };
 #endif // JUEGO_H_INCLUDED
 
