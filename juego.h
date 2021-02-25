@@ -16,11 +16,22 @@ private:
 public:
     Juego(string archivo_mapa, Jugador* j1, Jugador* j2);
     ~Juego();
+    Jugador* obtener_jugador(int jugador);
     void atacar(int pos_personaje);
+    void ataque_p_agua(Coordenada enemigo);
+    void ataque_p_aire();
+    void ataque_p_fuego(Coordenada coord_act);
+    void ataque_p_tierra(Coordenada coord_act, Coordenada enemigo);
+    void defensa_p_agua(Personaje* pj);
+    void defensa_p_aire(Personaje* pj);
+    void defensa_p_tierra(Personaje* pj);
+    void moverse();
+    void chequear_subturno();
+    Personaje* cargar_personaje_desde_archivo(Grafo* g);
     void cargar_partida();
     void chequear_subturno();
     bool comenzo();
-    void defender();
+    void defenderse();
     void determinar_primer_turno();
     void guardar_partida();
     void imprimir_tablero();
@@ -31,6 +42,8 @@ public:
     bool validar_ingreso(int valor);
     int energia_minima(string elemento, bool accion);
     int cargar_juego(Grafo * grafo);
+    bool validar_ingreso(int valor);
+    Coordenada pedir_coord();
 };
 #endif // JUEGO_H_INCLUDED
 
