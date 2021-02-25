@@ -22,6 +22,20 @@ class Grafo {
 		int dim_fil;
 		int dim_col;
 		Vertice*** tablero;
+	
+		int** distancias_p_agua[dim_fil*dim_col][dim_fil*dim_col];
+		Vertice*** recorrido_p_agua[dim_fil*dim_col][dim_fil*dim_col];
+	
+		int** distancias_p_aire[dim_fil*dim_col][dim_fil*dim_col];
+		Vertice*** recorrido_p_aire[dim_fil*dim_col][dim_fil*dim_col];
+	
+		int** distancias_p_fuego[dim_fil*dim_col][dim_fil*dim_col];
+		Vertice*** recorrido_p_fuego[dim_fil*dim_col][dim_fil*dim_col];
+	
+		int** distancias_p_tierra[dim_fil*dim_col][dim_fil*dim_col];
+		Vertice*** recorrido_p_tierra[dim_fil*dim_col][dim_fil*dim_col];
+	
+		int** distancias_ataque_tierra[dim_fil*dim_col][dim_fil*dim_col];
 
 	public:
 		Grafo(string nombre_archivo);
