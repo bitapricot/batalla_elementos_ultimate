@@ -115,48 +115,48 @@ void Juego::atacar(int pos_personaje) {
 void Juego::ataque_p_tierra(Coordenada coord_act, Coordenada enemigo) {
     int distancia;
     int danio;
-    if(tablero->acceder_tablero(enemigo)->hay_personaje()) {
+    if(tablero->acceder_tablero(enemigo.obtener_primera(), enemigo.obtener_segunda())->obtener_casillero()->hay_personaje()) {
         distancia = costo_camino_minimo(coord_act, enemigo);
         if(distancia <= 2) danio = 30;  // aca deberiamos poner las constantes!!!
         else if(2 < distancia <= 4) danio = 20;
         else danio = 10;
-        tablero->acceder_tablero(enemigo)->obtener_personaje()->recibe_ataque(TIERRA, danio);
+        tablero->acceder_tablero(enemigo.obtener_primera(), enemigo.obtener_segunda())->obtener_casillero()->obtener_personaje()->recibe_ataque(ELEMENTO_TIERRA, danio);
     } else cout << "no hay personaje en esa posicion" << endl;
 }
 
 void Juego::ataque_p_fuego(Coordenada coord_act) {
     if(turnar() == JUGADOR_1) {
-        for(int i = 0; i < jugadores[JUGADOR_2]->obtener_cantidad_personajes(), i++) {
+        for(int i = 0; i < jugadores[JUGADOR_2]->obtener_cantidad_personajes(); i++) {
             Personaje* enemigo = jugadores[JUGADOR_2]->obtener_personaje(i);
-            if(coord_act.obtener_primera == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() + 1 == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() - 1 == enemigo->obtener_coordenadas().obtener_primera()) {
-                enemigo->obtener_coordenadas()->recibe_ataque(FUEGO, ATAQUE_BASE_FUEGO);
+            if(coord_act.obtener_primera() == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() + 1 == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() - 1 == enemigo->obtener_coordenadas().obtener_primera()) {
+                enemigo->obtener_coordenadas()->recibe_ataque(ELEMENTO_FUEGO, ATAQUE_BASE_FUEGO);
             }
         }
     } else {
-        for(int i = 0; i < jugadores[JUGADOR_1]->obtener_cantidad_personajes(), i++) {
+        for(int i = 0; i < jugadores[JUGADOR_1]->obtener_cantidad_personajes(); i++) {
             Personaje* enemigo = jugadores[JUGADOR_1]->obtener_personaje(i);
             Personaje* enemigo->obtener_coordenadas() = jugadores[JUGADOR_1]->obtener_personaje(i);
-            if(coord_act.obtener_primera == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() + 1 == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() - 1 == enemigo->obtener_coordenadas().obtener_primera()) {
-                enemigo->recibe_ataque(FUEGO, ATAQUE_BASE_FUEGO);
+            if(coord_act.obtener_primera() == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() + 1 == enemigo->obtener_coordenadas().obtener_primera() || coord_act.obtener_primera() - 1 == enemigo->obtener_coordenadas().obtener_primera()) {
+                enemigo->recibe_ataque(ELEMENTO_FUEGO, ATAQUE_BASE_FUEGO);
             }
         }
     }
 }
 
 void Juego::ataque_p_agua(Coordenada enemigo) {
-    if(tablero->acceder_tablero(enemigo)->obtener_casillero()->obtener_personaje()) { 
-        tablero->acceder_tablero(enemigo)->obtener_casillero()->obtener_personaje()->recibe_ataque(AGUA, ATAQUE_BASE_AGUA);
+    if(tablero->acceder_tablero(enemigo.obtener_primera(), enemigo.obtener_segunda())->obtener_casillero()->obtener_personaje()) { 
+        tablero->acceder_tablero(enemigo.obtener_primera(), enemigo.obtener_segunda())->obtener_casillero()->obtener_personaje()->recibe_ataque(ELEMENTO_AGUA, ATAQUE_BASE_AGUA);
     } else cout << ERROR_NO_HAY_PERSONAJE << endl;
 }
 
 void Juego::ataque_p_aire() {
     if(turnar() == JUGADOR_1) {
         for(int i = 0; i < jugadores[JUGADOR_2]->obtener_cantidad_personajes(), i++) {
-            jugadores[JUGADOR_2]->obtener_personaje(i)->recibe_ataque(AIRE, ATAQUE_BASE_AIRE);
+            jugadores[JUGADOR_2]->obtener_personaje(i)->recibe_ataque(ELEMENTO_AIRE, ATAQUE_BASE_AIRE);
         }
     } else {
         for(int i = 0; i < jugadores[JUGADOR_1]->obtener_cantidad_personajes(), i++) {
-            jugadores[JUGADOR_1]->obtener_personaje(i)->recibe_ataque(AIRE, ATAQUE_BASE_AIRE);
+            jugadores[JUGADOR_1]->obtener_personaje(i)->recibe_ataque(ELEMENTO_AIRE, ATAQUE_BASE_AIRE);
         }
     }
 }
@@ -165,11 +165,11 @@ void Juego::defenderse() {
     chequear_subturno();
     int turno_act = turnar();
     Jugador* jugador_act = jugadores[turno_act];
-    Personaje* personaje_act = jugador_act[pos_personaje];
+    Personaje* personaje_act = jugador_act->obtener_personaje(pos_personaje);
 
-    if(personaje_act->de_que_elemento_soy() == AGUA) defensa_p_agua(personaje_act);
-    else if((personaje_act->de_que_elemento_soy() == AIRE) defensa_p_aire(personaje_act);
-    else if((personaje_act->de_que_elemento_soy() == FUEGO) personaje_act->defender();
+    if(personaje_act->de_que_elemento_soy() == ELEMENTO_AGUA) defensa_p_agua(personaje_act);
+    else if(personaje_act->de_que_elemento_soy() == ELEMENTO_AIRE) defensa_p_aire(personaje_act);
+    else if(personaje_act->de_que_elemento_soy() == ELEMENTO_FUEGO) personaje_act->defender();
     else defensa_p_tierra();
 
 }
@@ -203,8 +203,9 @@ void Juego::moverse() {
     chequear_subturno();
     int turno_act = turnar();
     Jugador* jugador_act = jugadores[turno_act];
-    Personaje* personaje_act = jugador_act[pos_personaje];
-    Vertice* vertice_actual = tablero->acceder_tablero(personaje_act->obtener_coordenadas());
+    Personaje* personaje_act = jugador_act->obtener_personaje(pos_personaje);
+    Coordenada coord_act = personaje_act->obtener_coordenadas();
+    Vertice* vertice_actual = tablero->acceder_tablero(coord_act.obtener_primera(), coord_act.obtener_segunda());
 
     Coordenada nueva = pedir_coord();
 
@@ -226,7 +227,7 @@ void Juego::moverse() {
 void Juego::chequear_subturno() {
     int turno_act = turnar();
     Jugador* jugador_act = jugadores[turno_act];
-    if(pos_personaje >= jugador_act->cantidad_personajes()) pos_personaje = 0;
+    if(pos_personaje >= jugador_act->obtener_cantidad_personajes()) pos_personaje = 0;
 }
 
 Juego::~Juego() {
@@ -250,44 +251,3 @@ Personaje * cargar_personaje_desde_archivo(string elemento, string nombre, int e
     return personaje;
 }
 
-int Juego::cargar_juego(Grafo * grafo){
-    ifstream juego_guardado;
-    juego_guardado.open("juego_guardado.csv");
-    string elemento, nombre_personaje, escudo, vida, energia, fila, columna, turno_jugador;
-    Lista * lista_vertices = grafo->obtener_vertices();
-    Vertice * vertice_actual;
-    Coordenada coordenada_actual;
-    Casillero * casillero_actual;
-    getline(juego_guardado, turno_jugador, '\n');
-    int jugador;
-    int i = 0;
-    while(!juego_guardado.eof()){
-        getline(juego_guardado, elemento, SEPARADOR_CSV);
-        getline(juego_guardado, nombre_personaje, SEPARADOR_CSV);
-        getline(juego_guardado, escudo, SEPARADOR_CSV);
-        getline(juego_guardado, vida, SEPARADOR_CSV);
-        getline(juego_guardado, energia, SEPARADOR_CSV);
-        getline(juego_guardado, fila, SEPARADOR_CSV);
-        getline(juego_guardado, columna, SALTO_DE_LINEA);
-        if (i < 3){
-            jugador = 1;
-        }
-        else {
-            jugador = 2;
-        }
-        Personaje * personaje_cargado = cargar_personaje_desde_archivo(elemento, nombre_personaje, stoi(escudo), stoi(vida), stoi(energia), stoi(fila), stoi(columna), jugador);
-        while(lista_vertices->obtener_actual() != nullptr){
-            vertice_actual = lista_vertices->obtener_actual();
-            coordenada_actual = vertice_actual->obtener_coordenadas();
-            casillero_actual = vertice_actual->obtener_casillero();
-            if (coordenada_actual.obtener_primera() == stoi(fila) && coordenada_actual.obtener_segunda() == stoi(columna)){
-                casillero_actual->posicionar_personaje(personaje_cargado);
-            }
-            lista_vertices->siguiente();
-        }
-        lista_vertices->reiniciar();
-        i++;
-    }
-    juego_guardado.close();
-    return stoi(turno_jugador);
-}

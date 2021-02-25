@@ -16,3 +16,10 @@ Casillero::~Casillero() {
 
 }
 
+bool Casillero::hay_personaje(){
+    if (personaje != nullptr){
+        return true;
+    }
+    return false;
+}
+

@@ -49,3 +49,45 @@ void guardar_juego(int jugador_que_guardo, Grafo * grafo){
     }
     juego_guardado.close();
 }
+
+int Juego::cargar_juego(Grafo * grafo){
+    ifstream juego_guardado;
+    juego_guardado.open("juego_guardado.csv");
+    string elemento, nombre_personaje, escudo, vida, energia, fila, columna, turno_jugador;
+    Lista * lista_vertices = grafo->obtener_vertices();
+    Vertice * vertice_actual;
+    Coordenada coordenada_actual;
+    Casillero * casillero_actual;
+    getline(juego_guardado, turno_jugador, '\n');
+    int jugador;
+    int i = 0;
+    while(!juego_guardado.eof()){
+        getline(juego_guardado, elemento, SEPARADOR_CSV);
+        getline(juego_guardado, nombre_personaje, SEPARADOR_CSV);
+        getline(juego_guardado, escudo, SEPARADOR_CSV);
+        getline(juego_guardado, vida, SEPARADOR_CSV);
+        getline(juego_guardado, energia, SEPARADOR_CSV);
+        getline(juego_guardado, fila, SEPARADOR_CSV);
+        getline(juego_guardado, columna, SALTO_DE_LINEA);
+        if (i < 3){
+            jugador = 1;
+        }
+        else {
+            jugador = 2;
+        }
+        Personaje * personaje_cargado = cargar_personaje_desde_archivo(elemento, nombre_personaje, stoi(escudo), stoi(vida), stoi(energia), stoi(fila), stoi(columna), jugador);
+        while(lista_vertices->obtener_actual() != nullptr){
+            vertice_actual = lista_vertices->obtener_actual();
+            coordenada_actual = vertice_actual->obtener_coordenadas();
+            casillero_actual = vertice_actual->obtener_casillero();
+            if (coordenada_actual.obtener_primera() == stoi(fila) && coordenada_actual.obtener_segunda() == stoi(columna)){
+                casillero_actual->posicionar_personaje(personaje_cargado);
+            }
+            lista_vertices->siguiente();
+        }
+        lista_vertices->reiniciar();
+        i++;
+    }
+    juego_guardado.close();
+    return stoi(turno_jugador);
+}

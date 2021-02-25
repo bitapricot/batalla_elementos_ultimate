@@ -27,6 +27,7 @@ protected:
     Casillero();
 public:
     void posicionar_personaje(Personaje* nuevo);
+    bool hay_personaje();
     Personaje* obtener_personaje();
     virtual int calcular_costo(string elemento_pj) = 0;
     virtual int obtener_costo_base() = 0;
