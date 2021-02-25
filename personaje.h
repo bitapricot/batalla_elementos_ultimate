@@ -125,9 +125,17 @@ public:
     Para el personaje de aire, dado que no necesita alimentarse, este metodo se encarga de recordarselo al usuario
     */
     virtual void alimentar() = 0;
-
+    
+    /*
+     PRE: -
+     POS: devuelve true si vida > 0, false de lo contrario.
+     */
     bool esta_vivo();
-
+    
+    /*
+    PRE: costo_energia es un dato valido.
+    POS: resta costo_energia a la energia del personaje.
+    */
     void restar_energia(int costo_energia);
 
     /*
@@ -136,28 +144,76 @@ public:
     virtual string de_que_elemento_soy() = 0;
 
     
+    /*
+     PRE: id_jugador es un entero valido
+     POS: asigna el parametro id_jugador al atributo
+     */
     void elegir(int id_jugador);
     
+    /*
+     PRE: -
+     POS: devuelve atributo se_defiende.
+     */
     bool obtener_se_defiende(); 
     
+    /*
+     PRE: danio_recibido es un entero valido.
+     POS: devuelve el danio recibido por el personaje, reduciendo el danio por porcentaje segun el escudo del personaje.
+     */
     int aplicar_escudo(int danio_recibido);
     
+    /*
+     PRE: -
+     POS: pone se_defiende en true si la energia es necesaria para realizar la defensa, false de lo contrario
+     */
     virtual void defender() = 0;
     
+    /*
+     PRE: elemento_enemigo y danio_recibido son datos validos
+     POS: resta el danio_recibido al personaje, luego de aplicar defensas
+     */
     virtual void recibe_ataque(string elemento_enemigo, int danio_recibido) = 0;
  
+    /*
+     PRE: fila, columna y energia_minima son datos enteros.
+     POS: cambia las coordendas de personaje por las pasadas por parametro si tiene energia suficiente.
+     */
     void mover(int fila, int columna, int energia_minima);
     
+    /*
+     PRE: -
+     POS: devuelve id_jugador
+     */
     int obtener_id_jugador();
-
+    
+    /*
+     PRE: -
+     POS: devuelve vida
+     */
     int obtener_vida();
 
+    /* 
+     PRE: -
+     POS: devuelve energia
+     */
     int obtener_energia();
 
+    /*
+     PRE: -
+     POS: devuelve escudo
+     */
     int obtener_escudo();
-
+    
+    /*
+     PRE: -
+     POS: devuelve coordenada del personaje
+     */
     Coordenada obtener_coordenadas();
-
+    
+    /*
+     PRE: vida es un entero
+     POS: suma el parametro a la vida actual del personaje
+     */
     void curar(int vida);
 
 };
