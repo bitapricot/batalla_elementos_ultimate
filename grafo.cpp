@@ -18,6 +18,11 @@ Grafo::Grafo(string nombre_archivo) {
 	cargar_mapa(nombre_archivo);
 	cargar_tablero();
 	conectar_vertices();
+	floyd_warshall(ELEMENTO_AGUA, distancias_p_agua, recorridos_p_agua);
+	floyd_warshall(ELEMENTO_AIRE, distancias_p_aire, recorridos_p_aire);
+	floyd_warshall(ELEMENTO_TIERRA, distancias_p_tierra, recorridos_p_tierra);
+	floyd_warshall(ELEMENTO_FUEGO, distancias_p_fuego, recorridos_p_fuego);
+	floyd_warshall();
 }
 
 Lista* Grafo::obtener_vertices() {
