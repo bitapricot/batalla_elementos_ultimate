@@ -26,21 +26,47 @@ public:
     */
     Personaje_de_tierra(string nombre);
     
-    
+    /*
+     Constructor
+     PRE: los parametros son de tipo valido
+     POS: crea un personaje de tierra con los valores pasados por parametro
+     */
     Personaje_de_tierra(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende);
 
+    /*
+     Constructor
+     PRE: los parametros son de tipo valido
+     POS: crea un personaje de tierra con los valores pasados por parametro
+     */
     Personaje_de_tierra(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
+    
     /*
     Incrementa la energia segun la energia recuperada determinada en personaje.h
     */
     void alimentar();
     
+    /*
+     PRE: -
+     POS: pone se_defiende en true si el personaje de tierra tiene energia suficiente para defenderse. Incrementa el escudo y resta energia usada.
+     */
     void defender();
     
+    /*
+     PRE: el parametro es de tipo valido
+     POS: incrementa el escudo del personaje.
+     */
     void incrementar_escudo(bool incrementar);
     
+    /*
+     PRE: los parametros son de tipo valido
+     POS: resta a la vida el danio_recibido segun el enemigo, le aplica el escudo.
+     */
     void recibe_ataque(string elemento_enemigo, int danio_recibido);
     
+    /*
+     PRE: distancia es de tipo valido
+     POS: calcula el danio por hacerle a un personaje enemigo segun la distancia a la que se encuentra del personaje de tierra
+     */
     int calcular_danio_segun_distancia(int distancia);
 
 };
