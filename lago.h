@@ -8,9 +8,9 @@ class Lago: public Casillero
 public:
     /*
      PRE: -
-     POS: crea un casillero de tipo lago
+     POS: crea un casillero de tipo lago.
     */
-    Lago();
+    Lago(); // constructor
     
     /*
      PRE: elemento_pj es un string valido - agua, aire, fuego, tierra.
