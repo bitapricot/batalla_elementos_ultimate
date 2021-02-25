@@ -259,11 +259,13 @@ Vertice** Grafo::camino_minimo(Personaje* pj, Coordenada nueva) {
 
 int Grafo::costo_camino_minimo(Vertice* origen, Vertice* destino) {
     int costo = 0;
-
     int numero_origen = dim_fila*origen->obtener_coordenadas().obtener_primera() + origen->obtener_coordenadas().segunda() + 1;
     int numero_destino = dim_fila*destino->obtener_coordenadas().obtener_primera() + destino->obtener_coordenadas().segunda() + 1;
 
-    costo = distancias[numero_origen][numero_destino];
+    if(origen->obtener_personaje()->de_que_elemento_soy() == ELEMENTO_AGUA) costo = distancias_p_agua[numero_origen][numero_destino];
+    else if(origen->obtener_personaje()->de_que_elemento_soy() == ELEMENTO_AIRE) costo = distancias_p_aire[numero_origen][numero_destino];
+    else if(origen->obtener_personaje()->de_que_elemento_soy() == ELEMENTO_FUEGO) costo = distancias_p_fuego[numero_origen][numero_destino];
+    else costo = distancias_p_tierra[numero_origen][numero_destino];
 
     return costo;
 
