@@ -6,9 +6,9 @@ class Camino: public Casillero {
 public:
     /*
      PRE: -
-     POS: crea un casillero de tipo camino
+     POS: crea un casillero de tipo camino.
     */
-    Camino();
+    Camino(); // constructor
     
     /*
      PRE: elemento_pj es un string valido - agua, aire, fuego, tierra.
