@@ -17,7 +17,7 @@ public:
     Juego(string archivo_mapa, Jugador* j1, Jugador* j2);
     ~Juego();
     Jugador* obtener_jugador(int jugador);
-    void atacar(int pos_personaje);
+    void atacar();
     void ataque_p_agua(Coordenada enemigo);
     void ataque_p_aire();
     void ataque_p_fuego(Coordenada coord_act);
