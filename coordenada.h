@@ -60,7 +60,7 @@ public:
     
     /*
      PRE: nueva es de tipo entero.
-     POS: asigna nueva a primera.
+     POS: asigna nueva a segunda.
      */
     void cambiar_segunda(int nueva);
 };
