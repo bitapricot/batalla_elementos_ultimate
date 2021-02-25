@@ -26,14 +26,49 @@ protected:
     Personaje* personaje;
     Casillero();
 public:
+    /*
+     PRE: nuevo es un parametro valido de tipo Personaje*.
+     POS: asigna nuevo a personaje.
+     */
     void posicionar_personaje(Personaje* nuevo);
+    
+    /*
+     PRE: nuevo es un parametro valido de tipo Personaje*, c es de tipo Coordenada.
+     POS: asigna nuevo a personaje y le asigna las coordenadas pasadas por parametro.
+     */
     void posicionar_personaje(Personaje* nuevo, Coordenada c);
+    
+    /*
+     PRE: -
+     POS: devuelve true si hay personaje posicionado en el casillero, false de lo contrario.
+     */
     bool hay_personaje();
+    
+    /*
+     PRE: -
+     POS: devuelve el personaje posicionado en el casillero.
+     */
     Personaje* obtener_personaje();
+    
+    /*
+     PRE: elemento_pj es un string valido - agua, aire, fuego, tierra.
+     POS: devuelve el costo base del casillero.
+    */
     virtual int calcular_costo(string elemento_pj) = 0;
+    
+    /*
+     PRE: -
+     POS: devuelve el costo base del casillero.
+    */
     virtual int obtener_costo_base() = 0;
+    
+    /*
+     PRE: -
+     POS: devuelve un string que indica el tipo de casillero.
+    */
     virtual string tipo_casillero() = 0;
-    virtual ~Casillero();
+    
+    virtual ~Casillero(); // destructor
 };
 
 
