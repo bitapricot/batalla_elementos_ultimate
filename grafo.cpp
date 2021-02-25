@@ -167,6 +167,132 @@ Vertice* Grafo::acceder_tablero(Coordenada coordenada) {
     return tablero[f][c];
 }
 
+void Grafo::floyd_warshall(string elemento, int** distancias, Vertice*** recorridos) { // este va en el constructor de grafo, le pasas todas las matrices atributo y su respectivo elemento para que las inicialice
+
+    for(int i = 0; i < vertices->obtener_cantidad(); i++) {
+        for(int j = 0; j < vertices->obtener_cantidad(); j++) {
+            if(i == j) distancias[i][j] = 0;
+            else distancias[i][j] = INFINITO;
+        }
+    }
+
+    for(int i = 0; i < vertices->obtener_cantidad(); i++) {
+        for(int j = 0; j < vertices->obtener_cantidad(); j++) {
+            if(i == j) recorridos[j][i] = 0;
+            else recorridos[j][i] = vertices->consulta(i);
+        }
+    }
+
+    for(i = 0; i < vertices->obtener_cantidad(); i++) {
+        for(int j = 0; j < vertices->consulta(i)->obtener_cantidad_aristas(); j++) {
+            if(i != j && vertices->consulta(i)->hay_arista(vertices->consulta(j)), false) {
+                Arista arista_act = vertices->consulta(i)->obtener_arista(j, false);
+                int costo_act = arista_act.obtener_destino()->obtener_casillero()->calcular_costo(elemento);
+                distancias[i][j] = costo_act;
+            }
+        }
+    }
+
+    for(int k = 0; k < vertices->obtener_cantidad(); k++) {
+        for(i = 0; i < vertices->obtener_cantidad(); i++) {
+            for(j = 0; j < vertices->obtener_cantidad(); j++) {
+                if(distancias[i][j] > distancias[i][k] + distancias[k][j]) {
+                    distancias[i][j] = distancias[i][k] + distancias[k][j];
+                    recorridos[i][j] = recorridos[i][k];
+                }
+            }
+        }
+    }
+}
+
+Vertice** Grafo::camino_minimo(Personaje* pj, Coordenada nueva) {
+
+    Vertice** camino[vertices->obtener_cantidad()];
+
+    Coordenada actual = pj->obtener_coordenadas();
+    Vertice* origen = vertices->consulta(actual);
+    Vertice* destino = vertices->consulta(nueva);
+
+    int numero_origen = dim_fila*origen->obtener_coordenadas().obtener_primera() + origen->obtener_coordenadas().segunda() + 1;
+    int numero_destino = dim_fila*destino->obtener_coordenadas().obtener_primera() + destino->obtener_coordenadas().segunda() + 1;
+    int i = 0;
+
+    if(pj->de_que_elemento_soy() == AGUA) {
+        while(destino != origen) {
+            camino[i] = recorridos_p_agua[numero_origen][numero_destino];
+            i++;
+            destino = recorridos_p_agua[numero_vertice][numero_vertice];
+            numero_destino = dim_fila*destino->obtener_coordenadas().obtener_primera() + destino->obtener_coordenadas().segunda() + 1;
+        }
+    } else if(pj->de_que_elemento_soy() == AIRE) {
+        while(destino != origen) {
+            camino[i] = recorridos_p_agua[numero_origen][numero_destino];
+            i++;
+            destino = recorridos_p_agua[numero_origen][numero_destino];
+            numero_destino = dim_fila*destino->obtener_coordenadas().obtener_primera() + destino->obtener_coordenadas().segunda() + 1;
+        }
+    } else if(pj->de_que_elemento_soy() == FUEGO) {
+        while(destino != origen) {
+            camino[i] = recorridos_p_agua[numero_origen][numero_destino];
+            i++;
+            destino = recorridos_p_agua[numero_origen][numero_destino];
+            numero_destino = dim_fila*destino->obtener_coordenadas().obtener_primera() + destino->obtener_coordenadas().segunda() + 1;
+        }
+    } else {
+        while(origen != destino) {
+            camino[i] = recorridos_p_agua[numero_origen][numero_destino];
+            i++;
+            destino = recorridos_p_agua[numero_origen][numero_destino];
+            numero_destino = dim_fila*destino->obtener_coordenadas().obtener_primera() + destino->obtener_coordenadas().segunda() + 1;
+        }
+    }
+
+    camino[i] = 0;
+
+    return caminos;
+}
+
+int Grafo::costo_camino_minimo(Vertice* origen, Vertice* destino) {
+    int costo = 0;
+
+    int numero_origen = dim_fila*origen->obtener_coordenadas().obtener_primera() + origen->obtener_coordenadas().segunda() + 1;
+    int numero_destino = dim_fila*destino->obtener_coordenadas().obtener_primera() + destino->obtener_coordenadas().segunda() + 1;
+
+    costo = distancias[numero_origen][numero_destino];
+
+    return costo;
+
+}
+
+void Grafo::floyd_warshall() { // sobrecarga de floyd warshall, simplemente arma la matriz de costos de distancias (en unidad casillero = 1) de cada vertice, contando diagonales
+
+    for(int i = 0; i < vertices->obtener_cantidad(); i++) {
+        for(int j = 0; j < vertices->obtener_cantidad(); j++) {
+            if(i == j) distancias[i][j] = 0;
+            else distancias[i][j] = INFINITO;
+        }
+    }
+
+    for(i = 0; i < vertices->obtener_cantidad(); i++) {
+        for(int j = 0; j < vertices->consulta(i)->obtener_cantidad_aristas(); j++) {
+            if(i != j && vertices->consulta(i)->hay_arista(vertices->consulta(j)), true) {
+                Arista arista_act = vertices->consulta(i)->obtener_arista(j, true);
+                distancias[i][j] = 1; // el costo en unidad de casillero, digamos como la distancia es 1, el costo es 1
+            }
+        }
+    }
+
+    for(int k = 0; k < vertices->obtener_cantidad(); k++) {
+        for(i = 0; i < vertices->obtener_cantidad(); i++) {
+            for(j = 0; j < vertices->obtener_cantidad(); j++) {
+                if(distancias[i][j] > distancias[i][k] + distancias[k][j]) {
+                    distancias[i][j] = distancias[i][k] + distancias[k][j];
+                }
+            }
+        }
+    }
+}
+
 Grafo::~Grafo() {
     while(!vertices->vacia()) {
         Vertice* eliminar = vertices->baja_y_devuelve(0);
