@@ -19,23 +19,108 @@ private:
     //Nodo_diccionario* padre;
 
 public:
-    Nodo_diccionario(Clave clave, Valor valor);
+    /*
+     PRE: clave y valor son de tipo valido.
+     POS: crea un Nodo_diccionario con clave y valor pasados por parametro.
+     */
+    Nodo_diccionario(Clave clave, Valor valor); // constructor
+    
+    /*
+     PRE: -
+     POS: devuelve la clave
+     */
     Clave obtener_clave();
+    
+    /*
+     PRE: -
+     POS: devuelve el valor
+     */
     Valor obtener_valor();
+    
+    /*
+     PRE: nueva es de tipo Clave
+     POS: asigna nueva a la clave del nodo.
+     */
     void asignar_clave(Clave nueva);
+    
+     /*
+     PRE: nuevo es de tipo Valor
+     POS: asigna nuevo al valor del nodo.
+     */
     void asignar_valor(Valor nuevo);
+    
+    /*
+     PRE: der y padre son de tipo Nodo_diccionario*
+     POS: asigna hijo derecho al nodo
+     */
     void asignar_der(Nodo_diccionario* der, Nodo_diccionario* padre);
+    
+    /*
+     PRE: izq y padre son de tipo Nodo_diccionario*
+     POS: asigna hijo izquierdo al nodo
+     */
     void asignar_izq(Nodo_diccionario* izq, Nodo_diccionario* padre);
+    
+    
+    /*
+     PRE: izq es de tipo Nodo_diccionario*
+     POS: asigna hijo izquierdo al nodo
+     */
     void asignar_izq(Nodo_diccionario* izq);
+    
+    /*
+     PRE: der es de tipo Nodo_diccionario*
+     POS: asigna hijo derecho al nodo
+     */
     void asignar_der(Nodo_diccionario* der);
+    
+    
+    /*
+     PRE: padre es de tipo Nodo_diccionario*
+     POS: asigna padre al nodo
+     */
     void asignar_padre(Nodo_diccionario* padre);
+    
+    /*
+     PRE: -
+     POS: devuelve derecho
+     */
     Nodo_diccionario* obtener_der();
+    
+    /*
+     PRE: -
+     POS: devuelve izquierdo
+     */
     Nodo_diccionario* obtener_izq();
+    
+    /*
+     PRE: -
+     POS: devuelve padre
+     */
     Nodo_diccionario* obtener_padre();
+    
+    /*
+     PRE: -
+     POS: devuelve true si el nodo es hoja, false de lo contrario
+     */
     bool es_hoja();
+    
+    /*
+     PRE: -
+     POS: devuelve true si el nodo solo tiene hijo derecho, false de lo contrario.
+     */
     bool solo_hijo_der();
+    
+    /*
+     PRE: -
+     POS: devuelve true si el nodo solo tiene hijo izquierdo, false de lo contrario.
+     */
     bool solo_hijo_izq();
 
-    ~Nodo_diccionario();
+    /*
+     PRE: -
+     POS: libera memoria
+     */
+    ~Nodo_diccionario(); // destructor
 };
 #endif //Nodo_diccionario_H
