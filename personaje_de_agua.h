@@ -24,8 +24,18 @@ public:
     */
     Personaje_de_agua(string nombre);
     
+    /*
+     Constructor
+     PRE: los parametros son de tipo valido
+     POS: crea un personaje de agua con los valores pasados por parametro
+     */
     Personaje_de_agua(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende);
 
+    /*
+     Constructor
+     PRE: los parametros son de tipo valido
+     POS: crea un personaje de agua con los valores pasados por parametro
+     */
     Personaje_de_agua(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador);
 
     /*
@@ -33,8 +43,16 @@ public:
     */
     void alimentar();
     
+    /*
+     PRE: -
+     POS: pone se_defiende en true si el personaje de agua tiene energia suficiente para defenderse. Resta energia usada y cura al personaje.
+     */
     void defender();
     
+    /*
+     PRE: los parametros son de tipo valido
+     POS: resta a la vida el danio_recibido segun el enemigo, le aplica el escudo.
+     */
     void recibe_ataque(string elemento_enemigo, int danio_recibido);
 
 private:
