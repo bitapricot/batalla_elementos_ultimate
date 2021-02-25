@@ -45,15 +45,20 @@ class Grafo {
 		Vertice* acceder_tablero(Coordenada coordenada);
         ~Grafo();
 	private:
-		void buscar_vertices_adyacentes(Vertice* nuevo);
+		void buscar_vertices_adyacentes(Vertice* v);
 		void cargar_mapa(string archivo);
 		void cargar_tablero();
 		Casillero* crear_casillero(string casillero);
 		void crear_y_agregar_arista(Vertice* origen, Vertice* destino, bool es_diagonal);
-		void destruir_matriz(); // para el destructor
-		// tambien hay que destruir el grafo: aristas, lista de aristas, vertices, lista de vertices
-		// falta pensar un metodo para eso
-		Vertice* obtener_vertice_ady(Vertice vertice, Coordenada direccion); // AGREGAR DIAGONALES
+		void destruir_matriz();
+		Vertice* acceder_tablero(Coordenada coord);
+		void floyd_warshall(string elemento, int** distancias, Vertice*** recorridos);
+		void floyd_warshall();
+		Vertice** camino_minimo(Personaje* pj, Coordenada nueva);
+		int costo_camino_minimo(Vertice* origen, Vertice* destino);
+		
+		
+		
 
 
 };
