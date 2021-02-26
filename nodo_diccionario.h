@@ -50,19 +50,6 @@ public:
     void asignar_valor(Valor nuevo);
     
     /*
-     PRE: der y padre son de tipo Nodo_diccionario*
-     POS: asigna hijo derecho al nodo
-     */
-    void asignar_der(Nodo_diccionario* der, Nodo_diccionario* padre);
-    
-    /*
-     PRE: izq y padre son de tipo Nodo_diccionario*
-     POS: asigna hijo izquierdo al nodo
-     */
-    void asignar_izq(Nodo_diccionario* izq, Nodo_diccionario* padre);
-    
-    
-    /*
      PRE: izq es de tipo Nodo_diccionario*
      POS: asigna hijo izquierdo al nodo
      */
@@ -73,13 +60,6 @@ public:
      POS: asigna hijo derecho al nodo
      */
     void asignar_der(Nodo_diccionario* der);
-    
-    
-    /*
-     PRE: padre es de tipo Nodo_diccionario*
-     POS: asigna padre al nodo
-     */
-    void asignar_padre(Nodo_diccionario* padre);
     
     /*
      PRE: -
@@ -92,13 +72,7 @@ public:
      POS: devuelve izquierdo
      */
     Nodo_diccionario* obtener_izq();
-    
-    /*
-     PRE: -
-     POS: devuelve padre
-     */
-    Nodo_diccionario* obtener_padre();
-    
+   
     /*
      PRE: -
      POS: devuelve true si el nodo es hoja, false de lo contrario
