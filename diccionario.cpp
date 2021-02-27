@@ -52,11 +52,12 @@ void Diccionario::imprimir_inorden()
 
 Nodo_diccionario* Diccionario::buscar(Nodo_diccionario* nodo, Clave clave)
 {
+    if(!nodo) return nodo;
+
     if (nodo->obtener_clave() == clave) {
         actual = nodo;
         return nodo;
     }
-    else if(!nodo) return nodo;
 
     if (clave > nodo->obtener_clave())
         return buscar(nodo->obtener_der(), clave);
@@ -172,4 +173,16 @@ Nodo_diccionario* Diccionario::minimo(Nodo_diccionario* nodo)
 bool Diccionario::esta(Clave clave) {
     if(buscar(clave)) return true;
     return false;
+}
+
+
+void Diccionario::claves_inorden(Nodo_diccionario* aux, string &claves) {
+    // recorrido inorden: subarbol izquierdo - raiz - subarbol derecho
+    if (aux != nullptr) { // caso base: raiz = 0, subarbol vacio, corta la recursividad
+        claves_inorden(aux->obtener_izq(), claves);
+
+        claves += aux->obtener_clave() + '\n';
+
+        claves_inorden(aux->obtener_der(), claves);
+    }
 }

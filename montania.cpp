@@ -1,6 +1,7 @@
 #include "montania.h"
 
 Montania::Montania(): Casillero() {
+    cargar_graficos();
 }
 
 int Montania::calcular_costo(string elemento_pj) {
@@ -9,7 +10,6 @@ int Montania::calcular_costo(string elemento_pj) {
     else if(elemento_pj == ELEMENTO_FUEGO || elemento_pj == ELEMENTO_AGUA) nuevo_costo = COSTO_MONTANIA;
     return nuevo_costo;
 }
-
 
 int Montania::obtener_costo_base() {
     return COSTO_MONTANIA;

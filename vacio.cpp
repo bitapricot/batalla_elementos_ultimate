@@ -1,6 +1,7 @@
 #include "vacio.h"
 
 Vacio::Vacio(): Casillero() {
+    cargar_graficos();
 }
 
 int Vacio::calcular_costo(string elemento_pj) {

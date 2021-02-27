@@ -11,6 +11,18 @@ private:
     */
     string de_que_elemento_soy();
 
+    /*
+     PRE: -
+     POS: devuelve la energia minima necesaria para realizar la defensa;
+     */
+    int obtener_energia_minima_defensa();
+
+    /*
+     PRE: -
+     POS: devuelve la energia minima necesaria para realizar el ataque;
+     */
+    int obtener_energia_minima_ataque();
+
 public:
     /*
     Constructor
@@ -25,7 +37,7 @@ public:
     POS: crea un personaje de aire con nombre = nombre, escudo con valores aleatorios entre 0 y 2, vida con valores aleatorios entre 10 y 100 y energia entre 0 y 20
     */
     Personaje_de_aire(string nombre);
-    
+
     /*
      Constructor
      PRE: los parametros son de tipo valido
@@ -44,13 +56,13 @@ public:
     Como este personaje no necesita alimentarse, este metodo se encarga de recordarselo al usuario
     */
     void alimentar();
-    
+
     /*
      PRE: -
      POS: pone se_defiende en true si el personaje de aire tiene energia suficiente para defenderse. Resta energia usada.
      */
     void defender();
-    
+
     /*
      PRE: los parametros son de tipo valido
      POS: resta a la vida el danio_recibido segun el enemigo, le aplica el escudo.

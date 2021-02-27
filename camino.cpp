@@ -1,6 +1,7 @@
 #include "camino.h"
 
 Camino::Camino(): Casillero() {
+    cargar_graficos();
 }
 
 int Camino::calcular_costo(string elemento_pj) {

@@ -1,6 +1,7 @@
 #include "precipicio.h"
 
 Precipicio::Precipicio(): Casillero() {
+    cargar_graficos();
 }
 
 int Precipicio::calcular_costo(string elemento_pj) {

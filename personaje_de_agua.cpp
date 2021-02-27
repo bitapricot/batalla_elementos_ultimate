@@ -2,19 +2,26 @@
 
 Personaje_de_agua::Personaje_de_agua(string nombre, int escudo, int vidas): Personaje(nombre, escudo, vidas) {
     veces_alimentado = 0;
+    srand(time(nullptr));
+    cargar_graficos();
 }
 
 Personaje_de_agua::Personaje_de_agua(string nombre): Personaje(nombre) {
     veces_alimentado = 0;
+    srand(time(nullptr));
+    cargar_graficos();
 }
-
 
 Personaje_de_agua::Personaje_de_agua(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador, bool se_defiende): Personaje(nombre, escudo, vidas, energia, fila, columna, id_jugador, se_defiende) {
     veces_alimentado = 0;
+    cargar_graficos();
 }
 
 Personaje_de_agua::Personaje_de_agua(string nombre, int escudo, int vidas, int energia, int fila, int columna, int id_jugador): Personaje(nombre, escudo, vidas, energia, fila, columna, id_jugador) {
     veces_alimentado = 0;
+    cargar_graficos();
+    asignar_coordenadas_pj(fila, columna);
+
 }
 
 void Personaje_de_agua::alimentar() {
@@ -37,23 +44,33 @@ string Personaje_de_agua::de_que_elemento_soy() {
     return ELEMENTO_AGUA;
 }
 
+
 void Personaje_de_agua::defender() {
     if (energia >= MIN_ENERGIA_DEFENSA_AGUA) {
         energia -= MIN_ENERGIA_DEFENSA_AGUA;
         vidas += CURACION_PERSONAJE_AGUA;
+        if(vidas > 100) vidas = 100;
         se_defiende = true;
     } else {
-        cout << ENERGIA_INSUFICIENTE << ". A " << nombre << " le quedan " << energia << " puntos de energia." << endl;
         se_defiende = false;
     }
 }
 
 void Personaje_de_agua::recibe_ataque(string elemento_enemigo, int danio_recibido) {
-    if (elemento_enemigo == ELEMENTO_TIERRA) danio_recibido += ATAQUE_FUERTE_TIERRA;
+    if (elemento_enemigo == ELEMENTO_AGUA) danio_recibido = ATAQUE_BASE_AGUA;
+    else if (elemento_enemigo == ELEMENTO_TIERRA) danio_recibido += ATAQUE_FUERTE_TIERRA;
     else if (elemento_enemigo == ELEMENTO_FUEGO) danio_recibido = ATAQUE_DEBIL_FUEGO;
     else danio_recibido = ATAQUE_BASE_AIRE;
-    
+
     aplicar_escudo(danio_recibido);
     vidas -= danio_recibido;
+    if (vidas < 0) vidas = 0;
 }
 
+int Personaje_de_agua::obtener_energia_minima_defensa() {
+    return MIN_ENERGIA_DEFENSA_AGUA;
+}
+
+int Personaje_de_agua::obtener_energia_minima_ataque() {
+    return MIN_ENERGIA_ATAQUE_AGUA;
+}

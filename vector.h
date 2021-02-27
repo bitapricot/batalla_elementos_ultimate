@@ -42,10 +42,6 @@ public:
      */
     void asignar(Dato_vec d, int pos);
 
-    /*
-     PRE: pos es un entero valido
-     POS: da de baja el elemento en la posicion pos
-     */
     Dato_vec baja(int pos);
 
     /*

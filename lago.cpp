@@ -1,6 +1,7 @@
 #include "lago.h"
 
 Lago::Lago(): Casillero() {
+    cargar_graficos();
 }
 
 int Lago::calcular_costo(string elemento_pj) {
@@ -9,7 +10,6 @@ int Lago::calcular_costo(string elemento_pj) {
     else if(elemento_pj == ELEMENTO_TIERRA || elemento_pj == ELEMENTO_AIRE) nuevo_costo = COSTO_LAGO;
     return nuevo_costo;
 }
-
 
 int Lago::obtener_costo_base() {
     return COSTO_LAGO;

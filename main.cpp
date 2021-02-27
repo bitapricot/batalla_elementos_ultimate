@@ -1,11 +1,8 @@
-#include <iostream>
-#include "menu.h"
+#include "Menu.h"
+#include <cstdlib>
 
-int main() {
-
-    Menu * menu = new Menu();
-    menu->interfaz();
-
-    delete menu;
+int main()
+{
+    Menu menu = Menu();
     return 0;
 }

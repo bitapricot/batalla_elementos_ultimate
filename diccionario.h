@@ -13,41 +13,37 @@ private:
 
 private:
     // metodos
-    
+
     /*
      PRE: nodo, clave, valor son de tipos validos
      POS: da de alta el nodo en el diccionario
-     */ 
+     */
     Nodo_diccionario* insertar(Nodo_diccionario* nodo, Clave clave, Valor valor);
-    
+
     /*
      PRE: nodo es de tipo valido
      POS: imprime el diccionario inorden
      */
     void imprimir_inorden(Nodo_diccionario * nodo);
-    
+
     /*
      PRE: nodo y clave son de tipo valido
      POS: busca el nodo en el diccionario
      */
     Nodo_diccionario* buscar(Nodo_diccionario* nodo, Clave clave);
-    
-    
-    //Clave buscar_min(Nodo_diccionario* nodo);
-    //Clave sucesor(Nodo_diccionario* nodo);
-    //Nodo_diccionario* eliminar(Nodo_diccionario* nodo, Clave clave);
-    
+
     /*
      PRE: nodo es de tipo valido
      POS: elimina todos los elementos del diccionario
      */
     void eliminar_todos(Nodo_diccionario* nodo);
-    
+
     /*
      PRE: -
      POS: pone actual en raiz
      */
     void reiniciar();
+
 
     /*
      PRE: r y v son de tipo valido
@@ -57,19 +53,20 @@ private:
 
 
 public:
-    // metoodos
+    // metodos
 
     /*
      PRE: -
      POS: crea un diccionrio (arbol) vacio
      */
-    Diccionario(); // constructor
+    Diccionario();
 
     /*
      PRE: clave y valor son de tipo valido
      POS: agrega un nuevo nodo a diccionario. El nodo sera raiz si el arbol esta vacio.
      */
     void insertar(Clave clave, Valor valor);
+
 
     /*
      PRE: -
@@ -86,12 +83,6 @@ public:
     // Finds the minimum value that exist in the Diccionario.
     //Clave buscar_min();
 
-    // Finds the sucesor of a given data value.
-    //Clave sucesor(Clave clave);
-
-    // eliminars a given data from the Diccionario
-    //void eliminar(Clave clave);
-
     /*
      PRE: -
      POS: devuelve la raiz
@@ -99,9 +90,9 @@ public:
     Nodo_diccionario* obtener_raiz();
 
     /*
-     PRE: -
-     POS: devuelve true si el diccionario esta vacio, false de lo contrario
-     */
+    PRE: -
+    POS: devuelve true si el diccionario esta vacio, false de lo contrario
+    */
     bool vacio();
 
     /*
@@ -111,27 +102,33 @@ public:
     void eliminar_todos();
 
     /*
-     PRE: clave es de tipo valido
-     POS: devuelve el valor asociado a la clave pasada por parametro
-     */
+    PRE: clave es de tipo valido
+    POS: devuelve el valor asociado a la clave pasada por parametro
+    */
     Valor consulta(Clave clave);
 
     /*
      PRE: borrar es de tipo valido
      POS: elimina el nodo asociado a la clave pasada por parametro
      */
+    void claves_inorden(Nodo_diccionario* aux, string &claves);
+
+    /*
+    PRE: nodo es de tipo valido
+    POS: busca el minimo en el diccionario.
+    */
     void eliminar(Clave borrar);
 
     /*
-     PRE: nodo es de tipo valido
-     POS: busca el minimo en el diccionario.
-     */
+    PRE: nodo es de tipo valido
+    POS: busca el sucesor en el diccionario.
+    */
     Nodo_diccionario* minimo(Nodo_diccionario* nodo);
 
     /*
-     PRE: nodo es de tipo valido
-     POS: busca el sucesor en el diccionario.
-     */
+      PRE: nodo es de tipo valido
+      POS: busca el sucesor en el diccionario.
+      */
     Nodo_diccionario* buscar_sucesor(Nodo_diccionario* nodo);
 
     /*
