@@ -19,11 +19,11 @@ Personaje_de_tierra::Personaje_de_tierra(string nombre, int escudo, int vidas, i
     asignar_coordenadas_pj(fila, columna);
 }
 
-void Personaje_de_tierra::alimentar() {
+string Personaje_de_tierra::alimentar() {
     int energia_anterior = energia;
     if(energia >= VALOR_MIN_ENERGIA && energia <= VALOR_MAX_ENERGIA) energia += ENERGIA_RECUPERADA_P_TIERRA;
     if(energia > VALOR_MAX_ENERGIA) energia = VALOR_MAX_ENERGIA;
-    cout << "El personaje " << nombre << " fue alimentado con " << ALIMENTO_P_TIERRA << " y recupero " << energia - energia_anterior << " punto(s) de energia" << endl;
+    return "El personaje " + nombre + " fue alimentado con " + ALIMENTO_P_TIERRA + " y recupero " + to_string(energia - energia_anterior) + " punto(s) de energia";
 }
 
 string Personaje_de_tierra::de_que_elemento_soy(){
@@ -72,4 +72,8 @@ int Personaje_de_tierra::obtener_energia_minima_defensa() {
 
 int Personaje_de_tierra::obtener_energia_minima_ataque() {
     return MIN_ENERGIA_ATAQUE_TIERRA;
+}
+
+bool Personaje_de_tierra::alcanzo_max_alimento() {
+    return false;
 }

@@ -1,0 +1,3 @@
+/home/mdavico/CLionProjects/Batalla_Elementos_GRUPO1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/mdavico/CLionProjects/Batalla_Elementos_GRUPO1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mdavico/CLionProjects/Batalla_Elementos_GRUPO1/cmake-build-debug/CMakeFiles/tp3.dir

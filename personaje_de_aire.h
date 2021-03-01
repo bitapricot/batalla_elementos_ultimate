@@ -55,7 +55,12 @@ public:
     /*
     Como este personaje no necesita alimentarse, este metodo se encarga de recordarselo al usuario
     */
-    void alimentar();
+    string alimentar();
+
+    /*
+    Devuelve true si el personaje alcanzo el maximo de veces que puede recibir alimento. Caso contrario devuelve false.
+    */
+    bool alcanzo_max_alimento();
 
     /*
      PRE: -

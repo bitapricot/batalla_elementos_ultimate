@@ -2,8 +2,8 @@
 
 Grafo::Grafo(string nombre_archivo) {
     vertices = new Lista;
-    int dim_fila = 0;
-    int dim_columna = 0;
+    dim_fila = 0;
+    dim_columna = 0;
     cargar_mapa(nombre_archivo);
     cargar_tablero();
     conectar_vertices();
@@ -100,7 +100,7 @@ void Grafo::conectar_vertices() {
     for (int i = 0; i < 64; i++){
         buscar_vertices_adyacentes(vertices->consulta(i));
     }
-} // Guia para arturo
+}
 
 Casillero* Grafo::crear_casillero(string casillero) {
 
@@ -114,7 +114,7 @@ Casillero* Grafo::crear_casillero(string casillero) {
     else nuevo_casillero = new Volcan();
 
     return nuevo_casillero;
-} // este metodo es innecesario, despues lo sacamos
+}
 
 void Grafo::crear_y_agregar_arista(Vertice* origen, Vertice* destino, bool es_diagonal) {
     Arista* nueva;
@@ -193,31 +193,28 @@ void Grafo::floyd_warshall(string elemento, int** distancias, int** recorridos) 
 }
 
 string Grafo::camino_minimo(int nodo_inicial, int nodo_final, string elemento){
-    int ** recorridos;
-    if (elemento == ELEMENTO_AGUA){
-        recorridos = recorridos_p_agua;
-    }
-    if (elemento == ELEMENTO_FUEGO){
-        recorridos = recorridos_p_fuego;
-    }
-    if (elemento == ELEMENTO_AIRE){
-        recorridos = recorridos_p_aire;
-    }
-    if (elemento == ELEMENTO_TIERRA){
-        recorridos = recorridos_p_tierra;
-    }
-    int at = nodo_inicial;
-    int end = nodo_final;
-    string camino_minimo = to_string(at) + "->";
-    while (at != end){
-        at = recorridos[at][end];
-        if (at == end){
-            camino_minimo += to_string(at);
-        }
-        else {
-            camino_minimo += to_string(at) + "->";
-        }
+    int** recorridos;
 
+    if (elemento == ELEMENTO_AGUA) recorridos = recorridos_p_agua;
+
+    if (elemento == ELEMENTO_FUEGO) recorridos = recorridos_p_fuego;
+
+    if (elemento == ELEMENTO_AIRE) recorridos = recorridos_p_aire;
+
+    if (elemento == ELEMENTO_TIERRA) recorridos = recorridos_p_tierra;
+
+    int at = nodo_inicial;
+    int final = nodo_final;
+    int fila_act = vertices->consulta(at)->obtener_coordenadas().obtener_primera();
+    int columna_act = vertices->consulta(at)->obtener_coordenadas().obtener_segunda();
+    string camino_minimo = "(" + to_string(fila_act) + ", " + to_string(columna_act) + ")" + "->"; ;
+    while (at != final) {
+        at = recorridos[at][final];
+        fila_act = vertices->consulta(at)->obtener_coordenadas().obtener_primera();
+        columna_act = vertices->consulta(at)->obtener_coordenadas().obtener_segunda();
+
+        if (at == final) camino_minimo += "(" + to_string(fila_act) + ", " + to_string(columna_act) + ")";
+        else camino_minimo += "(" + to_string(fila_act) + ", " + to_string(columna_act) + ")" + "->";
     }
     return camino_minimo;
 }
@@ -225,17 +222,17 @@ string Grafo::camino_minimo(int nodo_inicial, int nodo_final, string elemento){
 
 int Grafo::costo_camino_minimo(Vertice* origen, Vertice* destino) {
     int costo = 0;
-    int numero_origen = dim_fila*origen->obtener_coordenadas().obtener_primera() + origen->obtener_coordenadas().obtener_segunda();
-    int numero_destino = dim_fila*destino->obtener_coordenadas().obtener_primera() + destino->obtener_coordenadas().obtener_segunda();
+    int numero_origen = dim_fila * origen->obtener_coordenadas().obtener_primera() + origen->obtener_coordenadas().obtener_segunda();
+    int numero_destino = dim_fila * destino->obtener_coordenadas().obtener_primera() + destino->obtener_coordenadas().obtener_segunda();
 
-    if(origen->obtener_casillero()->obtener_personaje()->de_que_elemento_soy() == ELEMENTO_AGUA) costo = distancias_p_agua[numero_origen][numero_destino];
-    else if(origen->obtener_casillero()->obtener_personaje()->de_que_elemento_soy() == ELEMENTO_AIRE) costo = distancias_p_aire[numero_origen][numero_destino];
-    else if(origen->obtener_casillero()->obtener_personaje()->de_que_elemento_soy() == ELEMENTO_FUEGO) costo = distancias_p_fuego[numero_origen][numero_destino];
+    if (origen->obtener_casillero()->obtener_personaje()->de_que_elemento_soy() == ELEMENTO_AGUA) costo = distancias_p_agua[numero_origen][numero_destino];
+    else if (origen->obtener_casillero()->obtener_personaje()->de_que_elemento_soy() == ELEMENTO_AIRE) costo = distancias_p_aire[numero_origen][numero_destino];
+    else if (origen->obtener_casillero()->obtener_personaje()->de_que_elemento_soy() == ELEMENTO_FUEGO) costo = distancias_p_fuego[numero_origen][numero_destino];
     else costo = distancias_p_tierra[numero_origen][numero_destino];
 
     return costo;
-
 }
+
 
 void Grafo::floyd_warshall() { // sobrecarga de floyd warshall, simplemente arma la matriz de costos de distancias (en unidad casillero = 1) de cada vertice, contando diagonales
     int i, j, k;
@@ -268,7 +265,7 @@ void Grafo::floyd_warshall() { // sobrecarga de floyd warshall, simplemente arma
     }
 }
 
-Grafo::~Grafo(){
+Grafo::~Grafo() {
         while (!vertices->vacia()) {
             Vertice *eliminar = vertices->baja_y_devuelve(0);
             delete eliminar;
@@ -304,4 +301,4 @@ Grafo::~Grafo(){
 
         for (int i = 0; i < dim_fila * dim_columna; i++) delete[] distancias_ataque_tierra[i];
         delete[] distancias_ataque_tierra;
-}
+    }

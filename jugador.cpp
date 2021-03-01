@@ -38,7 +38,6 @@ string Jugador::personajes() {
 }
 
 string Jugador::detalles_personajes() {
-
     string detalles_personajes;
     for(int i = 0; i < MAX_PERSONAJES; i++){
         detalles_personajes += personajes_elegidos[i]->detalles_personaje() + '\n';

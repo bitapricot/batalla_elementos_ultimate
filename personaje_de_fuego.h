@@ -63,7 +63,12 @@ public:
     /*
     Incrementa la vida segun la vida recuperada determinada en personaje.h
     */
-    void alimentar();
+    string alimentar();
+
+    /*
+    Devuelve true si el personaje alcanzo el maximo de veces que puede recibir alimento. Caso contrario devuelve false.
+    */
+    bool alcanzo_max_alimento();
 
     /*
     PRE: -

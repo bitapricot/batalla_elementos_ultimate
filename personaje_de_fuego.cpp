@@ -19,11 +19,11 @@ Personaje_de_fuego::Personaje_de_fuego(string nombre, int escudo, int vidas, int
     asignar_coordenadas_pj(fila, columna);
 }
 
-void Personaje_de_fuego::alimentar() {
+string Personaje_de_fuego::alimentar() {
     int vida_anterior = vidas;
     if(vidas >= VALOR_MIN_VIDA && vidas <= VALOR_MAX_VIDA) vidas += VIDA_RECUPERADA_P_FUEGO;
     if(vidas > VALOR_MAX_VIDA) vidas = VALOR_MAX_VIDA;
-    cout << "El personaje " << nombre << " fue alimentado con " << ALIMENTO_P_FUEGO << " y recupero " << vidas - vida_anterior << " punto(s) de vida" << endl;
+    return "El personaje " + nombre + " fue alimentado con " + ALIMENTO_P_FUEGO + " y recupero " + to_string(vidas - vida_anterior) + " punto(s) de vida";
 }
 
 string Personaje_de_fuego::de_que_elemento_soy() {
@@ -66,4 +66,8 @@ int Personaje_de_fuego::obtener_energia_minima_defensa() {
 
 int Personaje_de_fuego::obtener_energia_minima_ataque() {
     return MIN_ENERGIA_ATAQUE_FUEGO;
+}
+
+bool Personaje_de_fuego::alcanzo_max_alimento() {
+    return false;
 }

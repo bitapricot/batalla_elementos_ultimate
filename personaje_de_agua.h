@@ -41,7 +41,7 @@ public:
     /*
     Incrementa la energia segun la energia recuperada determinada en personaje.h (mientras el personaje no haya superado el maximo de veces que puede ser alimentado)
     */
-    void alimentar();
+    string alimentar();
 
     /*
      PRE: -

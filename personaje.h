@@ -137,7 +137,12 @@ public:
     Alimenta al personaje, incrementando la energia segun el elemento del cual sea el personaje
     Para el personaje de aire, dado que no necesita alimentarse, este metodo se encarga de recordarselo al usuario
     */
-    virtual void alimentar() = 0;
+    virtual string alimentar() = 0;
+
+    /*
+    Devuelve true si el personaje alcanzo el maximo de veces que puede recibir alimento. Caso contrario devuelve false.
+    */
+    virtual bool alcanzo_max_alimento() = 0;
 
     /*
     PRE: -

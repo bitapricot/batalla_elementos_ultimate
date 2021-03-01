@@ -4,6 +4,7 @@
 #include "jugador.h"
 #include "grafo.h"
 #include <string>
+#include <cstdio>
 
 #include <SFML/Graphics.hpp>
 
@@ -138,6 +139,12 @@ private:
     void posicionar_personajes();
 
     /*
+     PRE: -
+     POS: alimenta al personaje del cual es el turno actual
+     */
+    void alimentar();
+
+    /*
 	 PRE: -
 	 POS: realiza el ataque segun el elemento
 	 */
@@ -207,7 +214,8 @@ private:
 
     /*
 	 PRE: -
-	 POS: guarda la partida
+	 POS: guarda la partida en un archivo csv "partida.csv", la primera linea es el turno desde el cual se guardó
+     la partida
 	 */
     void guardar_partida();
 
@@ -310,6 +318,8 @@ private:
 	 POS: Cierra el juego;
 	 */
     void salir();
+
+    void fin_del_juego();
 };
 
 

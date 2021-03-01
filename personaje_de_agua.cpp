@@ -24,15 +24,15 @@ Personaje_de_agua::Personaje_de_agua(string nombre, int escudo, int vidas, int e
 
 }
 
-void Personaje_de_agua::alimentar() {
+string Personaje_de_agua::alimentar() {
     if(alcanzo_max_alimento()) {
-        cout << "Ya alimentaste " << MAX_VECES_ALIMENTADO_P_AGUA << " veces a " << nombre << ". ¡El " << ALIMENTO_P_AGUA << " no cae del cielo!" << endl;
+        return "Ya alimentaste " + to_string(MAX_VECES_ALIMENTADO_P_AGUA) + " veces a " + nombre + ". ¡El " + ALIMENTO_P_AGUA + " no cae del cielo!";
     } else {
         int energia_anterior = energia;
         if(energia >= VALOR_MIN_ENERGIA && energia <= VALOR_MAX_ENERGIA) energia += ENERGIA_RECUPERADA_P_AGUA;
         if(energia > VALOR_MAX_ENERGIA) energia = VALOR_MAX_ENERGIA;
         veces_alimentado++;
-        cout << "El personaje " << nombre << " fue alimentado con " << ALIMENTO_P_AGUA << " y recupero " << energia - energia_anterior << " punto(s) de energia" << endl;
+        return "El personaje " + nombre + " fue alimentado con " + ALIMENTO_P_AGUA + " y recupero " + to_string(energia - energia_anterior) + " punto(s) de energia";
     }
 }
 

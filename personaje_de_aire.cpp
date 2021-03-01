@@ -19,8 +19,8 @@ Personaje_de_aire::Personaje_de_aire(string nombre, int escudo, int vidas, int e
     asignar_coordenadas_pj(fila, columna);
 }
 
-void Personaje_de_aire::alimentar() {
-    cout << ALIMENTO_P_AIRE << endl;
+string Personaje_de_aire::alimentar() {
+    return ALIMENTO_P_AIRE;
 }
 
 string Personaje_de_aire::de_que_elemento_soy() {
@@ -54,4 +54,8 @@ int Personaje_de_aire::obtener_energia_minima_defensa() {
 
 int Personaje_de_aire::obtener_energia_minima_ataque() {
     return MIN_ENERGIA_ATAQUE_AIRE;
+}
+
+bool Personaje_de_aire::alcanzo_max_alimento() {
+    return false;
 }

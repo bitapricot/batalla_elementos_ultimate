@@ -32,7 +32,7 @@ void Juego::jugar() {
 
     if(!partida_cargada) posicionar_personajes();
 
-    while(!termino && !obtener_jugador(JUGADOR_1)->jugador_perdio() && !obtener_jugador(JUGADOR_2)->jugador_perdio()){
+    while(!termino){
 
         interfaz_menu_juego();
 
@@ -43,6 +43,11 @@ void Juego::jugar() {
 Jugador* Juego::obtener_jugador(int jugador) {
     if(jugador == JUGADOR_1 || jugador == JUGADOR_2) return jugadores[jugador];
     return nullptr;
+}
+
+
+Grafo * Juego::obtener_grafo() {
+    return tablero;
 }
 
 
@@ -79,7 +84,7 @@ void Juego::posicionar_personajes() {
 
     int personajes_posicionados = 0;
 
-    while(personajes_posicionados < 6){
+    while(!termino && personajes_posicionados < 6){
         Coordenada coordenada = coordenada_valida_moverse();
 
         tablero->obtener_vertices()->consulta(coordenada)->obtener_casillero()->posicionar_personaje(jugadores[turnar()]->obtener_personaje(pos_personaje), coordenada);
@@ -95,6 +100,32 @@ void Juego::posicionar_personajes() {
 
 }
 
+void Juego::alimentar() {
+    Text mensaje;
+    mensaje.setFont(fuente);
+
+    int turno_act = turnar();
+    Jugador* jugador_act = jugadores[turno_act];
+    Personaje * personaje_act = jugador_act->obtener_personaje(pos_personaje);
+    if (personaje_act->obtener_vida() > 0) {
+
+
+        mensaje.setString(personaje_act->alimentar());
+
+        if (personaje_act->alcanzo_max_alimento() || personaje_act->de_que_elemento_soy() == ELEMENTO_AIRE) {
+            imprimir_mensaje(mensaje);
+        } else {
+            imprimir_mensaje(mensaje);
+
+            opciones_menu_juego[opcion_seleccionada].setFillColor(Color::White);
+            opciones_menu_juego[0].setFillColor(Color::Yellow);
+            interfaz_sub_menu_juego();
+        }
+    }else {
+        mensaje.setString("El personaje esta muerto!");
+        imprimir_mensaje(mensaje);
+    }
+}
 
 void Juego::atacar() {
     Text mensaje;
@@ -105,55 +136,74 @@ void Juego::atacar() {
     Personaje * personaje_act = jugador_act->obtener_personaje(pos_personaje);
     Coordenada coord_act = personaje_act->obtener_coordenadas();
 
-    if(personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE){
-        if(personaje_act->de_que_elemento_soy() == ELEMENTO_AGUA) {
-            if(personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_AGUA) {
-                Coordenada nueva = coordenada_valida_atacar();
-                if(tablero->acceder_tablero(nueva)->obtener_casillero()->obtener_personaje()->obtener_id_jugador() != personaje_act->obtener_id_jugador()){
-                    ataque_p_agua(nueva);
-                }else{
-                    mensaje.setString("El ataque a un aliado no esta permitido!");
-                    imprimir_mensaje(mensaje);
-                    //cout << "El ataque a un aliado no esta permitido!" << endl;
-                    return;
+    if(personaje_act->obtener_vida() > 0) {
+
+        if (personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE) {
+            if (personaje_act->de_que_elemento_soy() == ELEMENTO_AGUA) {
+                if (personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_AGUA) {
+                    Coordenada nueva = coordenada_valida_atacar();
+                    if (tablero->acceder_tablero(
+                            nueva)->obtener_casillero()->obtener_personaje()->obtener_id_jugador() !=
+                        personaje_act->obtener_id_jugador()) {
+                        ataque_p_agua(nueva);
+                    } else {
+                        mensaje.setString("El ataque a un aliado no esta permitido!");
+                        imprimir_mensaje(mensaje);
+                        //cout << "El ataque a un aliado no esta permitido!" << endl;
+                        return;
+                    }
+                }
+            } else if (personaje_act->de_que_elemento_soy() == ELEMENTO_TIERRA) {
+                if (personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_TIERRA) {
+                    Coordenada nueva = coordenada_valida_atacar();
+                    if (tablero->acceder_tablero(
+                            nueva)->obtener_casillero()->obtener_personaje()->obtener_id_jugador() !=
+                        personaje_act->obtener_id_jugador()) {
+                        ataque_p_tierra(coord_act, nueva);
+                    } else {
+                        mensaje.setString("El ataque a un aliado no esta permitido!");
+                        imprimir_mensaje(mensaje);
+                        //cout << "El ataque a un aliado no esta permitido!" << endl;
+                        return;
+                    }
+                }
+            } else if (personaje_act->de_que_elemento_soy() == ELEMENTO_FUEGO) {
+                if (personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_FUEGO) {
+                    ataque_p_fuego(coord_act);
+                }
+            } else {
+                if (personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_AIRE) {
+                    ataque_p_aire();
                 }
             }
-        } else if(personaje_act->de_que_elemento_soy() == ELEMENTO_TIERRA) {
-            if(personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_TIERRA) {
-                Coordenada nueva = coordenada_valida_atacar();
-                if(tablero->acceder_tablero(nueva)->obtener_casillero()->obtener_personaje()->obtener_id_jugador() != personaje_act->obtener_id_jugador()){
-                    ataque_p_tierra(coord_act, nueva);
-                }else{
-                    mensaje.setString("El ataque a un aliado no esta permitido!");
-                    imprimir_mensaje(mensaje);
-                    //cout << "El ataque a un aliado no esta permitido!" << endl;
-                    return;
-                }
+
+            opciones_sub_menu_juego[opcion_seleccionada].setFillColor(Color::White);
+            opciones_sub_menu_juego[0].setFillColor(Color::Yellow);
+
+            personaje_act->restar_energia(personaje_act->obtener_energia_minima_ataque());
+            jugadores[turnar()]->obtener_personaje(pos_personaje)->cambiar_turno();
+
+            pos_personaje++;
+            chequear_subturno();
+
+            if (obtener_jugador(JUGADOR_1)->jugador_perdio() || obtener_jugador(JUGADOR_2)->jugador_perdio()) {
+                fin_del_juego();
+            } else if (pos_personaje == 0) {
+                interfaz_guardar_salir();
+            } else {
+                interfaz_menu_juego();
             }
-        } else if(personaje_act->de_que_elemento_soy() == ELEMENTO_FUEGO) {
-            if(personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_FUEGO) {
-                ataque_p_fuego(coord_act);
-            }
+
         } else {
-            if(personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_AIRE) {
-                ataque_p_aire();
-            }
+            mensaje.setString(
+                    ENERGIA_INSUFICIENTE + "\nEnergia actual: " + to_string(personaje_act->obtener_energia()) +
+                    ", Energia necesaria: " + to_string(personaje_act->obtener_energia_minima_ataque()));
+            imprimir_mensaje(mensaje);
+            //cout << ENERGIA_INSUFICIENTE << "\nEnergia actual: " << personaje_act->obtener_energia() << ", Energia necesaria: " << personaje_act->obtener_energia_minima_ataque() << endl;
         }
-
-        opciones_sub_menu_juego[opcion_seleccionada].setFillColor(Color::White);
-        opciones_sub_menu_juego[0].setFillColor(Color::Yellow);
-
-        personaje_act->restar_energia(personaje_act->obtener_energia_minima_ataque());
-        jugadores[turnar()]->obtener_personaje(pos_personaje)->cambiar_turno();
-
-        pos_personaje++;
-        chequear_subturno();
-        interfaz_menu_juego();
-
-    }else{
-        mensaje.setString(ENERGIA_INSUFICIENTE + "\nEnergia actual: " + to_string(personaje_act->obtener_energia()) + ", Energia necesaria: " + to_string(personaje_act->obtener_energia_minima_ataque()));
+    } else {
+        mensaje.setString("El personaje esta muerto!");
         imprimir_mensaje(mensaje);
-        //cout << ENERGIA_INSUFICIENTE << "\nEnergia actual: " << personaje_act->obtener_energia() << ", Energia necesaria: " << personaje_act->obtener_energia_minima_ataque() << endl;
     }
 }
 
@@ -213,24 +263,38 @@ void Juego::defenderse() {
     Jugador *jugador_act = jugadores[turno_act];
     Personaje *personaje_act = jugador_act->obtener_personaje(pos_personaje);
 
-    if (personaje_act->de_que_elemento_soy() == ELEMENTO_AGUA) defensa_p_agua(personaje_act);
-    else if (personaje_act->de_que_elemento_soy() == ELEMENTO_AIRE) defensa_p_aire(personaje_act);
-    else if (personaje_act->de_que_elemento_soy() == ELEMENTO_FUEGO) personaje_act->defender();
-    else defensa_p_tierra(personaje_act);
+    if(personaje_act->obtener_vida() > 0) {
 
-    if (personaje_act->obtener_se_defiende()) {
-        opciones_sub_menu_juego[opcion_seleccionada].setFillColor(Color::White);
-        opciones_sub_menu_juego[0].setFillColor(Color::Yellow);
+        if (personaje_act->de_que_elemento_soy() == ELEMENTO_AGUA) defensa_p_agua(personaje_act);
+        else if (personaje_act->de_que_elemento_soy() == ELEMENTO_AIRE) defensa_p_aire(personaje_act);
+        else if (personaje_act->de_que_elemento_soy() == ELEMENTO_FUEGO) personaje_act->defender();
+        else defensa_p_tierra(personaje_act);
 
-        jugadores[turnar()]->obtener_personaje(pos_personaje)->cambiar_turno();
+        if (personaje_act->obtener_se_defiende()) {
+            opciones_sub_menu_juego[opcion_seleccionada].setFillColor(Color::White);
+            opciones_sub_menu_juego[0].setFillColor(Color::Yellow);
 
-        pos_personaje++;
-        chequear_subturno();
-        interfaz_menu_juego();
-    } else {
-        mensaje.setString(ENERGIA_INSUFICIENTE + "\nEnergia actual: " + to_string(personaje_act->obtener_energia()) + ", Energia necesaria: " + to_string(personaje_act->obtener_energia_minima_defensa()));
+            jugadores[turnar()]->obtener_personaje(pos_personaje)->cambiar_turno();
+
+            pos_personaje++;
+            chequear_subturno();
+
+            if (pos_personaje == 0) {
+                interfaz_guardar_salir();
+            } else {
+                interfaz_menu_juego();
+            }
+
+        } else {
+            mensaje.setString(
+                    ENERGIA_INSUFICIENTE + "\nEnergia actual: " + to_string(personaje_act->obtener_energia()) +
+                    ", Energia necesaria: " + to_string(personaje_act->obtener_energia_minima_defensa()));
+            imprimir_mensaje(mensaje);
+            //cout << ENERGIA_INSUFICIENTE << "\nEnergia actual: " << personaje_act->obtener_energia()<< ", Energia necesaria: " << personaje_act->obtener_energia_minima_defensa() << endl;
+        }
+    } else{
+        mensaje.setString("El personaje esta muerto!");
         imprimir_mensaje(mensaje);
-        //cout << ENERGIA_INSUFICIENTE << "\nEnergia actual: " << personaje_act->obtener_energia()<< ", Energia necesaria: " << personaje_act->obtener_energia_minima_defensa() << endl;
     }
 }
 
@@ -276,42 +340,58 @@ void Juego::moverse() {
 
     int energia_minima = tablero->costo_camino_minimo(tablero->acceder_tablero(coord_act), tablero->acceder_tablero(nueva));
 
-    if(personaje_act->obtener_energia() >= energia_minima) {
-        if(!tablero->acceder_tablero(nueva)->obtener_casillero()->obtener_personaje()) {
-            int nodo_inicial = 8 * coord_act.obtener_primera() + coord_act.obtener_segunda();
-            int nodo_final = 8 * nueva.obtener_primera() + nueva.obtener_segunda();
-            string elemento = personaje_act->de_que_elemento_soy();
-            string camino_minimo = tablero->camino_minimo(nodo_inicial, nodo_final, elemento);
+    if(personaje_act->obtener_vida() > 0) {
+        if (personaje_act->obtener_energia() >= energia_minima) {
+            if (!tablero->acceder_tablero(nueva)->obtener_casillero()->obtener_personaje()) {
+                int nodo_inicial = 8 * coord_act.obtener_primera() + coord_act.obtener_segunda();
+                int nodo_final = 8 * nueva.obtener_primera() + nueva.obtener_segunda();
+                string elemento = personaje_act->de_que_elemento_soy();
+                string camino_minimo = tablero->camino_minimo(nodo_inicial, nodo_final, elemento);
 
-            personaje_act->mover(nueva.obtener_primera(), nueva.obtener_segunda(), energia_minima);
-            vertice_actual->obtener_casillero()->posicionar_personaje(nullptr);
-            tablero->acceder_tablero(nueva)->obtener_casillero()->posicionar_personaje(personaje_act, nueva);
+                personaje_act->mover(nueva.obtener_primera(), nueva.obtener_segunda(), energia_minima);
+                vertice_actual->obtener_casillero()->posicionar_personaje(nullptr);
+                tablero->acceder_tablero(nueva)->obtener_casillero()->posicionar_personaje(personaje_act, nueva);
 
-            mensaje.setString("Camino minimo para ir desde (" + to_string(coord_act.obtener_primera()) + ", " + to_string(coord_act.obtener_segunda()) + ") hasta (" + to_string(nueva.obtener_primera()) + ", " + to_string(nueva.obtener_segunda()) + ") :\n" + camino_minimo);
+                mensaje.setString("Camino minimo para ir desde (" + to_string(coord_act.obtener_primera()) + ", " +
+                                  to_string(coord_act.obtener_segunda()) + ") hasta (" +
+                                  to_string(nueva.obtener_primera()) + ", " + to_string(nueva.obtener_segunda()) +
+                                  ") :\n" + camino_minimo);
+                imprimir_mensaje(mensaje);
+
+                mensaje.setString(
+                        "Moverse le costo: " + to_string(energia_minima) + " puntos de energia al personaje: " +
+                        personaje_act->nombre_personaje());
+                imprimir_mensaje(mensaje);
+
+                mensaje.setString("Energia actual: " + to_string(personaje_act->obtener_energia()));
+                imprimir_mensaje(mensaje);
+
+                cout << "Camino minimo para ir desde (" << coord_act.obtener_primera() << ", "
+                     << coord_act.obtener_segunda() << ") hasta (" << nueva.obtener_primera() << ", "
+                     << nueva.obtener_segunda() << ") :\n" << camino_minimo << endl;
+                cout << "Moverse le costo: " << energia_minima << " puntos de energia al personaje: "
+                     << personaje_act->nombre_personaje() << endl;
+                cout << "Energia actual: " << personaje_act->obtener_energia() << endl;
+
+                opciones_menu_juego[opcion_seleccionada].setFillColor(Color::White);
+                opciones_menu_juego[0].setFillColor(Color::Yellow);
+                interfaz_sub_menu_juego();
+            } else {
+                mensaje.setString("Ya hay un personaje en ese casillero ");
+                imprimir_mensaje(mensaje);
+                //cout << "Ya hay un personaje en ese casillero " << endl;
+            }
+        } else {
+            mensaje.setString("El personaje no tiene suficiente energia para moverse:\nEnergia actual: " +
+                              to_string(personaje_act->obtener_energia()) + ", Energia necesaria: " +
+                              to_string(energia_minima));
             imprimir_mensaje(mensaje);
-
-            mensaje.setString("Moverse le costo: " + to_string(energia_minima) + " puntos de energia al personaje: " + personaje_act->nombre_personaje());
-            imprimir_mensaje(mensaje);
-
-            mensaje.setString("Energia actual: " + to_string(personaje_act->obtener_energia()));
-            imprimir_mensaje(mensaje);
-
-            cout << "Camino minimo para ir desde (" << coord_act.obtener_primera() << ", " << coord_act.obtener_segunda() << ") hasta (" << nueva.obtener_primera() << ", " << nueva.obtener_segunda() << ") :\n"<< camino_minimo << endl;
-            cout << "Moverse le costo: " << energia_minima << " puntos de energia al personaje: " << personaje_act->nombre_personaje() << endl;
-            cout << "Energia actual: " << personaje_act->obtener_energia() << endl;
-
-            opciones_menu_juego[opcion_seleccionada].setFillColor(Color::White);
-            opciones_menu_juego[0].setFillColor(Color::Yellow);
-            interfaz_sub_menu_juego();
-        } else{
-            mensaje.setString("Ya hay un personaje en ese casillero ");
-            imprimir_mensaje(mensaje);
-            //cout << "Ya hay un personaje en ese casillero " << endl;
+            //cout << "El personaje no tiene suficiente energia para moverse:\nEnergia actual: " << personaje_act->obtener_energia() << ", Energia necesaria: " << energia_minima << endl;
         }
-    } else{
-        mensaje.setString("El personaje no tiene suficiente energia para moverse:\nEnergia actual: " + to_string(personaje_act->obtener_energia()) + ", Energia necesaria: " + to_string(energia_minima));
-        //cout << "El personaje no tiene suficiente energia para moverse:\nEnergia actual: " << personaje_act->obtener_energia() << ", Energia necesaria: " << energia_minima << endl;
-    }
+    } else {
+        mensaje.setString("El personaje esta muerto!");
+        imprimir_mensaje(mensaje);
+    };
 }
 
 void Juego::pasar_opcion() {
@@ -330,7 +410,14 @@ void Juego::pasar_opcion() {
 
         pos_personaje++;
         chequear_subturno();
-        interfaz_menu_juego();
+
+        if(pos_personaje == 0){
+
+            interfaz_guardar_salir();
+        }else{
+            interfaz_menu_juego();
+        }
+
     }
 }
 
@@ -442,10 +529,10 @@ void Juego::cargar_graficos_guardar_salir() {
         opciones_guardar_salir[i].setFillColor(sf::Color::White);
         opciones_guardar_salir[i].setCharacterSize(18);
         opciones_guardar_salir[i].setPosition(sf::Vector2f((float)ventana_juego->getSize().x / 2  , 85 + (i * 20.0)));
-        opciones_guardar_salir[i].setOrigin(opciones_sub_menu_juego[i].getGlobalBounds().width / 2, opciones_sub_menu_juego[i].getGlobalBounds().height / 2);
+        opciones_guardar_salir[i].setOrigin(opciones_guardar_salir[i].getGlobalBounds().width / 2, opciones_guardar_salir[i].getGlobalBounds().height / 2);
     }
 
-    opciones_sub_menu_juego[0].setFillColor(sf::Color::Yellow);
+    opciones_guardar_salir[0].setFillColor(sf::Color::Yellow);
 }
 
 
@@ -523,13 +610,14 @@ void Juego::dibujar_guardar_salir() {
     }
 }
 
+
 void Juego::interfaz_menu_juego() {
     opcion_seleccionada = 0;
 
     esta_activo_sub_menu_juego = false;
     esta_activo_menu_juego = true;
 
-    while(esta_activo_menu_juego)
+    while(!termino && esta_activo_menu_juego)
     {
         ventana_juego->clear();
 
@@ -547,7 +635,7 @@ void Juego::interfaz_sub_menu_juego() {
     esta_activo_menu_juego = false;
     esta_activo_sub_menu_juego = true;
 
-    while(esta_activo_sub_menu_juego)
+    while(!termino && esta_activo_sub_menu_juego)
     {
         ventana_juego->clear();
 
@@ -560,10 +648,29 @@ void Juego::interfaz_sub_menu_juego() {
 }
 
 
+void Juego::interfaz_guardar_salir() {
+    opcion_seleccionada = 0;
+    esta_activo_menu_juego = false;
+    esta_activo_sub_menu_juego = false;
+    opciones_guardar_salir[0].setFillColor(Color::Yellow);
+    opciones_guardar_salir[1].setFillColor(Color::White);
+
+    while(!termino && !esta_activo_menu_juego){
+        ventana_juego->clear();
+
+        dibujar_juego();
+        dibujar_guardar_salir();
+        procesar_eventos_guardar_salir();
+
+        ventana_juego->display();
+    }
+}
+
+
 void Juego::procesar_eventos_menu_juego() {
     Event evento{};
 
-    while (ventana_juego->pollEvent(evento))
+    while (!termino && ventana_juego->pollEvent(evento))
     {
         switch (evento.type)
         {
@@ -582,7 +689,7 @@ void Juego::procesar_eventos_menu_juego() {
                         switch (obtener_opcion_seleccionada())
                         {
                             case 0: {
-                                //alimentar();
+                                alimentar();
                                 break;
                             }
                             case 1:
@@ -608,7 +715,7 @@ void Juego::procesar_eventos_menu_juego() {
 void Juego::procesar_eventos_sub_menu_juego() {
     Event evento{};
 
-    while (ventana_juego->pollEvent(evento))
+    while (!termino && ventana_juego->pollEvent(evento))
     {
         switch (evento.type)
         {
@@ -651,7 +758,7 @@ void Juego::procesar_eventos_sub_menu_juego() {
 void Juego::procesar_eventos_guardar_salir() {
     Event evento{};
 
-    while (ventana_juego->pollEvent(evento))
+    while (!termino && ventana_juego->pollEvent(evento))
     {
         switch (evento.type)
         {
@@ -670,10 +777,10 @@ void Juego::procesar_eventos_guardar_salir() {
                         switch (obtener_opcion_seleccionada())
                         {
                             case 0:
-                                //guardar_partida();
+                                guardar_partida();
                                 break;
                             case 1:
-                                //seguir_jugando();
+                                seguir_jugando();
                                 break;
                         }
                         break;
@@ -739,7 +846,7 @@ void Juego::subir_guardar_salir() {
 
 
 void Juego::bajar_guardar_salir() {
-    if (opcion_seleccionada + 1 < OPCIONES_VALIDAS_MENU_JUEGO)
+    if (opcion_seleccionada + 1 < OPCIONES_VALIDAS_GUARDAR_SALIR)
     {
         opciones_guardar_salir[opcion_seleccionada].setFillColor(sf::Color::White);
         opcion_seleccionada++;
@@ -995,7 +1102,7 @@ void Juego::crear_y_ubicar_personaje(string elemento, string nombre, int escudo,
 
 void Juego::guardar_partida() {
     ofstream carga;
-    carga.open("../carga.csv"); // hacemos una constante de esto
+    carga.open("partida.csv"); // hacemos una constante de esto
 
     int id_jugador;
     string elemento;
@@ -1006,11 +1113,12 @@ void Juego::guardar_partida() {
     int fila;
     int columna;
 
-    carga << turno << '\n';
+    carga << turnar() << '\n';
 
     for(int i = 0; i < MAX_CANT_JUGADORES; i++) {
         id_jugador = i;
         for(int j = 0; j < jugadores[id_jugador]->obtener_cantidad_personajes(); j++) {
+            carga << id_jugador << ',';
             elemento = jugadores[id_jugador]->obtener_personaje(j)->de_que_elemento_soy();
             carga << elemento << ',';
             nombre = jugadores[id_jugador]->obtener_personaje(j)->nombre_personaje();
@@ -1023,7 +1131,7 @@ void Juego::guardar_partida() {
             carga << energia << ',';
             fila = jugadores[id_jugador]->obtener_personaje(j)->obtener_coordenadas().obtener_primera();
             carga << fila << ',';
-            escudo = jugadores[id_jugador]->obtener_personaje(j)->obtener_coordenadas().obtener_segunda();
+            columna = jugadores[id_jugador]->obtener_personaje(j)->obtener_coordenadas().obtener_segunda();
             carga << columna << '\n';
         }
     }
@@ -1037,8 +1145,42 @@ void Juego::salir() {
     ventana_juego->close();
 }
 
-Grafo * Juego::obtener_grafo() {
-    return tablero;
+void Juego::fin_del_juego() {
+    Text mensaje, fin_del_juego;
+    string ganador;
+    Clock reloj = Clock();
+    Time tiempo = Time();
+
+    mensaje.setFont(fuente);
+    fin_del_juego.setFont(fuente);
+    fin_del_juego.setString("FIN DEL JUEGO");
+    fin_del_juego.setCharacterSize(120);
+    fin_del_juego.setOrigin(fin_del_juego.getGlobalBounds().width / 2, fin_del_juego.getGlobalBounds().height / 2);
+    fin_del_juego.setPosition((float)ventana_juego->getSize().x / 2, (float)ventana_juego->getSize().y / 4);
+
+
+    if(obtener_jugador(JUGADOR_1)->jugador_perdio()) ganador = "JUGADOR 2";
+    else ganador = "JUGADOR 1";
+
+    mensaje.setString("GANADOR: " + ganador);
+    mensaje.setCharacterSize(80);
+    mensaje.setOrigin(mensaje.getGlobalBounds().width / 2, mensaje.getGlobalBounds().height / 2);
+    mensaje.setPosition((float)ventana_juego->getSize().x / 2, (float)ventana_juego->getSize().y / 2);
+
+    while(tiempo.asSeconds() < 5) {
+
+        ventana_juego->clear();
+
+        tiempo = reloj.getElapsedTime();
+
+        ventana_juego->draw(spr_fondo);
+        ventana_juego->draw(fin_del_juego);
+        ventana_juego->draw(mensaje);
+
+        ventana_juego->display();
+    }
+
+    if(partida_cargada) remove("partida.csv");
+
+    salir();
 }
-
-

@@ -1,7 +1,7 @@
-1
-0,aire,Zeus,0,1,20,0,0
-0,aire,Hera,0,0,0,0,5
+0
+0,aire,Zeus,0,20,20,0,1
+0,aire,Hera,0,0,0,5,5
 0,agua,Poseidon,0,0,0,7,7
-1,tierra,Dionisio,0,1,0,0,1
+1,tierra,Dionisio,0,1,0,0,2
 1,fuego,Apolo,0,0,0,3,4
 1,fuego,Artemisa,0,0,0,6,4
