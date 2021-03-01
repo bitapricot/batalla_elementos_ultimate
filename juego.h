@@ -30,6 +30,9 @@ const string PASAR_OPCION = "Pasar opcion";
 const string DEFENDERSE = "Defenderse";
 const string ATACAR = "Atacar";
 
+const string ARCHIVO_MAPA = "mapa.csv";
+const string ARCHIVO_CARGA = "partida.csv";
+const string ARCHIVO_PERSONAJES = "personajes.csv";
 
 const string ERROR_NO_HAY_PERSONAJE = "No hay un personaje en esa posicion";
 

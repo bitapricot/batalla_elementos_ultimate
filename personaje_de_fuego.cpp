@@ -21,9 +21,12 @@ Personaje_de_fuego::Personaje_de_fuego(string nombre, int escudo, int vidas, int
 
 string Personaje_de_fuego::alimentar() {
     int vida_anterior = vidas;
+    int energia_anterior = energia;
     if(vidas >= VALOR_MIN_VIDA && vidas <= VALOR_MAX_VIDA) vidas += VIDA_RECUPERADA_P_FUEGO;
     if(vidas > VALOR_MAX_VIDA) vidas = VALOR_MAX_VIDA;
-    return "El personaje " + nombre + " fue alimentado con " + ALIMENTO_P_FUEGO + " y recupero " + to_string(vidas - vida_anterior) + " punto(s) de vida";
+    if(energia >= VALOR_MIN_ENERGIA && energia <= VALOR_MAX_ENERGIA) energia += ENERGIA_RECUPERADA_P_FUEGO;
+    if(energia > VALOR_MAX_ENERGIA) energia = VALOR_MAX_ENERGIA;
+    return "El personaje " + nombre + " fue alimentado con " + ALIMENTO_P_FUEGO + " y recupero " + to_string(vidas - vida_anterior) + " punto(s) de vida" + "y " + to_string(energia - energia_anterior) + " punto(s) de energia";
 }
 
 string Personaje_de_fuego::de_que_elemento_soy() {

@@ -1,7 +1,7 @@
 #include "juego.h"
 
 Juego::Juego(){
-    tablero = new Grafo("mapa.csv");
+    tablero = new Grafo(ARCHIVO_MAPA);
 
     Jugador* j1 = new Jugador();
     Jugador* j2 = new Jugador();
@@ -174,6 +174,10 @@ void Juego::atacar() {
             } else {
                 if (personaje_act->obtener_energia() >= MIN_ENERGIA_ATAQUE_AIRE) {
                     ataque_p_aire();
+                }else {
+                     mensaje.setString(ENERGIA_INSUFICIENTE + "\nEnergia actual: " + to_string(personaje_act->obtener_energia()) + ", Energia necesaria: " + to_string(personaje_act->obtener_energia_minima_ataque()));
+                    imprimir_mensaje(mensaje);
+                    return;
                 }
             }
 
@@ -195,9 +199,7 @@ void Juego::atacar() {
             }
 
         } else {
-            mensaje.setString(
-                    ENERGIA_INSUFICIENTE + "\nEnergia actual: " + to_string(personaje_act->obtener_energia()) +
-                    ", Energia necesaria: " + to_string(personaje_act->obtener_energia_minima_ataque()));
+            mensaje.setString(ENERGIA_INSUFICIENTE + "\nEnergia actual: " + to_string(personaje_act->obtener_energia()) + ", Energia necesaria: " + to_string(personaje_act->obtener_energia_minima_ataque()));
             imprimir_mensaje(mensaje);
             //cout << ENERGIA_INSUFICIENTE << "\nEnergia actual: " << personaje_act->obtener_energia() << ", Energia necesaria: " << personaje_act->obtener_energia_minima_ataque() << endl;
         }
@@ -1102,7 +1104,7 @@ void Juego::crear_y_ubicar_personaje(string elemento, string nombre, int escudo,
 
 void Juego::guardar_partida() {
     ofstream carga;
-    carga.open("partida.csv"); // hacemos una constante de esto
+    carga.open(ARCHIVO_CARGA); // hacemos una constante de esto
 
     int id_jugador;
     string elemento;

@@ -37,6 +37,7 @@ Grafo::Grafo(string nombre_archivo) {
     floyd_warshall(ELEMENTO_AIRE, distancias_p_aire, recorridos_p_aire);
     floyd_warshall(ELEMENTO_TIERRA, distancias_p_tierra, recorridos_p_tierra);
     floyd_warshall(ELEMENTO_FUEGO, distancias_p_fuego, recorridos_p_fuego);
+    floyd_warshall();
 
 }
 
@@ -63,7 +64,7 @@ void Grafo::cargar_mapa(string archivo) {
                 getline(archivo_mapa, casillero, ',');
                 Casillero* nuevo = crear_casillero(casillero);
                 Vertice* nuevo_vertice = new Vertice(nuevo, i, j);
-                nuevo->asignar_posicion(200.f + 20.f + (j * 50.f), 170.f + (i * 50.f));
+                nuevo->asignar_posicion(200.f + 20.f + (j * 50.f), 170.f + (i * 50.f)); // esto lo explica mauri
                 vertices->alta(nuevo_vertice);
             }
             j = 0;
@@ -97,7 +98,7 @@ void Grafo::conectar_vertice(Vertice* vertice, Coordenada direccion, bool es_dia
 
 void Grafo::conectar_vertices() {
     vertices->reiniciar();
-    for (int i = 0; i < 64; i++){
+    for (int i = 0; i < dim_fila*dim_columna; i++){
         buscar_vertices_adyacentes(vertices->consulta(i));
     }
 }

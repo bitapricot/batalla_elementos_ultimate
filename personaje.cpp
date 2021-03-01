@@ -141,8 +141,8 @@ void Personaje::curar(int curar){
 
 void Personaje::cambiar_turno() {
     if(de_que_elemento_soy() == ELEMENTO_AIRE){
-        energia += 5;
-        if (energia > 20) energia = 20;
+        energia += ENERGIA_RECUPERADA_P_AIRE;
+        if (energia > VALOR_MAX_ENERGIA) energia = VALOR_MAX_ENERGIA;
     }
 }
 

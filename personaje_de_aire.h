@@ -23,6 +23,7 @@ private:
      */
     int obtener_energia_minima_ataque();
 
+
 public:
     /*
     Constructor

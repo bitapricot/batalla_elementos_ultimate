@@ -1,8 +1,8 @@
-#include "Menu.h"
+#include "menu.h"
 
 Menu::Menu()
 {
-    if(juego.cargar_partida("partida.csv")){
+    if(juego.cargar_partida(ARCHIVO_CARGA)){
         juego.jugar();
     } else {
 
@@ -18,7 +18,7 @@ Menu::Menu()
         opcion_seleccionada = 0;
         turno_seleccion = 2;
 
-        cargar_personajes("personajes.txt");
+        cargar_personajes(ARCHIVO_PERSONAJES);
         cargar_graficos();
 
         interfaz_menu();
