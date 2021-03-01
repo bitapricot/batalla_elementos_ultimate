@@ -72,7 +72,7 @@ void Grafo::cargar_mapa(string archivo) {
     }
 
     else {
-        cout << "nonopepe" << endl;
+        cout << "No se pudo abrir el archivo del mapa." << endl;
         tablero = 0;
     }
 }
