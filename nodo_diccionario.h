@@ -16,7 +16,6 @@ private:
     Valor valor;
     Nodo_diccionario* izq;
     Nodo_diccionario* der;
-    //Nodo_diccionario* padre;
 
 public:
     /*
