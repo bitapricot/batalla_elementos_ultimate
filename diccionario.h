@@ -114,14 +114,14 @@ public:
     void claves_inorden(Nodo_diccionario* aux, string &claves);
 
     /*
-    PRE: nodo es de tipo valido
-    POS: busca el minimo en el diccionario.
+    PRE: borrar es de tipo valido
+    POS: elimina el nodo con clave borrar.
     */
     void eliminar(Clave borrar);
 
     /*
     PRE: nodo es de tipo valido
-    POS: busca el sucesor en el diccionario.
+    POS: busca el minimo en el diccionario.
     */
     Nodo_diccionario* minimo(Nodo_diccionario* nodo);
 
