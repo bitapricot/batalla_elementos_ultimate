@@ -24,7 +24,7 @@ public:
 
     /*
      PRE: id debe ser de tipo entero
-     POS: crea un personaje con id pasado por parametro
+     POS: crea un jugador con id pasado por parametro
      */
     Jugador(int id);
     ~Jugador(); // destructor
