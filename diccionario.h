@@ -108,15 +108,15 @@ public:
     Valor consulta(Clave clave);
 
     /*
-     PRE: borrar es de tipo valido
-     POS: elimina el nodo asociado a la clave pasada por parametro
+     PRE: los parametros son validos
+     POS: recorre las claves de menor a mayor
      */
     void claves_inorden(Nodo_diccionario* aux, string &claves);
 
     /*
-    PRE: borrar es de tipo valido
-    POS: elimina el nodo con clave borrar.
-    */
+     PRE: borrar es de tipo valido
+     POS: elimina el nodo asociado a la clave pasada por parametro
+     */
     void eliminar(Clave borrar);
 
     /*
